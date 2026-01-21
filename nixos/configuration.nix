@@ -125,7 +125,6 @@
     vim
     wget
     waybar
-    wofi
     kitty
     dunst
     wl-clipboard
@@ -134,6 +133,7 @@
     polkit_gnome
     brave
     rofi
+    starship
   ];
 
   fonts.packages = with pkgs; [
