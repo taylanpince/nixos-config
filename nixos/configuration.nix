@@ -96,6 +96,13 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # 1Password
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = ["taylan"];
+  };
+
   # Hyprland
   programs.hyprland = {
     enable = true;
