@@ -87,3 +87,17 @@ scrollbar {
   handle-color: @base01;
   background-color: transparent;
 }
+
+/* Kill white boxes around elements */
+textbox, text-box, element-text, element-icon {
+  background-color: inherit;
+  text-color: inherit;
+}
+
+prompt, entry, textbox-prompt-colon {
+  background-color: transparent;
+}
+
+prompt textbox, entry textbox {
+  background-color: transparent;
+}
