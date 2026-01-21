@@ -96,6 +96,20 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # Hyprland
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true; # Electron / X11
+  };
+
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -103,6 +117,14 @@
     curl
     vim
     wget
+    waybar
+    wofi
+    kitty
+    dunst
+    wl-clipboard
+    grim
+    slurp
+    polkit_gnome
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
