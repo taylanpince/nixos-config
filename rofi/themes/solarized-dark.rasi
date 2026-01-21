@@ -1,0 +1,89 @@
+/* Solarized Dark for rofi (Wayland) */
+* {
+  /* Solarized palette */
+  base03: #002b36;
+  base02: #073642;
+  base01: #586e75;
+  base00: #657b83;
+  base0:  #839496;
+  base1:  #93a1a1;
+  yellow: #b58900;
+  orange: #cb4b16;
+  red:    #dc322f;
+  magenta:#d33682;
+  violet: #6c71c4;
+  blue:   #268bd2;
+  cyan:   #2aa198;
+  green:  #859900;
+
+  background: @base03;
+  background-alt: @base02;
+  foreground: @base0;
+  selected: @blue;
+  selected-foreground: @base03;
+  urgent: @red;
+  border: @base02;
+
+  font: "Inter 12";
+}
+
+window {
+  width: 38%;
+  border: 2px;
+  border-color: @border;
+  background-color: @background;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+mainbox {
+  background-color: transparent;
+}
+
+inputbar {
+  children: [ prompt, entry ];
+  background-color: @background-alt;
+  border-radius: 10px;
+  padding: 10px;
+  spacing: 10px;
+}
+
+prompt {
+  text-color: @base1;
+}
+
+entry {
+  text-color: @foreground;
+  placeholder: "Type to search…";
+  placeholder-color: @base01;
+}
+
+listview {
+  background-color: transparent;
+  lines: 10;
+  columns: 1;
+  spacing: 6px;
+  padding: 10px 2px 2px 2px;
+  scrollbar: true;
+}
+
+element {
+  background-color: transparent;
+  text-color: @foreground;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+element selected {
+  background-color: @selected;
+  text-color: @selected-foreground;
+}
+
+element urgent {
+  text-color: @urgent;
+}
+
+scrollbar {
+  handle-color: @base01;
+  background-color: transparent;
+}

@@ -1,0 +1,6 @@
+configuration {
+  modi: "drun,window";
+  show-icons: true;
+  icon-theme: "Adwaita";
+}
+@theme "~/.config/rofi/themes/solarized-dark.rasi"
