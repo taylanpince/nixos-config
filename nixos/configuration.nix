@@ -136,6 +136,7 @@
     starship
     hyprlock
     hypridle
+    pavucontrol
   ];
 
   fonts.packages = with pkgs; [
