@@ -233,6 +233,7 @@
     slack
     obsidian
     code-cursor
+    gthumb
 
     # Video
     mpv
