@@ -194,9 +194,13 @@
     # Hyprland UI
     waybar
     dunst
+    libnotify
     wl-clipboard
     grim
     slurp
+    swappy
+    satty
+    wf-recorder
     polkit_gnome
     rofi
     hyprlock
