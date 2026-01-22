@@ -165,6 +165,8 @@
     bluez
     blueman
     glib # provides gsettings
+    obsidian
+    code-cursor
   ];
 
   fonts.packages = with pkgs; [
