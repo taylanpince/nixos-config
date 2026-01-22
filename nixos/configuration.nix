@@ -134,6 +134,8 @@
     brave
     rofi
     starship
+    hyprlock
+    hypridle
   ];
 
   fonts.packages = with pkgs; [
