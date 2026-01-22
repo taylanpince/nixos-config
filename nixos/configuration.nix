@@ -140,6 +140,7 @@
     nodejs_22
     nodePackages.pnpm
     opencode
+    pulseaudio
   ];
 
   fonts.packages = with pkgs; [
