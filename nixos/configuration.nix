@@ -153,6 +153,7 @@
     zoxide
     jq
     jless
+    slack
   ];
 
   fonts.packages = with pkgs; [
