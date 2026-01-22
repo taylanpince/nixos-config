@@ -154,6 +154,9 @@
     jq
     jless
     slack
+    hyprpaper
+    coreutils
+    findutils
   ];
 
   fonts.packages = with pkgs; [
