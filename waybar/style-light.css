@@ -85,6 +85,11 @@ window#waybar {
   padding: 0;
 }
 
+#custom-theme {
+  padding-left: 6px;
+  padding-right: 9px;
+}
+
 #idle_inhibitor.activated {
   color: @yellow;
 }

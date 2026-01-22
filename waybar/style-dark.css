@@ -77,12 +77,22 @@ window#waybar {
 #network {
   min-width: 14px;
   padding-left: 6px;
-  padding-right: 8px;
+  padding-right: 9px;
 }
 
 #network label {
   margin: 0;
   padding: 0;
+}
+
+#custom-brightness {
+  padding-left: 8px;
+  padding-right: 10px;
+}
+
+#custom-theme {
+  padding-left: 8px;
+  padding-right: 9px;
 }
 
 #idle_inhibitor.activated {
