@@ -128,29 +128,52 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # Development tools
     git
     curl
     vim
     wget
-    waybar
-    kitty
-    dunst
-    wl-clipboard
-    grim
-    slurp
-    polkit_gnome
-    brave
-    rofi
-    starship
-    hyprlock
-    hypridle
-    pavucontrol
     nodejs_22
     nodePackages.pnpm
-    opencode
-    pulseaudio
-    networkmanagerapplet
-    wireplumber
+    jq
+    jless
+    gnumake
+    pkg-config
+    cmake
+    ninja
+    unzip
+    zip
+
+    # Compilers
+    gcc
+    clang
+    binutils
+
+    # Common native libs
+    openssl
+    zlib
+    libffi
+    sqlite
+    bzip2
+    xz
+
+    # Go Tooling
+    go
+    gopls
+    delve
+    gotools
+    golangci-lint
+
+    # Python Tooling
+    python3
+    python3Packages.pip
+    python3Packages.virtualenv
+    python3Packages.setuptools
+    python3Packages.wheel
+
+    # Bash and Terminal
+    kitty
+    starship
     bash-completion
     fzf
     ripgrep
@@ -158,9 +181,21 @@
     eza
     fd
     zoxide
-    jq
-    jless
-    slack
+
+    # Hyprland UI
+    waybar
+    dunst
+    wl-clipboard
+    grim
+    slurp
+    polkit_gnome
+    rofi
+    hyprlock
+    hypridle
+    pavucontrol
+    pulseaudio
+    networkmanagerapplet
+    wireplumber
     hyprpaper
     coreutils
     findutils
@@ -168,6 +203,11 @@
     bluez
     blueman
     glib # provides gsettings
+
+    # Apps
+    brave
+    opencode
+    slack
     obsidian
     code-cursor
   ];
