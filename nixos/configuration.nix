@@ -117,6 +117,8 @@
     xwayland.enable = true; # Electron / X11
   };
 
+  programs.dconf.enable = true;
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [

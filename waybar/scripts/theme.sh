@@ -24,10 +24,12 @@ apply_mode() {
     # Best-effort GTK hint (doesn't break if absent)
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark' >/dev/null 2>&1 || true
     gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark' >/dev/null 2>&1 || true
+    gsettings set org.gnome.desktop.interface gtk-application-prefer-dark-theme true >/dev/null 2>&1 || true
   else
     ln -sf "$LIGHT" "$STYLE"
     gsettings set org.gnome.desktop.interface color-scheme 'default' >/dev/null 2>&1 || true
     gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita' >/dev/null 2>&1 || true
+    gsettings set org.gnome.desktop.interface gtk-application-prefer-dark-theme false >/dev/null 2>&1 || true
   fi
 
   # reload Waybar CSS/config
