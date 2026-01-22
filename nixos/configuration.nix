@@ -141,7 +141,6 @@
     nodePackages.pnpm
     opencode
     pulseaudio
-    wev
   ];
 
   fonts.packages = with pkgs; [
