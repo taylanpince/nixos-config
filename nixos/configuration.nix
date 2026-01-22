@@ -137,6 +137,9 @@
     hyprlock
     hypridle
     pavucontrol
+    nodejs_22
+    nodePackages.pnpm
+    opencode
   ];
 
   fonts.packages = with pkgs; [
