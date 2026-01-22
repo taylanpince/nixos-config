@@ -117,21 +117,6 @@
     ];
   };
 
-  # keyd for key binding overrides
-  environment.etc."keyd/default.conf".source = ../keyd/default.conf;
-
-  systemd.services.keyd = {
-    description = "keyd key remapping daemon";
-    wantedBy = [ "multi-user.target" ];
-    after = [ "local-fs.target" ];
-
-    serviceConfig = {
-      ExecStart = "${pkgs.keyd}/bin/keyd";
-      Restart = "on-failure";
-      User = "root";
-    };
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -167,7 +152,6 @@
     zoxide
     jq
     jless
-    keyd
   ];
 
   fonts.packages = with pkgs; [
