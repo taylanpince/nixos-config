@@ -1,0 +1,31 @@
+set editing-mode emacs
+set show-all-if-ambiguous on
+set completion-ignore-case on
+set mark-symlinked-directories on
+set colored-stats on
+set completion-display-width 0
+
+# History search with up/down (like many modern shells)
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Word movement (Option/Alt + Left/Right) — common in kitty/wayland terms
+"\e[1;3D": backward-word
+"\e[1;3C": forward-word
+"\e[1;9D": backward-word
+"\e[1;9C": forward-word
+
+# Word movement (Ctrl + Left/Right) — some terminals send these
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+
+# Home/End
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# Delete word (Option/Alt + Backspace often comes as \e\b or \e\x7f depending on terminal)
+"\e\b": backward-kill-word
+"\e\x7f": backward-kill-word
+

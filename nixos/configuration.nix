@@ -143,6 +143,15 @@
     pulseaudio
     networkmanagerapplet
     wireplumber
+    bash-completion
+    fzf
+    ripgrep
+    bat
+    eza
+    fd
+    zoxide
+    jq
+    jless
   ];
 
   fonts.packages = with pkgs; [
