@@ -13,6 +13,9 @@
   ],
 
   "modules-right": [
+    "custom/theme",
+    "custom/brightness",
+    "custom/bluetooth",
     "idle_inhibitor",
     "custom/mic",
     "custom/volume",
@@ -41,6 +44,34 @@
     },
     "tooltip": true
   },
+
+  "custom/theme": {
+    "exec": "~/.config/waybar/scripts/theme.sh --status",
+    "interval": 2,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/theme.sh --toggle",
+    "tooltip": true
+  },
+
+  "custom/brightness": {
+    "exec": "~/.config/waybar/scripts/brightness.sh --status",
+    "interval": 2,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/brightness.sh --menu",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": true
+  },
+
+  "custom/bluetooth": {
+    "exec": "~/.config/waybar/scripts/bluetooth.sh --status",
+    "interval": 2,
+    "return-type": "json",
+    "on-click": "blueman-manager",
+    "on-click-right": "~/.config/waybar/scripts/bluetooth.sh --toggle-power",
+    "tooltip": true
+  },
+
 
   "custom/mic": {
     "exec": "~/.config/waybar/scripts/mic.sh",

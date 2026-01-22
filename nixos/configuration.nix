@@ -62,6 +62,10 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  services.blueman.enable = true;
+
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -157,6 +161,10 @@
     hyprpaper
     coreutils
     findutils
+    brightnessctl
+    bluez
+    blueman
+    glib # provides gsettings
   ];
 
   fonts.packages = with pkgs; [
