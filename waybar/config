@@ -75,7 +75,7 @@
     "format-wifi": "󰤨",
     "format-ethernet": "󰈀",
     "format-disconnected": "󰤭",
-    "tooltip-format-wifi": "{ssid}\n{ipaddr}",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}",
     "tooltip-format-ethernet": "{ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
     "on-click": "nm-connection-editor"
