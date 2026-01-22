@@ -15,7 +15,7 @@
   "modules-right": [
     "idle_inhibitor",
     "custom/mic",
-    "pulseaudio",
+    "custom/volume",
     "network",
     "battery",
     "tray"
@@ -24,7 +24,7 @@
   "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
-      "default": "",
+      "default": "",
       "active": "",
       "urgent": ""
     },
@@ -50,6 +50,17 @@
     "tooltip": true
   },
 
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "interval": 1,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/volume.sh --menu",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "tooltip": true
+  },
+
+
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "󰝟",
@@ -66,14 +77,25 @@
     "format-disconnected": "󰤭",
     "tooltip-format-wifi": "{ssid}\n{ipaddr}",
     "tooltip-format-ethernet": "{ipaddr}",
-    "tooltip-format-disconnected": "Disconnected"
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "nm-connection-editor"
   },
 
   "battery": {
     "format": "{icon}",
-    "format-icons": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
-    "tooltip": true
+    "format-charging": "{icon}",
+    "format-plugged": "󰚥",
+    "format-icons": {
+      "default": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+      "charging": ["󰢟","󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋"]
+    },
+    "tooltip-format": "{timeTo}\n{capacity}%\n{power}W",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
   },
+
 
   "tray": {
     "spacing": 10

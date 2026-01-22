@@ -141,6 +141,8 @@
     nodePackages.pnpm
     opencode
     pulseaudio
+    networkmanagerapplet
+    wireplumber
   ];
 
   fonts.packages = with pkgs; [

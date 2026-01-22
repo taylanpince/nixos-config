@@ -21,17 +21,29 @@ window#waybar {
   color: @base0;
 }
 
+#workspaces {
+  margin-left: 5px;
+}
+
 #workspaces button {
-  padding: 0 6px;
-  margin: 4px 2px;
+  min-width: 26px;
+  padding: 0;
+  padding-right: 2px;
+  margin: 4px 3px;
   border-radius: 10px;
   background: transparent;
   color: @base01;
 }
 
+#workspaces button label {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+}
+
 #workspaces button.active {
   background: @base02;
-  color: @base1;
+  color: @blue; /* active dot color */
 }
 
 #workspaces button.urgent {
@@ -43,6 +55,7 @@ window#waybar {
 #idle_inhibitor,
 #custom-mic,
 #pulseaudio,
+#custom-volume,
 #network,
 #battery,
 #tray {
@@ -51,6 +64,22 @@ window#waybar {
   border-radius: 12px;
   background: @base02;
   color: @base0;
+}
+
+.modules-right {
+  margin-right: 5px;
+}
+
+/* Force true centering for single-icon modules */
+#network {
+  min-width: 14px;
+  padding-left: 6px;
+  padding-right: 8px;
+}
+
+#network label {
+  margin: 0;
+  padding: 0;
 }
 
 #idle_inhibitor.activated {
