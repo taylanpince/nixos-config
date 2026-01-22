@@ -46,6 +46,13 @@
     LC_TIME = "en_CA.UTF-8";
   };
 
+  hardware.graphics.enable = true;
+  hardware.graphics.extraPackages = with pkgs; [
+    libva
+    libva-vdpau-driver
+    libvdpau-va-gl
+  ];
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -196,11 +203,6 @@
     dunst
     libnotify
     wl-clipboard
-    grim
-    slurp
-    swappy
-    satty
-    wf-recorder
     polkit_gnome
     rofi
     hyprlock
@@ -218,12 +220,24 @@
     glib # provides gsettings
     wlogout
 
+    # Screen recording
+    grim
+    slurp
+    swappy
+    satty
+    wf-recorder
+
     # Apps
     brave
     opencode
     slack
     obsidian
     code-cursor
+
+    # Video
+    mpv
+    ffmpeg-full
+    celluloid
   ];
 
   fonts.packages = with pkgs; [
