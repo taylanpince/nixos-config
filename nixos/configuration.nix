@@ -133,8 +133,6 @@
     curl
     vim
     wget
-    nodejs_22
-    nodePackages.pnpm
     jq
     jless
     gnumake
@@ -143,6 +141,10 @@
     ninja
     unzip
     zip
+    mkcert
+    nssTools
+    docker-compose # Alias to legacy name
+    postgresql
 
     # Compilers
     gcc
@@ -156,6 +158,11 @@
     sqlite
     bzip2
     xz
+
+    # JS Tooling
+    yarn
+    nodejs_22
+    nodePackages.pnpm
 
     # Go Tooling
     go
@@ -203,6 +210,7 @@
     bluez
     blueman
     glib # provides gsettings
+    wlogout
 
     # Apps
     brave
