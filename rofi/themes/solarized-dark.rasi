@@ -101,3 +101,15 @@ prompt, entry, textbox-prompt-colon {
 prompt textbox, entry textbox {
   background-color: transparent;
 }
+
+mode-switcher {
+  enabled: false;
+}
+
+prompt {
+  enabled: false;
+}
+
+element-icon {
+  margin: 0px 12px 0px 0px;
+}

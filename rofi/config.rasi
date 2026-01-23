@@ -2,5 +2,10 @@ configuration {
   modi: "drun,window";
   show-icons: true;
   icon-theme: "Adwaita";
+  window-format: "{t}";
+
+  display-drun: "";
+  display-window: "";
 }
-@theme "~/.config/rofi/themes/solarized-dark.rasi"
+
+@theme "~/config/rofi/themes/solarized-dark.rasi"
