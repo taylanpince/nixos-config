@@ -209,6 +209,8 @@
     dunst
     libnotify
     wl-clipboard
+    cliphist
+    xdg-utils
     polkit_gnome
     rofi
     hyprlock
