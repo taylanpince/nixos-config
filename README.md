@@ -1,6 +1,6 @@
 # NixOS Configuration
 
-A complete NixOS setup with Hyprland window manager, featuring a clean and efficient development environment.
+A complete NixOS setup with Hyprland window manager, configured to be an easy switch from a macOS setup.
 
 ## Overview
 
@@ -23,12 +23,15 @@ This configuration includes:
 - US keyboard layout with Alt/Win swap
 
 ### Installed Packages
-- **Development**: git, curl, vim, wget, nodejs_22, pnpm, opencode
+- **Development**: git, curl, vim, wget, nodejs_22, pnpm, opencode, docker, docker-compose, postgresql, gcc, clang, cmake, ninja, go, gopls, delve, python3, yarn
 - **Terminal**: kitty, starship, bash-completion, fzf, ripgrep, bat, eza, fd, zoxide, jq, jless
-- **Desktop**: waybar, dunst, wl-clipboard, grim, slurp, rofi, wofi
-- **System**: pavucontrol, pulseaudio, networkmanagerapplet, wireplumber
+- **Desktop**: waybar, dunst, wl-clipboard, grim, slurp, rofi, wofi, wlogout, brightnessctl
+- **System**: pavucontrol, pulseaudio, networkmanagerapplet, wireplumber, blueman, fwupd, bolt
 - **Browser**: Brave
 - **Security**: hyprlock, hypridle
+- **Media**: mpv, ffmpeg-full, celluloid, gthumb
+- **Screen Recording**: grim, slurp, swappy, satty, wf-recorder
+- **Applications**: slack, obsidian, code-cursor
 
 ### Fonts
 - Inter (UI font)
@@ -48,7 +51,7 @@ config/
 ├── waybar/
 │   ├── config                     # Waybar configuration
 │   ├── style.css                  # Waybar styling
-│   └── scripts/                   # Custom scripts (volume, mic, calendar)
+│   └── scripts/                   # Custom scripts (volume, mic, calendar, bluetooth, brightness, theme)
 ├── kitty/
 │   └── kitty.conf                 # Terminal emulator config
 ├── starship/
@@ -58,8 +61,15 @@ config/
 │   └── themes/                    # Custom themes
 ├── wofi/
 │   └── style.css                  # Wofi styling
-├── keyd/
-│   └── default.conf               # Keyboard remapping
+├── wlogout/
+│   └── layout                     # Logout screen layout
+├── mpv/
+│   └── mpv.conf                   # Media player config
+├── scripts/
+│   ├── display-hotplug.sh         # Multi-monitor setup
+│   ├── record-screen.sh           # Screen recording
+│   ├── set-random-wallpaper.sh    # Wallpaper management
+│   └── switch-waybar-config.sh    # Waybar config switching
 ├── systemd/
 │   └── user/                      # User services
 ├── bashrc                         # Shell configuration
@@ -97,15 +107,18 @@ config/
 
 5. **Reboot and setup user configs:**
    ```bash
-   # After reboot, copy dotfiles to home directory
-   cp -r /etc/nixos/config/hypr ~/.config/
-   cp -r /etc/nixos/config/waybar ~/.config/
-   cp -r /etc/nixos/config/kitty ~/.config/
-   cp -r /etc/nixos/config/starship ~/.config/
-   cp -r /etc/nixos/config/rofi ~/.config/
-   cp -r /etc/nixos/config/wofi ~/.config/
-   cp /etc/nixos/config/bashrc ~/.bashrc
-   cp /etc/nixos/config/inputrc ~/.inputrc
+   # After reboot, create symlinks to dotfiles in home directory
+   ln -s /etc/nixos/config/hypr ~/.config/hypr
+   ln -s /etc/nixos/config/waybar ~/.config/waybar
+   ln -s /etc/nixos/config/kitty ~/.config/kitty
+   ln -s /etc/nixos/config/starship ~/.config/starship
+   ln -s /etc/nixos/config/rofi ~/.config/rofi
+   ln -s /etc/nixos/config/wofi ~/.config/wofi
+   ln -s /etc/nixos/config/wlogout ~/.config/wlogout
+   ln -s /etc/nixos/config/mpv ~/.config/mpv
+   ln -s /etc/nixos/config/scripts ~/scripts
+   ln -s /etc/nixos/config/bashrc ~/.bashrc
+   ln -s /etc/nixos/config/inputrc ~/.inputrc
    ```
 
 ## Configuration Details
@@ -125,13 +138,18 @@ config/
   - `SUPER + SPACE`: Application launcher (Rofi)
   - `SUPER + TAB`: Window switcher
   - `SUPER + S`: Screenshot (area selection)
+  - `SUPER + SHIFT + S`: Screen recording
+  - `SUPER + ALT + S`: Screenshot annotation (Satty)
+- **Multi-monitor**: Auto workspace switching with display-hotplug script
 
 ### Waybar Modules
-- **Workspaces**: Hyprland workspace indicators
+- **Workspaces**: Hyprland workspace indicators with auto-switching
 - **Clock**: Date/time with calendar popup
 - **Volume**: Audio control with scroll adjustment
 - **Microphone**: Mic toggle
 - **Network**: WiFi/Ethernet status
+- **Bluetooth**: Device connection management
+- **Brightness**: Display brightness control
 - **Battery**: Power status and remaining time
 - **Tray**: System tray icons
 
@@ -145,6 +163,7 @@ config/
 - **Aliases**: `ls` uses eza with git info, `dv` for development directory
 - **History**: Large history with deduplication
 - **Prompt**: Starship with Solarized Dark palette
+- **Development**: Docker, Go, Python, Node.js tooling pre-configured
 
 ## Customization
 
@@ -163,8 +182,9 @@ Edit `hypr/hyprland.conf` for keybindings, layouts, and rules.
 
 ### Theming
 - **Colors**: Edit `hypr/mocha.conf` for Catppuccin colors
-- **Waybar**: Modify `waybar/style.css` for bar styling
+- **Waybar**: Modify `waybar/style.css` for bar styling, use `scripts/switch-waybar-config.sh` to switch themes
 - **Rofi**: Update `rofi/themes/solarized-dark.rasi`
+- **Wallpapers**: Use `scripts/set-random-wallpaper.sh` for random wallpaper selection
 
 ## Maintenance
 
@@ -183,16 +203,33 @@ sudo nix-collect-garbage -d
 nix search <package-name>
 ```
 
-## Troubleshooting
+## Primary Features
 
-### Common Issues
-- **Wayland apps not working**: Ensure `xdg.portal` is configured
-- **Audio issues**: Check PipeWire and WirePlumber services
-- **Display problems**: Verify GPU drivers in hardware configuration
+### Applications
+- **Slack**: Workspace management (locked to workspace 3)
+- **Obsidian**: Note-taking and knowledge management
+- **Cursor**: AI-powered code editor
+- **gThumb**: Image viewer and editor
+- **MPV**: Hardware-accelerated video playback with Celluloid frontend
 
-### Logs
-- **System logs**: `journalctl -b`
-- **Hyprland logs**: Check `~/.local/share/hyprland/hyprland.log`
+### Screen Recording & Annotation
+- **wf-recorder**: Screen recording with audio
+- **Satty**: Screenshot annotation tool
+- **Swappy**: Image editing for screenshots
+
+### System Enhancements
+- **Multi-monitor support**: Auto workspace switching with display hotplug detection
+- **BIOS updates**: fwupd integration for system firmware
+- **Docker**: Container support with docker-compose
+- **PostgreSQL**: Database server for development
+- **Bluetooth**: Full device management with Blueman
+- **wlogout**: Modern logout/power menu
+
+### Scripts
+- **display-hotplug.sh**: Multi-monitor workspace management
+- **record-screen.sh**: Screen recording with audio
+- **set-random-wallpaper.sh**: Wallpaper rotation
+- **switch-waybar-config.sh**: Theme switching
 
 ## License
 
