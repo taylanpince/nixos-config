@@ -1,0 +1,143 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "spacing": 6,
+
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+
+  "modules-center": [
+    "clock"
+  ],
+
+  "modules-right": [
+    "custom/theme",
+    "custom/brightness",
+    "custom/bluetooth",
+    "idle_inhibitor",
+    "custom/mic",
+    "custom/volume",
+    "network",
+    "battery",
+    "tray"
+  ],
+
+  "hyprland/workspaces": {
+    "all-outputs": false,
+    "move-to-monitor": true,
+    "format": "{icon}",
+    "format-icons": {
+      "default": "",
+      "active": "",
+      "urgent": ""
+    },
+    "persistent-workspaces": {
+      "DP-4": [1,2,3,4,5,6,7,8],
+      "eDP-1": [9,10,11,12,13,14,15,16]
+    }
+  },
+
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "󰅶",
+      "deactivated": "󰾪"
+    },
+    "tooltip": true
+  },
+
+  "custom/theme": {
+    "exec": "~/.config/waybar/scripts/theme.sh --status",
+    "interval": 2,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/theme.sh --toggle",
+    "tooltip": true
+  },
+
+  "custom/brightness": {
+    "exec": "~/.config/waybar/scripts/brightness.sh --status",
+    "interval": 2,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/brightness.sh --menu",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-",
+    "tooltip": true
+  },
+
+  "custom/bluetooth": {
+    "exec": "~/.config/waybar/scripts/bluetooth.sh --status",
+    "interval": 2,
+    "return-type": "json",
+    "on-click": "blueman-manager",
+    "on-click-right": "~/.config/waybar/scripts/bluetooth.sh --toggle-power",
+    "tooltip": true
+  },
+
+
+  "custom/mic": {
+    "exec": "~/.config/waybar/scripts/mic.sh",
+    "interval": 1,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/mic.sh --toggle",
+    "tooltip": true
+  },
+
+  "custom/volume": {
+    "exec": "~/.config/waybar/scripts/volume.sh",
+    "interval": 1,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/scripts/volume.sh --menu",
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+    "tooltip": true
+  },
+
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "pavucontrol",
+    "tooltip": true
+  },
+
+  "network": {
+    "format-wifi": "󰤨",
+    "format-ethernet": "󰈀",
+    "format-disconnected": "󰤭",
+    "tooltip-format-wifi": "{essid}\n{ipaddr}",
+    "tooltip-format-ethernet": "{ipaddr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "nm-connection-editor"
+  },
+
+  "battery": {
+    "format": "{icon}",
+    "format-charging": "{icon}",
+    "format-plugged": "󰚥",
+    "format-icons": {
+      "default": ["󰁺","󰁻","󰁼","󰁽","󰁾","󰁿","󰂀","󰂁","󰂂","󰁹"],
+      "charging": ["󰢟","󰢜","󰂆","󰂇","󰂈","󰢝","󰂉","󰢞","󰂊","󰂋"]
+    },
+    "tooltip-format": "{timeTo}\n{capacity}%\n{power}W",
+    "states": {
+      "warning": 20,
+      "critical": 10
+    }
+  },
+
+
+  "tray": {
+    "spacing": 10
+  },
+
+  "clock": {
+    "format": "󰥔 {:%a %d %b  %H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "on-click": "~/.config/waybar/scripts/calendar.sh"
+  }
+}

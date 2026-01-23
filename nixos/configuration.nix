@@ -225,6 +225,7 @@
     blueman
     glib # provides gsettings
     wlogout
+    socat
 
     # Screen recording
     grim

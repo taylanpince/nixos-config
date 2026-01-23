@@ -2,6 +2,7 @@
 Description=Waybar
 
 [Service]
+#ExecStartPre=/usr/bin/pkill -x waybar || true
 ExecStart=/run/current-system/sw/bin/waybar
 Restart=on-failure
 RestartSec=1
