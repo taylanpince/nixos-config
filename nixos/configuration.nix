@@ -14,7 +14,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
+  # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "bloomware";
@@ -62,6 +62,9 @@
 
   # Thunderbolt
   services.hardware.bolt.enable = true;
+
+  # BIOS Updates
+  services.fwupd.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
