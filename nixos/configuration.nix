@@ -53,12 +53,30 @@
     libvdpau-va-gl
   ];
 
-  # Enable the X11 windowing system.
+  # Enable the X11 windowing system
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
+  # GDM and GNOME Desktop Environment
+  services.displayManager.gdm.enable = false;
+  services.desktopManager.gnome.enable = false;
+
+  # Enable greetd + ReGreet
+  services.greetd.enable = true;
+  programs.regreet.enable = true;
+
+  programs.regreet.settings =
+    builtins.fromTOML (builtins.readFile ./greetd/regreet.toml);
+
+  programs.regreet.extraCss =
+    builtins.readFile ./greetd/regreet.css;
+
+  environment.etc."greetd/background.png".source = ./greetd/background.png;
+
+  # Run ReGreet inside Cage (simple + robust)
+  services.greetd.settings.default_session = {
+    user = "greeter";
+    command = "${pkgs.cage}/bin/cage -s -mlast -- ${pkgs.regreet}/bin/regreet";
+  };
 
   # Thunderbolt
   services.hardware.bolt.enable = true;
@@ -251,6 +269,8 @@
     wlogout
     socat
     yazi
+    regreet
+    cage
 
     # Fingerprint support
     fprintd

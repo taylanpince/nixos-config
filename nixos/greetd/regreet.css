@@ -1,0 +1,284 @@
+/* ReGreet CSS — Catppuccin Mocha
+   - Big readable UI
+   - Card background + shadows restored
+   - Error banner fixed (no duplicates, no gray backing, no bleeding into power buttons)
+   - No global "all: unset" (that breaks GTK widgets/layout)
+*/
+
+/* -----------------------------
+   Catppuccin Mocha palette
+----------------------------- */
+@define-color rosewater #f5e0dc;
+@define-color flamingo  #f2cdcd;
+@define-color pink      #f5c2e7;
+@define-color mauve     #cba6f7;
+@define-color red       #f38ba8;
+@define-color maroon    #eba0ac;
+@define-color peach     #fab387;
+@define-color yellow    #f9e2af;
+@define-color green     #a6e3a1;
+@define-color teal      #94e2d5;
+@define-color sky       #89dceb;
+@define-color sapphire  #74c7ec;
+@define-color blue      #89b4fa;
+@define-color lavender  #b4befe;
+
+@define-color text      #cdd6f4;
+@define-color subtext1  #bac2de;
+@define-color subtext0  #a6adc8;
+
+@define-color surface2  #585b70;
+@define-color surface1  #45475a;
+@define-color surface0  #313244;
+
+@define-color base      #1e1e2e;
+@define-color mantle    #181825;
+@define-color crust     #11111b;
+
+/* -----------------------------
+   Remove title/header bar
+----------------------------- */
+headerbar,
+.titlebar,
+windowhandle {
+  min-height: 0px;
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  background: transparent;
+  box-shadow: none;
+}
+
+headerbar *,
+.titlebar *,
+windowhandle * {
+  min-height: 0px;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  opacity: 0;
+}
+
+/* -----------------------------
+   Base typography + window
+----------------------------- */
+* {
+  font-family: "Inter", "Cantarell", "Roboto", sans-serif;
+  font-size: 18px;
+}
+
+window {
+  background-color: transparent;
+  color: @text;
+  margin: 0;
+  padding: 0;
+}
+
+/* Don’t introduce extra top padding here (you said ignore the top gap for now) */
+window > box {
+  margin: 0;
+  padding: 0px 64px 64px 64px;
+  background: transparent;
+}
+
+/* -----------------------------
+   Main “card” styling (RESTORED)
+----------------------------- */
+/* This broad selector is what actually matches ReGreet reliably.
+   We keep it, and we explicitly neutralize the error widget below. */
+window box > box,
+window box > grid,
+window grid {
+  background: alpha(@base, 0.88);
+  border: 1px solid alpha(@surface0, 0.85);
+  border-radius: 26px;
+  box-shadow: 0 18px 48px alpha(@crust, 0.75);
+  padding: 34px;
+}
+
+/* Give the main UI room */
+window box > box,
+window box > grid,
+window grid {
+  min-width: 640px;
+}
+
+/* -----------------------------
+   Clock/date “pill” (if present)
+----------------------------- */
+#clock,
+.clock,
+box#clock,
+box.clock {
+  background: alpha(@crust, 0.55);
+  border: 1px solid alpha(@surface0, 0.75);
+  border-radius: 20px;
+  padding: 10px 16px;
+  box-shadow: 0 10px 30px alpha(@crust, 0.55);
+}
+
+/* -----------------------------
+   Labels
+----------------------------- */
+label { color: @text; }
+
+label.subtitle,
+label.dim-label,
+.dim-label,
+.caption,
+.small {
+  color: @subtext0;
+  font-size: 15px;
+}
+
+/* -----------------------------
+   Inputs
+----------------------------- */
+entry,
+combobox,
+dropdown,
+spinbutton,
+textview {
+  background: alpha(@surface0, 0.95);
+  color: @text;
+  border: 1px solid alpha(@surface1, 0.95);
+  border-radius: 16px;
+  padding: 14px 16px;
+  min-height: 44px;
+}
+
+entry placeholder {
+  color: alpha(@subtext0, 0.85);
+}
+
+entry selection {
+  background: alpha(@blue, 0.35);
+  color: @text;
+}
+
+/* Focus ring */
+entry:focus,
+combobox:focus,
+dropdown:focus,
+button:focus {
+  outline: 2px solid alpha(@blue, 0.95);
+  outline-offset: 2px;
+  border-color: alpha(@blue, 0.70);
+}
+
+/* -----------------------------
+   Buttons (power buttons stay normal)
+----------------------------- */
+button {
+  background: alpha(@surface0, 0.95);
+  color: @text;
+  border: 1px solid alpha(@surface1, 0.95);
+  border-radius: 16px;
+  padding: 12px 18px;
+  min-height: 46px;
+}
+
+button:hover {
+  background: alpha(@surface1, 0.90);
+  border-color: alpha(@blue, 0.60);
+}
+
+button:active {
+  background: alpha(@blue, 0.18);
+  border-color: alpha(@blue, 0.75);
+}
+
+button.suggested-action {
+  background: alpha(@mauve, 0.28);
+  border-color: alpha(@mauve, 0.65);
+}
+
+button.suggested-action:hover {
+  background: alpha(@mauve, 0.36);
+}
+
+/* -----------------------------
+   Popovers / dropdown menus
+----------------------------- */
+popover,
+menu,
+popover contents {
+  background: alpha(@mantle, 0.98);
+  color: @text;
+  border: 1px solid alpha(@surface0, 0.90);
+  border-radius: 16px;
+  padding: 10px;
+  box-shadow: 0 16px 46px alpha(@crust, 0.80);
+}
+
+listview, list, .view {
+  background: transparent;
+  color: @text;
+}
+
+row {
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+row:hover { background: alpha(@blue, 0.14); }
+row:selected { background: alpha(@blue, 0.24); }
+
+/* -----------------------------
+   Remove separators / lines
+----------------------------- */
+separator {
+  min-height: 0px;
+  background: transparent;
+  margin: 0px;
+  padding: 0px;
+}
+
+frame, .frame {
+  border: 0px solid transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* -----------------------------
+   ERROR (CONTAINED + SINGLE BANNER)
+----------------------------- */
+/* IMPORTANT:
+   - We do NOT use ".error" generic selectors (those can match other stuff).
+   - We style only box.error + label.error.
+   - We explicitly neutralize any nested boxes inside box.error so you don’t get “two cards”
+     or a weird gray backing. This does NOT affect the power buttons.
+*/
+
+/* The error row container itself: no “card” look */
+box.error {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 10px 0 0 0;
+  min-width: 0;
+}
+
+/* Neutralize everything inside the error row so internal layout boxes don't become cards */
+box.error * {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+/* The actual visible error message (single pill) */
+label.error {
+  background: alpha(@red, 0.22);
+  border: 1px solid alpha(@red, 0.60);
+  border-radius: 16px;
+  padding: 12px 14px;
+  color: @text;
+  box-shadow: 0 10px 26px alpha(@crust, 0.55);
+  font-weight: 650;
+}
+

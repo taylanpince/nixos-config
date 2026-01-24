@@ -1,0 +1,21 @@
+# /etc/greetd/regreet.toml
+
+[background]
+# Put your image at /etc/greetd/background.png (or change this path)
+path = "/etc/greetd/background.png"
+fit = "Cover"
+
+[GTK]
+# Prefer dark UI. The real Solarized look comes from regreet.css.
+application_prefer_dark_theme = true
+
+# Pick something sane and widely available. CSS will do the heavy lifting.
+theme_name = "Adwaita"
+#icon_theme_name = "Papirus-Dark"
+cursor_theme_name = "Adwaita"
+#font_name = "Cantarell 14"
+
+[commands]
+reboot = ["systemctl", "reboot"]
+poweroff = ["systemctl", "poweroff"]
+
