@@ -129,6 +129,7 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true; # Electron / X11
+    withUWSM = true;  # recommended: starts graphical-session.target
   };
 
   programs.dconf.enable = true;
@@ -139,6 +140,27 @@
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
+  };
+
+  services.fprintd.enable = true;
+
+  # Enable fingerprint auth for common PAM flows
+  #security.pam.services.login.fprintAuth = true;
+  security.pam.services.sudo.fprintAuth = true;
+  security.pam.services.polkit-1.fprintAuth = true;
+
+  security.polkit.enable = true;
+
+  # Polkit agent (GUI <> system auth)
+  systemd.user.services.polkit-gnome-agent = {
+    description = "polkit-gnome-agent";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
   };
 
   # $ nix search to find packages
@@ -229,6 +251,10 @@
     wlogout
     socat
     yazi
+
+    # Fingerprint support
+    fprintd
+    libfprint
 
     # Key bindings
     wob
