@@ -228,6 +228,7 @@
     glib # provides gsettings
     wlogout
     socat
+    yazi
 
     # Key bindings
     wob
