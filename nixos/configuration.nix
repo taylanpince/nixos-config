@@ -87,6 +87,7 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+    wireplumber.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
 
@@ -105,13 +106,13 @@
   users.users.taylan = {
     isNormalUser = true;
     description = "Taylan Pince";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" ];
     packages = with pkgs; [
     #  thunderbird
     ];
   };
 
-  # Install firefox.
+  # Install firefox
   programs.firefox.enable = true;
 
   # Allow unfree packages
@@ -140,8 +141,7 @@
     ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # $ nix search to find packages
   environment.systemPackages = with pkgs; [
     # Development tools
     git
@@ -228,6 +228,10 @@
     glib # provides gsettings
     wlogout
     socat
+
+    # Key bindings
+    wob
+    brightnessctl
 
     # Screen recording
     grim
