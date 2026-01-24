@@ -12,6 +12,8 @@ This configuration includes:
 - **Starship** prompt with Solarized palette
 - Development tools and utilities
 
+![Screenshot](screenshot.png)
+
 ## System Configuration
 
 ### Core Features
