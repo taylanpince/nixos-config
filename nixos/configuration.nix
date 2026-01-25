@@ -303,6 +303,12 @@
     ffmpeg-full
     celluloid
 
+    # Image management
+    imagemagick
+    oxipng
+    pngquant
+    libwebp
+
     # Hardware
     btop
     power-profiles-daemon
