@@ -184,7 +184,6 @@
   # $ nix search to find packages
   environment.systemPackages = with pkgs; [
     # Development tools
-    git
     curl
     vim
     wget
@@ -199,6 +198,11 @@
     mkcert
     nssTools
     postgresql
+
+    # GitHub
+    git 
+    lazygit
+    gitui
     gh
 
     # Docker
