@@ -198,8 +198,13 @@
     zip
     mkcert
     nssTools
-    docker-compose # Alias to legacy name
     postgresql
+    gh
+
+    # Docker
+    ctop
+    lazydocker
+    docker-compose # Alias to legacy name
 
     # Compilers
     gcc
