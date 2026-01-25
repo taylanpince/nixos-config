@@ -97,7 +97,7 @@
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
 
-  # Enable sound with pipewire.
+  # Enable sound with pipewire
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -269,8 +269,6 @@
     wlogout
     socat
     yazi
-    regreet
-    cage
 
     # Fingerprint support
     fprintd
