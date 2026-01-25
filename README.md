@@ -13,7 +13,7 @@ This configuration includes:
 - Development tools and utilities
 
 ![Screenshot](images/screenshot2.1400.webp)
-![Screenshot](screenshot.1400.webp)
+![Screenshot](images/screenshot.1400.webp)
 
 ## System Configuration
 
