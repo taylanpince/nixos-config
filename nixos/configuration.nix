@@ -198,6 +198,10 @@
     mkcert
     nssTools
     postgresql
+    neovim
+    tree-sitter
+    codex
+    claude-code
 
     # GitHub
     git 
