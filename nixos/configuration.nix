@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./falcon.nix
     ];
 
   # Bootloader.
@@ -16,6 +17,11 @@
 
   # Use latest kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  boot.kernel.sysctl = {
+    "net.ipv6.conf.all.disable_ipv6" = 1;
+    "net.ipv6.conf.default.disable_ipv6" = 1;
+  };
 
   networking.hostName = "bloomware";
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -321,7 +327,43 @@
     btop
     power-profiles-daemon
     libva-utils
+
+    # Falcon + Kolide
+    stdenv.cc.cc
+    libnl
+    libcap
+    systemd
+    util-linux
+    acl
+    attr
+    libxml2
+    libsodium
+    libssh
+    zstd
   ];
+
+  # Make foreign/proprietary binaries work on NixOS.
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+      openssl
+      libnl
+      libcap
+      curl
+      systemd
+      util-linux
+      xz
+      bzip2
+      acl
+      attr
+      libxml2
+      libsodium
+      libssh
+      zstd
+    ];
+  };
 
   fonts.packages = with pkgs; [
     inter
