@@ -217,6 +217,7 @@
     tree-sitter
     codex
     claude-code
+    websocat
 
     # GitHub
     git 
@@ -253,6 +254,7 @@
     delve
     gotools
     golangci-lint
+    glibc.dev
 
     # Python Tooling
     python3
