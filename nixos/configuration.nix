@@ -25,15 +25,14 @@
   };
 
   networking.hostName = "bloomware";
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
   networking.networkmanager.wifi.powersave = false;
+
+  networking.wireless.iwd.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+  #networking.wireless.enable = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
@@ -84,6 +83,15 @@
     user = "greeter";
     command = "${pkgs.cage}/bin/cage -s -mlast -- ${pkgs.regreet}/bin/regreet";
   };
+
+  # keyring + secret service
+  services.gnome.gnome-keyring.enable = true;
+
+  # handy for debugging keyring contents
+  programs.seahorse.enable = true;
+
+  # make PAM unlock the keyring on login
+  security.pam.services.regreet.enableGnomeKeyring = true;
 
   # Thunderbolt
   services.hardware.bolt.enable = true;
@@ -372,6 +380,25 @@
   ];
 
   services.power-profiles-daemon.enable = true;
+
+  services.journald.extraConfig = ''
+    Storage=persistent
+    SystemMaxUse=500M
+  '';
+
+  boot.kernel.sysctl = {
+    "kernel.sysrq" = 1;
+    "kernel.hung_task_timeout_secs" = 120;
+  };
+
+  boot.extraModprobeConfig = ''
+    options mt7925e disable_aspm=1
+  '';
+
+  systemd.services.NetworkManager.serviceConfig = {
+    TimeoutStopSec = "10s";
+    SendSIGKILL = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
