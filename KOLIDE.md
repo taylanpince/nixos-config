@@ -17,7 +17,7 @@ This documents the **manual steps** I did outside of Nix, the **debugging workfl
 ### Automated (in Nix config)
 
 - Kolide launcher service enabled via `kolide.nix` module import.
-- CrowdStrike Falcon service and its FHS wrapper setup ([via this gist](https://gist.github.com/klDen/c90d9798828e31fecbb603f85e27f4f1)).
+- CrowdStrike Falcon service and its FHS wrapper setup ([via this gist](https://gist.github.com/klDen/c90d9798828e31fecbb603f85e27f4f1)) in `falcon.nix`.
 
 ### Manual (outside Nix)
 
