@@ -7,9 +7,12 @@ let
     set -euo pipefail
 
     rm -rf /opt/CrowdStrike
-    mkdir -p /opt/CrowdStrike
-    chmod 0770 /opt/CrowdStrike
-    ln -s ${falcon}/opt/CrowdStrike/* /opt/CrowdStrike/
+    install -d -m 0770 /opt/CrowdStrike
+
+    # Copy real files so Falcon can write falconstore/CsConfig
+    cp -a ${falcon}/opt/CrowdStrike/. /opt/CrowdStrike/
+
+    chown -R root:root /opt/CrowdStrike
 
     # load CID from /etc/falcon-sensor.env (root-only)
     . /etc/falcon-sensor.env
@@ -39,7 +42,14 @@ in {
       PIDFile = "/run/falcond.pid";
       ExecStartPre = initScript;
       ExecStart = "${falcon}/bin/fs-bash -c \"/opt/CrowdStrike/falcond\"";
-      Restart = "no";
+
+      Restart = "on-failure";
+      RestartSec = "15s";
+
+      # Avoid systemd giving up during flapping
+      StartLimitIntervalSec = 0;
+
+      #Restart = "no";
       TimeoutStopSec = "60s";
       KillMode = "process";
       Delegate = true;
