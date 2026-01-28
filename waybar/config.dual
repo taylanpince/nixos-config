@@ -9,10 +9,12 @@
   ],
 
   "modules-center": [
-    "clock"
   ],
 
   "modules-right": [
+    "cpu",
+    "memory",
+    "temperature",
     "custom/theme",
     "custom/brightness",
     "custom/bluetooth",
@@ -21,6 +23,7 @@
     "custom/volume",
     "network",
     "battery",
+    "clock",
     "tray"
   ],
 
@@ -94,7 +97,6 @@
     "tooltip": true
   },
 
-
   "pulseaudio": {
     "format": "{icon}",
     "format-muted": "󰝟",
@@ -105,14 +107,33 @@
     "tooltip": true
   },
 
+  "cpu": {
+    "format": "{usage}% ",
+    "tooltip": false
+  },
+  
+  "memory": {
+    "interval": 5,
+    "format": "{}% ",
+    "tooltip-format": "RAM {used:.2f}/{total:.2f}G\nSwap {swapUsed:.2f}/{swapTotal:.2f}G"
+  },
+  
+  "temperature": {
+    "critical-threshold": 80,
+    "format": "{temperatureC}°C {icon}",
+    "format-icons": ["", "", ""]
+  },
+ 
   "network": {
-    "format-wifi": "󰤨",
+    "format-wifi": "{essid} {signalStrength}% ",
+    //"format-wifi": "󰤨",
     "format-ethernet": "󰈀",
     "format-disconnected": "󰤭",
-    "tooltip-format-wifi": "{essid}\n{ipaddr}",
+    "tooltip-format-wifi": "{ipaddr}",
     "tooltip-format-ethernet": "{ipaddr}",
     "tooltip-format-disconnected": "Disconnected",
-    "on-click": "nm-connection-editor"
+    "on-click": "nm-connection-editor",
+    "on-click-right": "sh -c 'IP=$(/run/current-system/sw/bin/curl -fsS --max-time 3 https://api.ipify.org || /run/current-system/sw/bin/curl -fsS --max-time 3 https://ifconfig.me/ip); [ -n \"$IP\" ] && printf %s \"$IP\" | /run/current-system/sw/bin/wl-copy && /run/current-system/sw/bin/notify-send \"Waybar\" \"Copied public IP: $IP\"'"
   },
 
   "battery": {
@@ -129,7 +150,6 @@
       "critical": 10
     }
   },
-
 
   "tray": {
     "spacing": 10
