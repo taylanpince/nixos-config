@@ -96,6 +96,9 @@
   # Thunderbolt
   services.hardware.bolt.enable = true;
 
+  # Flatpak
+  services.flatpak.enable = true;
+
   # BIOS Updates
   services.fwupd.enable = true;
 
@@ -326,6 +329,7 @@
     obsidian
     code-cursor
     gthumb
+    telegram-desktop
 
     # Video
     mpv
