@@ -25,6 +25,7 @@ This documents the **manual steps** I did outside of Nix, the **debugging workfl
   - `/etc/kolide-k2/secret` (root:root, `0600`)
 - **One-time cleanup** of `/opt/CrowdStrike` so the symlink-based setup can take over cleanly.
 - **dpkg status shim** at `/var/lib/dpkg/status` so Kolide’s osquery `deb_packages` check reports `falcon-sensor` installed.
+- Add the Falcon CID provided to you by IT at `/etc/falcon-sensor.env` as `FALCON_CID=XXXXXXXXXX`
 
 ---
 
