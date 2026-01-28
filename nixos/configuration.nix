@@ -274,6 +274,10 @@
     fd
     zoxide
 
+    # FIDO2
+    pam_u2f
+    libfido2
+
     # Hyprland UI
     waybar
     dunst
