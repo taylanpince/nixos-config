@@ -221,6 +221,9 @@
     codex
     claude-code
     websocat
+    foundry
+    solc
+    aichat
 
     # GitHub
     git 

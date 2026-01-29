@@ -1,2 +1,3 @@
 default.target.wants
 graphical-session.target.wants
+*.deb
