@@ -1,32 +1,332 @@
+/* Solarized Dark (GTK-safe) */
+@define-color base03 #002b36;
+@define-color base02 #073642;
+@define-color base01 #586e75;
+@define-color base1  #93a1a1;
+@define-color base2  #eee8d5;
+
+@define-color cyan   #2aa198;
+@define-color blue   #268bd2;
+@define-color red    #dc322f;
+
 * {
   font-family: Inter, system-ui, sans-serif;
   font-size: 13px;
+  color: @base1;
+  background: transparent;
 }
 
-.notification {
+/* Kill GTK list selection backgrounds */
+list, row, listview, listview row,
+listview row:selected, listview row:hover, listview row:focus {
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+}
+
+/* =======================
+   Toast notifications
+   ======================= */
+.notification-row {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.notification-row .notification-background {
+  background-color: transparent;
+}
+
+.notification-row .notification {
+  margin: 10px 12px 0 12px;
+  padding: 10px 12px;
+
   border-radius: 14px;
-  padding: 10px;
-  margin: 8px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(20, 20, 20, 0.92);
+  border: 1px solid @base02;
+  background-color: @base03;
 }
 
-.notification.critical {
-  border: 1px solid rgba(255, 80, 80, 0.35);
+.notification-row .notification.critical {
+  border: 1px solid @red;
 }
 
-.summary {
-  font-weight: 600;
+.notification-row .summary {
+  color: @base2;
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0 0 2px 0;
 }
 
-.body {
-  opacity: 0.9;
+.notification-row .body {
+  color: @base1;
+  margin: 0;
+  line-height: 1.25;
 }
 
+.notification-row .time,
+.notification-row .app-name {
+  color: @base01;
+  font-size: 12px;
+}
+
+/* Action buttons */
+.notification-row .actions button {
+  background-color: @base02;
+  border: 1px solid @base01;
+  border-radius: 10px;
+  padding: 6px 10px;
+}
+
+.notification-row .actions button:hover {
+  background-color: @cyan;
+  color: @base03;
+  border: 1px solid @cyan;
+}
+
+/* =======================
+   Control Center
+   ======================= */
 .control-center {
-  border-radius: 16px;
-  padding: 10px;
-  background: rgba(16,16,16,0.96);
-  border: 1px solid rgba(255,255,255,0.08);
+  background-color: @base03;
+  border: 1px solid @base02;
+  border-radius: 18px;
+  padding: 12px;
+}
+
+.widget-title {
+  margin: 0 0 10px 0;
+}
+
+.widget-title label {
+  color: @base2;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.widget-title button {
+  background-color: @base02;
+  border: 1px solid @base01;
+  border-radius: 12px;
+  padding: 8px 12px;
+}
+
+.widget-title button:hover {
+  background-color: @blue;
+  color: @base03;
+  border: 1px solid @blue;
+}
+
+/* DND row */
+.widget-dnd {
+  margin: 0 0 12px 0;
+  padding: 8px 10px;
+  border-radius: 14px;
+  background-color: @base02;
+  border: 1px solid @base01;
+}
+
+.widget-dnd label {
+  color: @base1;
+  font-weight: 700;
+}
+
+/* Notification cards inside the control center */
+.control-center .notification {
+  background-color: @base02;
+  border: 1px solid @base01;
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin: 0 0 10px 0;
+}
+
+.control-center .summary {
+  color: @base2;
+  font-weight: 700;
+}
+
+.control-center .body {
+  color: @base1;
+}
+
+/* ===== Title row fixes ===== */
+.widget-title button {
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+.widget-title button label {
+  font-size: 13px;
+  font-weight: 700;
+  color: @base2;
+}
+
+/* Prevent it from inheriting giant styles */
+.widget-title > box {
+  spacing: 10px;
+}
+
+/* ===== DND switch visibility ===== */
+.widget-dnd switch {
+  min-height: 24px;
+  min-width: 46px;
+  border-radius: 999px;
+  background-color: @base02;
+  border: 1px solid @base01;
+}
+
+.widget-dnd switch slider {
+  min-height: 18px;
+  min-width: 18px;
+  margin: 2px;
+  border-radius: 999px;
+  background-color: @base1;
+}
+
+/* ON state */
+.widget-dnd switch:checked {
+  background-color: @cyan;
+  border: 1px solid @cyan;
+}
+
+.widget-dnd switch:checked slider {
+  background-color: @base03;
+}
+
+/* ===== Remove weird shadows everywhere in tray ===== */
+.control-center,
+.control-center * {
+  box-shadow: none;
+}
+
+/* ===== Hide scrollbars ===== */
+scrollbar {
+  background: transparent;
+}
+
+scrollbar.vertical {
+  min-width: 0px;
+}
+
+scrollbar.horizontal {
+  min-height: 0px;
+}
+
+scrollbar slider {
+  background: transparent;
+  border: none;
+}
+
+/* ===== Align widths: remove inner padding that causes inset cards ===== */
+.widget-notifications {
+  padding: 0;
+  margin: 0;
+}
+
+/* Make cards use the full content width */
+.control-center .notification {
+  margin: 0 0 10px 0;
+}
+
+/* Match DND row to same visual width as cards */
+.widget-dnd {
+  margin: 0 0 12px 0;
+}
+
+/* ===== Control center list container: remove inset padding ===== */
+.control-center scrolledwindow,
+.control-center viewport,
+.control-center .widget-notifications,
+.control-center .widget-notifications > box {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+/* Make sure cards go edge-to-edge inside the panel padding */
+.control-center .widget-notifications .notification {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* ===== Nuke GTK overlay scrollbars ===== */
+.control-center scrollbar,
+.control-center scrollbar trough,
+.control-center scrollbar slider {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.control-center scrollbar.vertical {
+  min-width: 0px;
+}
+
+.control-center scrollbar.horizontal {
+  min-height: 0px;
+}
+
+/* GTK overlay-indicator (the one that keeps showing) */
+.control-center scrollbar.overlay-indicator,
+.control-center scrollbar.overlay-indicator trough,
+.control-center scrollbar.overlay-indicator slider {
+  opacity: 0;
+}
+
+/* ===== Normalize notification icons in control center ===== */
+
+/* Force any image/icon inside a notification to a sane size */
+.control-center .notification image,
+.control-center .notification .image,
+.control-center .notification .icon {
+  min-width: 36px;
+  min-height: 36px;
+  -gtk-icon-size: 36px;
+}
+
+/* Some apps provide oversized pixbufs; this clamps layout around it */
+.control-center .notification .app-icon,
+.control-center .notification .notification-icon {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+/* Give it a little breathing room so text doesn’t collide */
+.control-center .notification box {
+  spacing: 10px;
+}
+
+/* ===== Toasts: icon sizing + remove duplicate icon/image ===== */
+
+/* Clamp any icon/image inside the toast to a sane size */
+.notification-row .notification image,
+.notification-row .notification .image,
+.notification-row .notification .icon {
+  min-width: 36px;
+  min-height: 36px;
+  -gtk-icon-size: 36px;
+}
+
+/* Some apps provide both an app icon and an inline image.
+   Hide the inline image container to avoid the “second icon” in the corner. */
+.notification-row .notification .body-image,
+.notification-row .notification .inline-reply,
+.notification-row .notification .image-container,
+.notification-row .notification .notification-image {
+  opacity: 0;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ===== Toast close button: pull it in from the edge ===== */
+.notification-row .close-button {
+  margin-right: 6px;
+  margin-top: 4px;
+  padding: 6px;
+  border-radius: 999px;
+}
+
+.notification-row .notification box {
+  spacing: 10px;
 }
 

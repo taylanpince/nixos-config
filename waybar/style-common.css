@@ -97,3 +97,16 @@ tooltip {
   border-radius: 10px;
   padding: 8px;
 }
+
+#custom-notification {
+  padding: 0 10px;
+}
+
+/* Make DND feel “muted” without picking colors */
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification,
+#custom-notification.dnd-inhibited-none,
+#custom-notification.dnd-inhibited-notification {
+  opacity: 0.6;
+}
+

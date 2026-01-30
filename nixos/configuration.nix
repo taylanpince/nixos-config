@@ -32,7 +32,7 @@
 
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
-  #networking.wireless.enable = false;
+  networking.wireless.enable = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
