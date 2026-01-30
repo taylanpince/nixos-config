@@ -286,6 +286,7 @@
 
     # Hyprland UI
     waybar
+    swaynotificationcenter
     dunst
     libnotify
     wl-clipboard

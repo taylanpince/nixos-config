@@ -1,0 +1,26 @@
+{
+  "positionX": "right",
+  "positionY": "top",
+
+  "layer": "overlay",
+  "control-center-layer": "top",
+
+  "notification-grouping": true,
+  "relative-timestamps": true,
+
+  "timeout": 8,
+  "timeout-low": 6,
+  "timeout-critical": 0,
+
+  "hide-on-action": true,
+  "close-on-click": true,
+
+  "control-center-width": 520,
+  "control-center-margin-top": 10,
+  "control-center-margin-right": 10,
+
+  "notification-window-width": 420,
+  "notification-window-margin-top": 10,
+  "notification-window-margin-right": 10
+}
+

@@ -1,0 +1,32 @@
+* {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 13px;
+}
+
+.notification {
+  border-radius: 14px;
+  padding: 10px;
+  margin: 8px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(20, 20, 20, 0.92);
+}
+
+.notification.critical {
+  border: 1px solid rgba(255, 80, 80, 0.35);
+}
+
+.summary {
+  font-weight: 600;
+}
+
+.body {
+  opacity: 0.9;
+}
+
+.control-center {
+  border-radius: 16px;
+  padding: 10px;
+  background: rgba(16,16,16,0.96);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
