@@ -293,6 +293,7 @@
     xdg-utils
     polkit_gnome
     rofi
+    wofi
     hyprlock
     hypridle
     pavucontrol

@@ -1,0 +1,26 @@
+# Force stable placement
+location=center
+anchor=center
+
+# Prevent compositor reflow effects
+layer=overlay
+exclusive=true
+
+# Size (adjust to taste)
+width=700
+height=120
+
+# Behavior
+prompt=AI → shell command
+show=drun
+allow-images=falseclose-on-select=true
+
+insensitive=true
+
+# Performance / stability
+no-actions=true
+
+close-on-select=true
+lines=1
+parse-search=false
+
