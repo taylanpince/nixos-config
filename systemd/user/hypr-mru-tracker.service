@@ -1,0 +1,13 @@
+[Unit]
+Description=Hyprland MRU tracker for window switcher
+After=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=%h/.local/bin/hypr-mru-tracker.sh
+Restart=always
+RestartSec=1
+Environment=PATH=%h/.nix-profile/bin:/run/current-system/sw/bin:/usr/bin
+
+[Install]
+WantedBy=default.target
