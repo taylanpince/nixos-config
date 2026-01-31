@@ -6,21 +6,28 @@ anchor=center
 layer=overlay
 exclusive=true
 
-# Size (adjust to taste)
-width=700
-height=120
+# Layout / sizing
+width=520
+height=420
+lines=9
+columns=1
 
 # Behavior
 prompt=AI → shell command
 show=drun
 allow-images=falseclose-on-select=true
-
 insensitive=true
-
-# Performance / stability
 no-actions=true
-
 close-on-select=true
-lines=1
 parse-search=false
+prompt=>
+hide_scroll=true
+
+# General UX
+show=drun
+matching=fuzzy
+insensitive=true
+allow_images=true
+image_size=20
+dynamic_lines=false
 
