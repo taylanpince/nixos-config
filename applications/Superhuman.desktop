@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Terminal=false
+Type=Application
+Name=Superhuman
+Exec=brave --app=https://mail.superhuman.com/taylanpince@gmail.com --class=superhuman
+Icon=superhuman
+StartupWMClass=brave-mail.superhuman.com__taylanpince@gmail.com-Default
+
