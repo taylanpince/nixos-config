@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ./falcon.nix
       ./kolide.nix
+      ./keyd.nix
     ];
 
   # Bootloader.
