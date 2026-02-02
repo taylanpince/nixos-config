@@ -10,7 +10,7 @@
       ./hardware-configuration.nix
       ./falcon.nix
       ./kolide.nix
-      ./keyd.nix
+      #./keyd.nix
     ];
 
   # Bootloader.
@@ -83,6 +83,15 @@
   services.greetd.settings.default_session = {
     user = "greeter";
     command = "${pkgs.cage}/bin/cage -s -mlast -- ${pkgs.regreet}/bin/regreet";
+  };
+
+  # OBS for screen recording
+  programs.obs-studio = {
+    enable = true;
+    plugins = [
+      pkgs.obs-studio-plugins."input-overlay"
+      pkgs.obs-studio-plugins.obs-pipewire-audio-capture
+    ];
   };
 
   # keyring + secret service
@@ -327,6 +336,9 @@
     swappy
     satty
     wf-recorder
+    obs-studio
+    obs-do
+    showmethekey
 
     # Apps
     brave
