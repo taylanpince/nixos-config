@@ -10,8 +10,14 @@
       ./hardware-configuration.nix
       ./falcon.nix
       ./kolide.nix
-      #./keyd.nix
     ];
+
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  security.pki.installCACerts = true;
+
+  nix.settings = {
+    ssl-cert-file = "/etc/ssl/certs/ca-certificates.crt";
+  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
