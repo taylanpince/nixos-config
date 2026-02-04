@@ -167,6 +167,10 @@
   # Install firefox
   programs.firefox.enable = true;
 
+  # direnv
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -240,6 +244,7 @@
     foundry
     solc
     aichat
+    uv
 
     # GitHub
     git 
