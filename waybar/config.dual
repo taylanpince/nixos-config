@@ -24,6 +24,7 @@
     "network",
     "battery",
     "clock",
+    "custom/notification",
     "tray"
   ],
 
@@ -78,7 +79,6 @@
     "tooltip": true
   },
 
-
   "custom/mic": {
     "exec": "~/.config/waybar/scripts/mic.sh",
     "interval": 1,
@@ -95,6 +95,29 @@
     "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
     "tooltip": true
+  },
+
+  "custom/notification": {
+    "tooltip": true,
+    "format": "{0} {icon}",
+    "format-icons": {
+      "notification": "󱅫",
+      "none": "󰂜",
+      "dnd-notification": "󰂠",
+      "dnd-none": "󰪓",
+      "inhibited-notification": "󰂛",
+      "inhibited-none": "󰪑",
+      "dnd-inhibited-notification": "󰂛",
+      "dnd-inhibited-none": "󰪑"
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+
+    // Workaround: avoids the “Waybar keeps opening swaync on every click” bug.
+    "on-click": "sleep 0.1 && swaync-client -t -sw",
+    "on-click-right": "sleep 0.1 && swaync-client -d -sw",
+    "escape": true
   },
 
   "pulseaudio": {
