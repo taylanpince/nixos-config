@@ -2,6 +2,7 @@
 set -euo pipefail
 
 WALLDIR="${1:-$HOME/wallpapers}"
+CONF="${XDG_CONFIG_HOME:-$HOME/.config}/hypr/hyprpaper.conf"
 
 img="$(
   find "$WALLDIR" -type f \( -iname '*.png' -o -iname '*.jpg' -o -iname '*.jpeg' -o -iname '*.webp' \) -print0 \
@@ -11,15 +12,24 @@ img="$(
 
 [ -n "${img:-}" ] || exit 0
 
-# Hyprpaper must be running for hyprctl hyprpaper commands to work.
-# Give it a moment in case Hyprland is still starting up.
-for _ in {1..20}; do
-  hyprctl hyprpaper listloaded >/dev/null 2>&1 && break
-  sleep 0.05
-done
+# Get all connected monitors
+monitors=$(hyprctl monitors -j | jq -r '.[].name')
 
-hyprctl hyprpaper unload all || true
-hyprctl hyprpaper preload "$img"
-# Apply to all monitors (empty monitor name before the comma)
-hyprctl hyprpaper wallpaper ",$img"
+# Build hyprpaper config (new format for hyprpaper 0.8+)
+{
+  echo "splash = false"
+  for mon in $monitors; do
+    cat <<EOF
+wallpaper {
+    monitor = $mon
+    path = $img
+}
+EOF
+  done
+} > "$CONF"
 
+# Restart hyprpaper to apply the new config
+pkill -x hyprpaper || true
+sleep 0.1
+hyprpaper &
+disown
