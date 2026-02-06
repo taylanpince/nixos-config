@@ -359,6 +359,7 @@
     code-cursor
     gthumb
     telegram-desktop
+    sublime4
 
     # Video
     mpv
