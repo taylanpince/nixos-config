@@ -281,7 +281,6 @@
     delve
     gotools
     golangci-lint
-    glibc.dev
 
     # Python Tooling
     python3
@@ -359,7 +358,6 @@
     code-cursor
     gthumb
     telegram-desktop
-    sublime4
 
     # Video
     mpv
@@ -390,29 +388,6 @@
     libssh
     zstd
   ];
-
-  # Make foreign/proprietary binaries work on NixOS.
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc
-      zlib
-      openssl
-      libnl
-      libcap
-      curl
-      systemd
-      util-linux
-      xz
-      bzip2
-      acl
-      attr
-      libxml2
-      libsodium
-      libssh
-      zstd
-    ];
-  };
 
   # Fonts
   nixpkgs.config.joypixels.acceptLicense = true;
