@@ -358,7 +358,8 @@
     code-cursor
     gthumb
     telegram-desktop
-    kate
+    kdePackages.kate
+    gnome-text-editor
 
     # Video
     mpv
