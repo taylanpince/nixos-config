@@ -257,11 +257,6 @@
     lazydocker
     docker-compose # Alias to legacy name
 
-    # Compilers
-    gcc
-    clang
-    binutils
-
     # Common native libs
     openssl
     zlib
@@ -269,25 +264,6 @@
     sqlite
     bzip2
     xz
-
-    # JS Tooling
-    yarn
-    nodejs_22
-    nodePackages.pnpm
-
-    # Go Tooling
-    go
-    gopls
-    delve
-    gotools
-    golangci-lint
-
-    # Python Tooling
-    python3
-    python3Packages.pip
-    python3Packages.virtualenv
-    python3Packages.setuptools
-    python3Packages.wheel
 
     # Bash and Terminal
     kitty
