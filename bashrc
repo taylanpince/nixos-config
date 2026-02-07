@@ -27,3 +27,4 @@ PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND:-:}"
 # --- zoxide ---
 command -v zoxide >/dev/null && eval "$(zoxide init bash)" && alias cd='z'
 
+alias devgo='nix develop ~/config/flakes#go'

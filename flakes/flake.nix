@@ -11,7 +11,7 @@
       devShells.${system} = {
         go = pkgs.mkShell {
           packages = with pkgs; [
-            go_1_23
+            go
             gopls
             delve
             golangci-lint
@@ -20,7 +20,7 @@
 
         go-cgo = pkgs.mkShell {
           packages = with pkgs; [
-            go_1_23
+            go
             gopls
             delve
             golangci-lint
