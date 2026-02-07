@@ -3,7 +3,7 @@ eval "$(starship init bash)"
 eval "$(direnv hook bash)"
 
 export PNPM_HOME="$HOME/.local/share/pnpm"
-export PATH="$PNPM_HOME:$PATH"
+export PATH="$PNPM_HOME:$HOME/go/bin:$PATH"
 
 # --- completion ---
 if [ -r /etc/profile.d/bash_completion.sh ]; then
