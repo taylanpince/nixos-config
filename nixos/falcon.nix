@@ -17,7 +17,7 @@ let
     . /etc/falcon-sensor.env
 
     # set CID via falconctl inside FHS env
-    /opt/CrowdStrike/falconctl -s -f --cid=\"$FALCON_CID\"
+    /opt/CrowdStrike/falconctl -s -f --cid="$FALCON_CID"
 
     # sanity print
     /opt/CrowdStrike/falconctl -g --cid
