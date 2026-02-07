@@ -28,5 +28,5 @@ PROMPT_COMMAND="history -a; history -c; history -r; ${PROMPT_COMMAND:-:}"
 command -v zoxide >/dev/null && eval "$(zoxide init bash)" && alias cd='z'
 
 alias devgo='nix develop ~/config/nixos#go'
-alias devgo='nix develop ~/config/nixos#python'
-alias devgo='nix develop ~/config/nixos#node'
+alias devpython='nix develop ~/config/nixos#python'
+alias devnode='nix develop ~/config/nixos#node'

@@ -367,6 +367,18 @@
     zstd
   ];
 
+  # Needed for Falcon compat
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+    stdenv.cc.cc.lib
+    zlib
+    openssl
+    libuuid
+    libcap
+    libgcc
+    curl
+  ];
+
   # Fonts
   nixpkgs.config.joypixels.acceptLicense = true;
 

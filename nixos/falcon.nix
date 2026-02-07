@@ -6,22 +6,21 @@ let
     #!${pkgs.bash}/bin/sh
     set -euo pipefail
 
-    rm -rf /opt/CrowdStrike
     install -d -m 0770 /opt/CrowdStrike
 
-    # Copy real files so Falcon can write falconstore/CsConfig
-    cp -a ${falcon}/opt/CrowdStrike/. /opt/CrowdStrike/
-
-    chown -R root:root /opt/CrowdStrike
+    if [ ! -e /opt/CrowdStrike/falcond ]; then
+      cp -a ${falcon}/opt/CrowdStrike/. /opt/CrowdStrike/
+      chown -R root:root /opt/CrowdStrike
+    fi
 
     # load CID from /etc/falcon-sensor.env (root-only)
     . /etc/falcon-sensor.env
 
     # set CID via falconctl inside FHS env
-    ${falcon}/bin/fs-bash -c "/opt/CrowdStrike/falconctl -s -f --cid=\"$FALCON_CID\""
+    /opt/CrowdStrike/falconctl -s -f --cid=\"$FALCON_CID\"
 
     # sanity print
-    ${falcon}/bin/fs-bash -c "/opt/CrowdStrike/falconctl -g --cid"
+    /opt/CrowdStrike/falconctl -g --cid
   '';
 in {
   systemd.tmpfiles.rules = [
@@ -32,7 +31,14 @@ in {
     description = "CrowdStrike Falcon Sensor";
     wantedBy = [ "multi-user.target" ];
 
-    unitConfig.DefaultDependencies = false;
+    unitConfig = {
+      DefaultDependencies = false;
+
+      # Avoid systemd giving up during flapping
+      StartLimitIntervalSec = 0;
+      StartLimitBurst = 10;
+    };
+
     after = [ "local-fs.target" ];
     conflicts = [ "shutdown.target" ];
     before = [ "sysinit.target" "shutdown.target" ];
@@ -46,10 +52,6 @@ in {
       Restart = "on-failure";
       RestartSec = "15s";
 
-      # Avoid systemd giving up during flapping
-      StartLimitIntervalSec = 0;
-
-      #Restart = "no";
       TimeoutStopSec = "60s";
       KillMode = "process";
       Delegate = true;
