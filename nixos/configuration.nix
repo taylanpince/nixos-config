@@ -358,6 +358,7 @@
     code-cursor
     gthumb
     telegram-desktop
+    kate
 
     # Video
     mpv
