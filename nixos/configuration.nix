@@ -245,6 +245,7 @@
     solc
     aichat
     uv
+    bash
 
     # GitHub
     git 
@@ -378,6 +379,10 @@
     libcap
     libgcc
     curl
+  ];
+
+  systemd.tmpfiles.rules = [
+    "L+ /bin/bash - - - - ${pkgs.bash}/bin/bash"
   ];
 
   # Fonts

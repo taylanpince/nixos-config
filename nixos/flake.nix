@@ -13,6 +13,7 @@
       goShells = import ./shells/go.nix { inherit pkgs; };
       pyShells = import ./shells/python.nix { inherit pkgs; };
       nodeShells = import ./shells/node.nix { inherit pkgs; };
+      pulumiShells = import ./shells/pulumi.nix { inherit pkgs; };
     in
     {
       nixosConfigurations.bloomware = nixpkgs.lib.nixosSystem {
@@ -25,6 +26,7 @@
       devShells.${system} =
         goShells
         // pyShells
-        // nodeShells;
+        // nodeShells
+        // pulumiShells;
     };
 }
