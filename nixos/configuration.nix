@@ -336,6 +336,7 @@
     telegram-desktop
     kdePackages.kate
     gnome-text-editor
+    zoom-us
 
     # Video
     mpv
