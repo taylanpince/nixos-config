@@ -2,7 +2,8 @@
 {
   pulumi = pkgs.mkShell {
     packages = with pkgs; [
-      pulumi
+      pulumi-bin
+      pulumiPackages.pulumi-nodejs
 
       nodejs_22
       nodePackages.pnpm

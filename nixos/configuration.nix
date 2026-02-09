@@ -41,6 +41,11 @@
   networking.networkmanager.wifi.backend = "iwd";
   networking.wireless.enable = false;
 
+  # Ensure /etc/resolv.conf contains real upstream DNS (not 127.0.0.x)
+  services.resolved.enable = false;
+  networking.resolvconf.enable = true;
+  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
+
   # Set your time zone.
   time.timeZone = "Europe/Madrid";
 
