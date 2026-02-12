@@ -1,6 +1,6 @@
 * {
   font-family: "JetBrainsMono Nerd Font";
-  font-size: 12px;
+  font-size: 18px;
   min-height: 0;
 }
 
@@ -10,15 +10,15 @@ window#waybar {
 }
 
 #workspaces {
-  margin-left: 5px;
+  margin-left: 8px;
 }
 
 #workspaces button {
-  min-width: 26px;
+  min-width: 39px;
   padding: 0;
-  padding-right: 2px;
-  margin: 4px 3px;
-  border-radius: 10px;
+  padding-right: 3px;
+  margin: 6px 4px;
+  border-radius: 15px;
   background: transparent;
   color: @base01;
 }
@@ -26,7 +26,7 @@ window#waybar {
 #workspaces button label {
   padding: 0;
   margin: 0;
-  font-size: 12px;
+  font-size: 18px;
 }
 
 #workspaces button.active {
@@ -50,22 +50,22 @@ window#waybar {
 #network,
 #battery,
 #tray {
-  padding: 2px 10px;
-  margin: 4px 0px;
-  border-radius: 12px;
+  padding: 3px 15px;
+  margin: 6px 0px;
+  border-radius: 18px;
   background: @base02;
   color: @base0;
 }
 
 .modules-right {
-  margin-right: 5px;
+  margin-right: 8px;
 }
 
 /* Force true centering for single-icon modules */
 #network {
-  min-width: 14px;
-  padding-left: 6px;
-  padding-right: 9px;
+  min-width: 21px;
+  padding-left: 9px;
+  padding-right: 14px;
 }
 
 #network label {
@@ -74,13 +74,13 @@ window#waybar {
 }
 
 #custom-brightness {
-  padding-left: 8px;
-  padding-right: 10px;
+  padding-left: 12px;
+  padding-right: 15px;
 }
 
 #custom-theme {
-  padding-left: 8px;
-  padding-right: 9px;
+  padding-left: 12px;
+  padding-right: 14px;
 }
 
 #idle_inhibitor.activated {
@@ -94,12 +94,12 @@ window#waybar {
 tooltip {
   background: @base02;
   color: @base1;
-  border-radius: 10px;
-  padding: 8px;
+  border-radius: 15px;
+  padding: 12px;
 }
 
 #custom-notification {
-  padding: 0 10px;
+  padding: 0 15px;
 }
 
 /* Make DND feel “muted” without picking colors */

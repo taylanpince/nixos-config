@@ -16,7 +16,9 @@ selected=$(cut -f2- "$tmpfile" | \
     wofi --dmenu --normal-window --prompt "Clipboard" \
         --style ~/.config/wofi/style.css \
         --conf ~/.config/wofi/config \
-        --width 900 --height 600)
+        --sort-order=default \
+        --cache-file=/dev/null \
+        --width 1350 --height 900)
 
 # Exit if nothing selected
 if [ -z "$selected" ]; then

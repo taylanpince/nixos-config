@@ -19,7 +19,7 @@
 * {
   /* Use whatever you actually have installed; this is a sane default */
   font-family: "JetBrainsMono Nerd Font", "Inter", "Noto Sans", sans-serif;
-  font-size: 14px;
+  font-size: 21px;
 }
 
 /* Main window */
@@ -27,27 +27,34 @@ window {
   margin: 0px;
   padding: 0px;
   background-color: @base03;
-  border: 1px solid @base02;
-  border-radius: 14px;
+  border: 2px solid @base02;
+  border-radius: 21px;
 }
 
 /* Outer container */
 #outer-box {
-  padding: 14px;
+  padding: 21px;
   background-color: transparent;
 }
 
 /* Input row */
 #input {
-  margin: 0 0 10px 0;
-  padding: 10px 12px;
-  border-radius: 12px;
+  margin: 0 0 15px 0;
+  padding: 15px 18px;
+  border-radius: 18px;
 
   background-color: @base02;
   color: @base1;
 
-  border: 1px solid rgba(131, 148, 150, 0.10); /* base0-ish */
+  border: 2px solid rgba(131, 148, 150, 0.10); /* base0-ish */
   outline: none;
+}
+
+/* "Prompt" text (the little >) */
+#prompt {
+  margin: 0 15px 0 0;
+  color: @cyan;
+  opacity: 0.95;
 }
 
 /* “Prompt” text (the little >) */
@@ -73,11 +80,11 @@ window {
 /* Individual entries */
 #entry {
   margin: 0px;
-  padding: 8px 10px;
-  border-radius: 12px;
+  padding: 12px 15px;
+  border-radius: 18px;
 
   /* IMPORTANT: keep geometry stable */
-  border: 1px solid transparent;
+  border: 2px solid transparent;
 
   background-color: transparent;
 }
@@ -90,7 +97,7 @@ window {
 
 /* Entry icon (drun) */
 #img {
-  margin-right: 10px;
+  margin-right: 15px;
   opacity: 0.95;
 }
 

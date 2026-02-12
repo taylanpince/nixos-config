@@ -274,7 +274,7 @@ idx="$(
     wofi --dmenu --prompt "Windows" \
       --allow-images \
       --style "$STYLE" --conf "$tmpconf" \
-      --width 700 --height 600
+      --width 1050 --height 900
 )"
 
 [ -z "${idx:-}" ] && exit 0

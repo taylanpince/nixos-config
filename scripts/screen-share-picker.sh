@@ -121,7 +121,7 @@ choice="$(
     wofi --dmenu --prompt "Share…" \
       --normal-window \
       --style "$STYLE" \
-      --width 900 --height 520
+      --width 1350 --height 780
 )"
 
 [[ -z "${choice:-}" ]] && exit 1

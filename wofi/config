@@ -7,8 +7,8 @@ layer=overlay
 exclusive=true
 
 # Layout / sizing
-width=520
-height=420
+width=780
+height=630
 lines=9
 columns=1
 
@@ -28,6 +28,6 @@ show=drun
 matching=fuzzy
 insensitive=true
 allow_images=true
-image_size=20
+image_size=30
 dynamic_lines=false
 
