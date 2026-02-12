@@ -27,11 +27,12 @@ window#waybar {
   padding: 0;
   margin: 0;
   font-size: 18px;
+  color: inherit;
 }
 
 #workspaces button.active {
   background: @base02;
-  color: @blue; /* active dot color */
+  color: @blue;
 }
 
 #workspaces button.urgent {
@@ -102,7 +103,7 @@ tooltip {
   padding: 0 15px;
 }
 
-/* Make DND feel “muted” without picking colors */
+/* Make DND feel "muted" without picking colors */
 #custom-notification.dnd-none,
 #custom-notification.dnd-notification,
 #custom-notification.dnd-inhibited-none,
@@ -110,3 +111,78 @@ tooltip {
   opacity: 0.6;
 }
 
+/* ============================================
+   Laptop display (eDP-1) - original smaller sizes
+   ============================================ */
+window#waybar.laptop * {
+  font-size: 12px;
+}
+
+window#waybar.laptop #workspaces {
+  margin-left: 5px;
+}
+
+window#waybar.laptop #workspaces button {
+  min-width: 26px;
+  padding: 0;
+  padding-right: 2px;
+  margin: 4px 3px;
+  border-radius: 10px;
+  background: transparent;
+  color: @base01;
+}
+
+window#waybar.laptop #workspaces button label {
+  font-size: 12px;
+  color: inherit;
+}
+
+window#waybar.laptop #workspaces button.active {
+  background: @base02;
+  color: @blue;
+}
+
+window#waybar.laptop #workspaces button.urgent {
+  background: @red;
+  color: @base03;
+}
+
+window#waybar.laptop #clock,
+window#waybar.laptop #custom-theme,
+window#waybar.laptop #custom-brightness,
+window#waybar.laptop #custom-bluetooth,
+window#waybar.laptop #idle_inhibitor,
+window#waybar.laptop #custom-mic,
+window#waybar.laptop #pulseaudio,
+window#waybar.laptop #custom-volume,
+window#waybar.laptop #network,
+window#waybar.laptop #battery,
+window#waybar.laptop #tray {
+  padding: 2px 10px;
+  margin: 4px 0px;
+  border-radius: 12px;
+}
+
+window#waybar.laptop .modules-right {
+  margin-right: 5px;
+}
+
+window#waybar.laptop #network {
+  min-width: 14px;
+  padding-left: 6px;
+  padding-right: 9px;
+}
+
+window#waybar.laptop #custom-brightness {
+  padding-left: 8px;
+  padding-right: 10px;
+}
+
+window#waybar.laptop #custom-theme {
+  padding-left: 8px;
+  padding-right: 9px;
+}
+
+window#waybar.laptop #custom-notification {
+  padding: 0 10px;
+}
