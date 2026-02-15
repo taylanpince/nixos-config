@@ -13,9 +13,6 @@
   ],
 
   "modules-right": [
-    "cpu",
-    "memory",
-    "temperature",
     "custom/theme",
     "custom/brightness",
     "custom/bluetooth",
@@ -39,7 +36,7 @@
       "urgent": ""
     },
     "persistent-workspaces": {
-      "eDP-1": 16
+      "eDP-1": 6
     }
   },
 
