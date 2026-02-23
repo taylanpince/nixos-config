@@ -254,6 +254,7 @@
 
     # GitHub
     git 
+    git-lfs
     lazygit
     gitui
     gh
