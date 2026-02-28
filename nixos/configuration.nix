@@ -195,6 +195,9 @@
 
   programs.dconf.enable = true;
 
+  environment.pathsToLink = [ "/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" ];
+  environment.sessionVariables.XDG_DATA_DIRS = [ "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}" ];
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -311,6 +314,7 @@
     bluez
     blueman
     glib # provides gsettings
+    gsettings-desktop-schemas
     wlogout
     socat
     yazi
