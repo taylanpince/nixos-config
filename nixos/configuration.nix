@@ -335,6 +335,12 @@
     adwaita-icon-theme
     catppuccin-gtk
     gsettings-desktop-schemas
+
+    # Thumbnailers for file picker previews
+    ffmpegthumbnailer    # video thumbnails
+    evince               # PDF thumbnails
+    webp-pixbuf-loader   # WebP image support
+    librsvg              # SVG thumbnails
     wlogout
     socat
     yazi
