@@ -13,7 +13,7 @@
   programs.git = {
     enable = true;
     userName = "Taylan Pince";
-    userEmail = "taylan@users.noreply.github.com";
+    userEmail = "taylanpince@gmail.com";
   };
 
   programs.starship.enable = true;
