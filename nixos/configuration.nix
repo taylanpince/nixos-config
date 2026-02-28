@@ -204,6 +204,14 @@
       xdg-desktop-portal-hyprland
       xdg-desktop-portal-gtk
     ];
+    config = {
+      common = {
+        default = [ "gtk" ];
+      };
+      hyprland = {
+        default = [ "hyprland" "gtk" ];
+      };
+    };
   };
 
   services.fprintd.enable = true;
@@ -314,6 +322,11 @@
     bluez
     blueman
     glib # provides gsettings
+
+    # GTK theming
+    nwg-look
+    adwaita-icon-theme
+    catppuccin-gtk
     gsettings-desktop-schemas
     wlogout
     socat
