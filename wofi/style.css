@@ -28,7 +28,7 @@ window {
   padding: 0px;
   background-color: @base03;
   border: 2px solid @base02;
-  border-radius: 21px;
+  border-radius: 0px;
 }
 
 /* Outer container */
@@ -87,6 +87,7 @@ window {
   border: 2px solid transparent;
 
   background-color: transparent;
+  outline: none;
 }
 
 /* Selected entry */

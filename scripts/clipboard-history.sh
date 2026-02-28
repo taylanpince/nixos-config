@@ -13,7 +13,7 @@ fi
 
 # Show only content (no IDs) in wofi
 selected=$(cut -f2- "$tmpfile" | \
-    wofi --dmenu --normal-window --prompt "Clipboard" \
+    wofi --dmenu --prompt "Clipboard" \
         --style ~/.config/wofi/style.css \
         --conf ~/.config/wofi/config \
         --sort-order=default \
