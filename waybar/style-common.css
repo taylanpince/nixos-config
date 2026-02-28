@@ -112,6 +112,69 @@ tooltip {
 }
 
 /* ============================================
+   Single display mode - larger sizes
+   ============================================ */
+window#waybar.single * {
+  font-size: 24px;
+}
+
+window#waybar.single #workspaces {
+  margin-left: 12px;
+}
+
+window#waybar.single #workspaces button {
+  min-width: 52px;
+  padding: 0;
+  padding-right: 4px;
+  margin: 8px 6px;
+  border-radius: 20px;
+}
+
+window#waybar.single #workspaces button label {
+  font-size: 24px;
+}
+
+window#waybar.single #clock,
+window#waybar.single #custom-theme,
+window#waybar.single #custom-brightness,
+window#waybar.single #custom-bluetooth,
+window#waybar.single #idle_inhibitor,
+window#waybar.single #custom-mic,
+window#waybar.single #pulseaudio,
+window#waybar.single #custom-volume,
+window#waybar.single #network,
+window#waybar.single #battery,
+window#waybar.single #tray {
+  padding: 4px 20px;
+  margin: 8px 0px;
+  border-radius: 24px;
+}
+
+window#waybar.single .modules-right {
+  margin-right: 12px;
+}
+
+window#waybar.single #network {
+  min-width: 28px;
+  padding-left: 12px;
+  padding-right: 18px;
+}
+
+window#waybar.single #custom-brightness {
+  padding-left: 16px;
+  padding-right: 20px;
+}
+
+window#waybar.single #custom-theme {
+  padding-left: 16px;
+  padding-right: 18px;
+}
+
+window#waybar.single #custom-notification {
+  padding: 0 20px;
+}
+
+/* ============================================
    Laptop display (eDP-1) - original smaller sizes
    ============================================ */
 window#waybar.laptop * {
