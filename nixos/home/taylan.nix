@@ -18,10 +18,16 @@
     };
   };
 
+  xdg.enable = true;
+
   programs.starship = {
     enable = true;
     enableBashIntegration = true;
   };
+
+  # Manage Starship + Kitty configs via Home Manager (source-controlled in this repo).
+  xdg.configFile."starship/starship.toml".source = ../../starship/starship.toml;
+  xdg.configFile."kitty/kitty.conf".source = ../../kitty/kitty.conf;
 
   programs.bash = {
     enable = true;
