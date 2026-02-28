@@ -29,6 +29,19 @@
   xdg.configFile."starship/starship.toml".source = ../../starship/starship.toml;
   xdg.configFile."kitty/kitty.conf".source = ../../kitty/kitty.conf;
 
+  # Desktop config (Hyprland + bars/launchers/notifications)
+  xdg.configFile."hypr".source = ../../hypr;
+  xdg.configFile."waybar".source = ../../waybar;
+  xdg.configFile."swaync".source = ../../swaync;
+  xdg.configFile."rofi".source = ../../rofi;
+  xdg.configFile."wofi".source = ../../wofi;
+  xdg.configFile."wlogout".source = ../../wlogout;
+  xdg.configFile."wob".source = ../../wob;
+
+  # Media/editor configs
+  xdg.configFile."mpv".source = ../../mpv;
+  xdg.configFile."nvim".source = ../../nvim;
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
