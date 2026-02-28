@@ -176,6 +176,9 @@
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 
+  # nix-index: provides `nix-locate` and optional command-not-found integration
+  programs.nix-index.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -293,6 +296,10 @@
     eza
     fd
     zoxide
+
+    # Nix ergonomics
+    nix-output-monitor # `nom`
+    nix-index
 
     # FIDO2
     pam_u2f
