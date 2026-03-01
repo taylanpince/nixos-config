@@ -42,6 +42,12 @@
   xdg.configFile."mpv".source = ../../mpv;
   xdg.configFile."nvim".source = ../../nvim;
 
+  # User scripts
+  # NOTE: the repo itself is checked out at ~/config, so we must NOT have Home Manager populate
+  # anything under ~/config/* (it would collide with the git checkout). Instead, install scripts to
+  # ~/.config/scripts and reference them from Hyprland via ~/.config/scripts/*.
+  xdg.configFile."scripts".source = ../../scripts;
+
   programs.bash = {
     enable = true;
     enableCompletion = true;

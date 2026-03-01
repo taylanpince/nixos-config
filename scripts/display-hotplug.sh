@@ -44,7 +44,7 @@ reconcile() {
 }
 
 update_waybar() {
-  ~/config/scripts/switch-waybar-config.sh || true
+  ~/.config/scripts/switch-waybar-config.sh || true
 }
 
 handle() {
