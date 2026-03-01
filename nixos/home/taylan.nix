@@ -48,6 +48,9 @@
   # ~/.config/scripts and reference them from Hyprland via ~/.config/scripts/*.
   xdg.configFile."scripts".source = ../../scripts;
 
+  # Needed by systemd user unit (hypr-mru-tracker.service)
+  home.file.".local/bin/hypr-mru-tracker.sh".source = ../../scripts/hypr-mru-tracker.sh;
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
@@ -134,6 +137,51 @@
       # Delete word (Option/Alt + Backspace)
       "\\e\\b" = "backward-kill-word";
       "\\e\\x7f" = "backward-kill-word";
+    };
+  };
+
+  systemd.user.targets.tray = {
+    Unit = {
+      Description = "Tray target";
+    };
+  };
+
+  systemd.user.services.waybar = {
+    Unit = {
+      Description = "Waybar";
+      # Ensure the graphical session is up.
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${pkgs.waybar}/bin/waybar";
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
+  };
+
+  systemd.user.services.hypr-mru-tracker = {
+    Unit = {
+      Description = "Hyprland MRU tracker for window switcher";
+      After = [ "graphical-session.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "%h/.local/bin/hypr-mru-tracker.sh";
+      Restart = "always";
+      RestartSec = 1;
+      Environment = "PATH=%h/.nix-profile/bin:/run/current-system/sw/bin:/usr/bin";
+    };
+
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
     };
   };
 
