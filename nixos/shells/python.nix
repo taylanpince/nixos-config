@@ -7,5 +7,13 @@
       ruff
     ];
   };
+
+  python311 = pkgs.mkShell {
+    packages = with pkgs; [
+      python311
+      uv
+      ruff
+    ];
+  };
 }
 
