@@ -42,6 +42,9 @@
 
   services.fprintd.enable = true;
 
+  # Ledger hardware wallet
+  hardware.ledger.enable = true;
+
   # Fingerprint auth for common PAM flows
   security.pam.services.sudo.fprintAuth = true;
   security.pam.services.polkit-1.fprintAuth = true;

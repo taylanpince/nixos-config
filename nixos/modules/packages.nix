@@ -154,6 +154,7 @@
     btop
     power-profiles-daemon
     libva-utils
+    ledger-live-desktop
 
     # Falcon + Kolide
     stdenv.cc.cc
