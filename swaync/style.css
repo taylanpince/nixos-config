@@ -11,7 +11,7 @@
 
 * {
   font-family: Inter, system-ui, sans-serif;
-  font-size: 13px;
+  font-size: 26px;
   color: @base1;
   background: transparent;
 }
@@ -38,11 +38,11 @@ listview row:selected, listview row:hover, listview row:focus {
 }
 
 .notification-row .notification {
-  margin: 10px 12px 0 12px;
-  padding: 10px 12px;
+  margin: 20px 24px 0 24px;
+  padding: 20px 24px;
 
-  border-radius: 14px;
-  border: 1px solid @base02;
+  border-radius: 28px;
+  border: 2px solid @base02;
   background-color: @base03;
 }
 
@@ -52,9 +52,9 @@ listview row:selected, listview row:hover, listview row:focus {
 
 .notification-row .summary {
   color: @base2;
-  font-size: 14px;
+  font-size: 28px;
   font-weight: 700;
-  margin: 0 0 2px 0;
+  margin: 0 0 8px 0;
 }
 
 .notification-row .body {
@@ -66,7 +66,7 @@ listview row:selected, listview row:hover, listview row:focus {
 .notification-row .time,
 .notification-row .app-name {
   color: @base01;
-  font-size: 12px;
+  font-size: 24px;
 }
 
 /* Action buttons */
@@ -88,9 +88,9 @@ listview row:selected, listview row:hover, listview row:focus {
    ======================= */
 .control-center {
   background-color: @base03;
-  border: 1px solid @base02;
-  border-radius: 18px;
-  padding: 12px;
+  border: 2px solid @base02;
+  border-radius: 36px;
+  padding: 24px;
 }
 
 .widget-title {
@@ -99,7 +99,7 @@ listview row:selected, listview row:hover, listview row:focus {
 
 .widget-title label {
   color: @base2;
-  font-size: 22px;
+  font-size: 44px;
   font-weight: 800;
 }
 
@@ -279,9 +279,9 @@ scrollbar slider {
 .control-center .notification image,
 .control-center .notification .image,
 .control-center .notification .icon {
-  min-width: 36px;
-  min-height: 36px;
-  -gtk-icon-size: 36px;
+  min-width: 72px;
+  min-height: 72px;
+  -gtk-icon-size: 72px;
 }
 
 /* Some apps provide oversized pixbufs; this clamps layout around it */
@@ -302,9 +302,9 @@ scrollbar slider {
 .notification-row .notification image,
 .notification-row .notification .image,
 .notification-row .notification .icon {
-  min-width: 36px;
-  min-height: 36px;
-  -gtk-icon-size: 36px;
+  min-width: 72px;
+  min-height: 72px;
+  -gtk-icon-size: 72px;
 }
 
 /* Some apps provide both an app icon and an inline image.
