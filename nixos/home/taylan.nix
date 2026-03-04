@@ -140,12 +140,6 @@
     };
   };
 
-  systemd.user.targets.tray = {
-    Unit = {
-      Description = "Tray target";
-    };
-  };
-
   systemd.user.services.waybar = {
     Unit = {
       Description = "Waybar";
