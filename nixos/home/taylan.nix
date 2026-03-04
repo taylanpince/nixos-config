@@ -30,8 +30,9 @@
   xdg.configFile."kitty/kitty.conf".source = ../../kitty/kitty.conf;
 
   # Desktop config (Hyprland + bars/launchers/notifications)
+  # NOTE: waybar is excluded - it uses mutable symlinks for display switching
+  # (managed manually via: ln -s ~/config/waybar ~/.config/waybar)
   xdg.configFile."hypr".source = ../../hypr;
-  xdg.configFile."waybar".source = ../../waybar;
   xdg.configFile."swaync".source = ../../swaync;
   xdg.configFile."rofi".source = ../../rofi;
   xdg.configFile."wofi".source = ../../wofi;
