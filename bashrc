@@ -15,7 +15,7 @@ fi
 
 # --- aliases ---
 command -v eza >/dev/null && alias ls='eza -lah --group-directories-first --git' || alias ls='ls -lha'
-alias dv='cd ~/development'
+alias dv='cd ~/development/sequence'
 
 # --- history ---
 export HISTSIZE=200000
