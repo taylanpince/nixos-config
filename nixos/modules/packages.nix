@@ -40,6 +40,7 @@
     ctop
     lazydocker
     docker-compose # Alias to legacy name
+    docker-buildx
 
     # Common native libs
     openssl
