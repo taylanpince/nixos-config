@@ -35,6 +35,8 @@
     lazygit
     gitui
     gh
+    gnupg
+    pinentry-curses
 
     # Docker
     ctop
