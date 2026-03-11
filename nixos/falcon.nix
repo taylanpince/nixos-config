@@ -8,10 +8,16 @@ let
 
     install -d -m 0770 /opt/CrowdStrike
 
-    if [ ! -e /opt/CrowdStrike/falcond ]; then
-      cp -a ${falcon}/opt/CrowdStrike/. /opt/CrowdStrike/
-      chown -R root:root /opt/CrowdStrike
-    fi
+    # Update binaries from the nix store, but preserve runtime state files.
+    # falconstore contains the Agent ID (AID) — if lost, the sensor re-registers
+    # as a new host and may consume another license seat.
+    ${pkgs.rsync}/bin/rsync -a --delete \
+      --exclude=falconstore \
+      --exclude=falconstore.bak \
+      --exclude=CsConfig \
+      "${falcon}/opt/CrowdStrike/" /opt/CrowdStrike/
+
+    chown -R root:root /opt/CrowdStrike
 
     # load CID from /etc/falcon-sensor.env (root-only)
     . /etc/falcon-sensor.env
