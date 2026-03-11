@@ -5,8 +5,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Kernel — pinned to 6.18; linuxPackages_latest (6.19+) breaks CrowdStrike eBPF
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   boot.kernel.sysctl = {
     "net.ipv6.conf.all.disable_ipv6" = 1;
