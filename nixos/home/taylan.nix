@@ -74,6 +74,9 @@
     };
 
     initExtra = ''
+      # GPG signing
+      export GPG_TTY=$(tty)
+
       # PATH additions
       export PATH="$PNPM_HOME:$HOME/go/bin:$PATH"
 
