@@ -18,6 +18,7 @@ let
       "${falcon}/opt/CrowdStrike/" /opt/CrowdStrike/
 
     chown -R root:root /opt/CrowdStrike
+    chmod 0770 /opt/CrowdStrike
 
     # load CID from /etc/falcon-sensor.env (root-only)
     . /etc/falcon-sensor.env
