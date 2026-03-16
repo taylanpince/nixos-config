@@ -47,16 +47,22 @@ update_waybar() {
   ~/.config/scripts/switch-waybar-config.sh || true
 }
 
+update_swaync() {
+  ~/.config/scripts/switch-swaync-config.sh || true
+}
+
 handle() {
   case "$1" in
     monitoradded*"$EXT"*)   reconcile ;;
     monitorremoved*"$EXT"*) reconcile ;;
   esac
   update_waybar
+  update_swaync
 }
 
 reconcile
 update_waybar
+update_swaync
 
 socat -U - UNIX-CONNECT:"$sock" | while read -r line; do
   handle "$line"

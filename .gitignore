@@ -1,3 +1,5 @@
 default.target.wants
 graphical-session.target.wants
 waybar/config
+swaync/config.json
+swaync/style.css
