@@ -78,7 +78,7 @@
       export GPG_TTY=$(tty)
 
       # PATH additions
-      export PATH="$PNPM_HOME:$HOME/go/bin:$PATH"
+      export PATH="$PNPM_HOME:$HOME/go/bin:$HOME/.local/bin:$PATH"
 
       # History settings
       shopt -s histappend
