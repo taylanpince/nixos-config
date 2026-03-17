@@ -48,4 +48,8 @@
   # Fingerprint auth for common PAM flows
   security.pam.services.sudo.fprintAuth = true;
   security.pam.services.polkit-1.fprintAuth = true;
+
+  # Disable fingerprint for hyprlock (uses swaylock PAM service) — fprintd
+  # waits ~30s for a scan before falling back to password, causing unlock delay
+  security.pam.services.swaylock.fprintAuth = false;
 }
