@@ -147,6 +147,9 @@
     ffmpeg-full
     celluloid
 
+    # Audio transcription
+    whisper-cpp
+
     # Image management
     imagemagick
     oxipng
