@@ -7,6 +7,7 @@
       yarn
       nodePackages.typescript
       nodePackages.typescript-language-server
+      wrangler
     ];
   };
 }
