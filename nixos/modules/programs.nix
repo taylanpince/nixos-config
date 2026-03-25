@@ -27,4 +27,7 @@
 
   # handy for debugging keyring contents
   programs.seahorse.enable = true;
+
+  # nix-ld: provides /lib64/ld-linux-x86-64.so.2 shim for unpatched binaries (e.g. workerd)
+  programs.nix-ld.enable = true;
 }
