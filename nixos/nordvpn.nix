@@ -51,5 +51,8 @@ in {
     (pkgs.writeShellScriptBin "vpnon" ''
       exec ${nordvpn}/bin/nordvpn connect uk1665
     '')
+    (pkgs.writeShellScriptBin "vpnoff" ''
+      exec ${nordvpn}/bin/nordvpn disconnect
+    '')
   ];
 }
