@@ -1,6 +1,15 @@
 { pkgs, ... }:
 let
   nordvpn = pkgs.callPackage ./nordvpn { };
+
+  initScript = pkgs.writeScript "init-nordvpn" ''
+    #!${pkgs.bash}/bin/bash
+    set -euo pipefail
+
+    # nordvpnd expects helper binaries at /usr/lib/nordvpn/
+    mkdir -p /usr/lib/nordvpn
+    ln -sf ${nordvpn}/lib/nordvpn/* /usr/lib/nordvpn/
+  '';
 in {
   users.groups.nordvpn = {};
 
@@ -16,8 +25,16 @@ in {
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
 
+    path = with pkgs; [
+      iptables
+      iproute2
+      procps
+      wireguard-tools
+    ];
+
     serviceConfig = {
-      ExecStart = "${nordvpn}/bin/nordvpn-bash -c /sbin/nordvpnd";
+      ExecStartPre = initScript;
+      ExecStart = "${nordvpn}/sbin/nordvpnd";
       Group = "nordvpn";
       RuntimeDirectory = "nordvpn";
       RuntimeDirectoryMode = "0770";
@@ -29,17 +46,10 @@ in {
 
   environment.systemPackages = [
     (pkgs.writeShellScriptBin "nordvpn" ''
-      exec ${nordvpn}/bin/nordvpn-bash -c "/bin/nordvpn $*"
+      exec ${nordvpn}/bin/nordvpn "$@"
     '')
-    (pkgs.makeDesktopItem {
-      name = "nordvpn";
-      desktopName = "NordVPN";
-      comment = "NordVPN callback handler";
-      icon = "nordvpn";
-      mimeTypes = [ "x-scheme-handler/nordvpn" ];
-      exec = "nordvpn click %u";
-      terminal = true;
-      noDisplay = true;
-    })
+    (pkgs.writeShellScriptBin "vpnon" ''
+      exec ${nordvpn}/bin/nordvpn connect uk1665
+    '')
   ];
 }
