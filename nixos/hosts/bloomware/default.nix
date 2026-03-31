@@ -18,6 +18,7 @@
     ../../modules/desktop/hyprland.nix
     ../../modules/packages.nix
     ../../modules/fonts.nix
+    ../../nordvpn.nix
     ../../modules/logging.nix
     ../../modules/power.nix
   ];
