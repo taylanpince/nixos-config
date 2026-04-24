@@ -12,6 +12,9 @@
       go
       pkg-config
       openssl
+      llvmPackages.libclang
     ];
+
+    LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
   };
 }
