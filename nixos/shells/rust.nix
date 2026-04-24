@@ -2,6 +2,7 @@
 
 {
   rust = pkgs.mkShell {
+    name = "rust";
     packages = with pkgs; [
       rustup
       protobuf

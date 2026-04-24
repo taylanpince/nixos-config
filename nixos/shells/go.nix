@@ -2,6 +2,7 @@
 
 {
   go = pkgs.mkShell {
+    name = "go";
     packages = with pkgs; [
       go
       gopls
@@ -11,6 +12,7 @@
   };
 
   go-cgo = pkgs.mkShell {
+    name = "go-cgo";
     packages = with pkgs; [
       go
       gopls

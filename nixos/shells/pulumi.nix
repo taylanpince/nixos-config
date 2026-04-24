@@ -1,6 +1,7 @@
 { pkgs }:
 {
   pulumi = pkgs.mkShell {
+    name = "pulumi";
     packages = with pkgs; [
       pulumi-bin
       pulumiPackages.pulumi-nodejs

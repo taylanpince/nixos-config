@@ -2,6 +2,7 @@
 
 {
   postgres = pkgs.mkShell {
+    name = "postgres";
     packages = with pkgs; [
       postgresql_16
     ];
