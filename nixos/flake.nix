@@ -32,6 +32,7 @@
       nodeShells = import ./shells/node.nix { inherit pkgs; };
       pulumiShells = import ./shells/pulumi.nix { inherit pkgs; };
       postgresShells = import ./shells/postgres.nix { inherit pkgs; };
+      rustShells = import ./shells/rust.nix { inherit pkgs; };
     in
     {
       nixosConfigurations.bloomware = nixpkgs.lib.nixosSystem {
@@ -55,6 +56,7 @@
         // pyShells
         // nodeShells
         // pulumiShells
-        // postgresShells;
+        // postgresShells
+        // rustShells;
     };
 }
