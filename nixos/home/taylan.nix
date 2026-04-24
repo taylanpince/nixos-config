@@ -71,6 +71,7 @@
       devpy = "nix develop ~/config/nixos#python";
       devjs = "nix develop ~/config/nixos#node";
       devops = "nix develop ~/config/nixos#pulumi";
+      devrust = "nix develop ~/config/nixos#rust";
     };
 
     initExtra = ''
