@@ -10,6 +10,8 @@
       cargo-make
       cargo-insta
       go
+      pkg-config
+      openssl
     ];
   };
 }
