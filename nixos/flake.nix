@@ -14,18 +14,7 @@
     let
       system = "x86_64-linux";
 
-      # Override claude-code to latest npm version
-      overlay = final: prev: {
-        claude-code = prev.claude-code.overrideAttrs (old: rec {
-          version = "2.1.72";
-          src = prev.fetchurl {
-            url = "https://registry.npmjs.org/@anthropic-ai/claude-code/-/claude-code-${version}.tgz";
-            hash = "sha512-GhoUURM5xUPL+DSn0jMPXDEkWvocl5lqCs/wnyYDUliY0fBlXm7LxWnjLCBPZ0LoeUnr2e6MFRBxyUFrgrRp0A==";
-          };
-        });
-      };
-
-      pkgs = import nixpkgs { inherit system; overlays = [ overlay ]; };
+      pkgs = import nixpkgs { inherit system; };
 
       goShells = import ./shells/go.nix { inherit pkgs; };
       pyShells = import ./shells/python.nix { inherit pkgs; };
@@ -38,7 +27,6 @@
       nixosConfigurations.bloomware = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          { nixpkgs.overlays = [ overlay ]; }
           ./configuration.nix
 
           home-manager.nixosModules.home-manager
