@@ -4,10 +4,10 @@
     name = "node";
     packages = with pkgs; [
       nodejs_24
-      nodePackages.pnpm
+      pnpm
       yarn
-      nodePackages.typescript
-      nodePackages.typescript-language-server
+      typescript
+      typescript-language-server
       wrangler
     ];
   };
