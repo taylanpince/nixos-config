@@ -52,6 +52,12 @@
   # Needed by systemd user unit (hypr-mru-tracker.service)
   home.file.".local/bin/hypr-mru-tracker.sh".source = ../../scripts/hypr-mru-tracker.sh;
 
+  # Supply-chain hardening defaults for npm/pnpm. Sets a 14-day publish-age
+  # quarantine, enforces packageManager pins, and respects engines.node.
+  # Per-project .npmrc still overrides. Auth token is referenced via the
+  # NPM_TOKEN env var so this file can live in the repo safely.
+  home.file.".npmrc".source = ../../npm/npmrc;
+
   programs.bash = {
     enable = true;
     enableCompletion = true;
