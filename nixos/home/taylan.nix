@@ -52,11 +52,6 @@
   # Needed by systemd user unit (hypr-mru-tracker.service)
   home.file.".local/bin/hypr-mru-tracker.sh".source = ../../scripts/hypr-mru-tracker.sh;
 
-  # npm CLI settings (engines.node strictness, quieter output, env-var token).
-  # Per-project .npmrc still overrides. Auth token is referenced via the
-  # NPM_TOKEN env var so this file can live in the repo safely.
-  home.file.".npmrc".source = ../../npm/npmrc;
-
   # pnpm supply-chain hardening (pnpm 10+). 14-day publish-age quarantine
   # + engines.node strictness. pnpm 10+ no longer reads these from .npmrc,
   # so they must live in its own config.yaml.
@@ -72,6 +67,12 @@
       HISTSIZE = "200000";
       HISTFILESIZE = "400000";
       HISTCONTROL = "ignoredups:erasedups";
+
+      # npm/pnpm hardening. Set via env (not ~/.npmrc) so that file stays
+      # writable for `pnpm login` / `npm login` to manage auth tokens.
+      npm_config_engine_strict = "true";
+      npm_config_fund = "false";
+      npm_config_audit_level = "moderate";
     };
 
     shellAliases = {
