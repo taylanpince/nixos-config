@@ -1,0 +1,28 @@
+# Supply-chain hardening — global pnpm settings.
+# Managed declaratively via home-manager (~/config/nixos/home/taylan.nix).
+# Project pnpm-workspace.yaml or package.json#pnpm overrides any setting here.
+# Reference: https://pnpm.io/settings
+#
+# pnpm 10+ no longer reads most pnpm-specific settings from .npmrc — they
+# must live here (or in a per-workspace pnpm-workspace.yaml).
+
+# Store location (pre-existing on this machine — preserved).
+storeDir: /home/taylan/.local/share/pnpm/store
+
+# Refuse to install any package version published less than 14 days ago
+# (14 * 24 * 60 = 20160 minutes). Quarantines fresh malicious releases from
+# compromised maintainer accounts until the community catches them.
+minimumReleaseAge: 20160
+
+# Honor `engines.node` in package.json — refuse to install on an unsupported
+# Node major.
+engineStrict: true
+
+# NOTE: We deliberately do NOT enable `ignoreScripts` here. It would disable
+# postinstall scripts globally and break esbuild/sharp/sqlite3/prisma/
+# puppeteer across every project. Lifecycle-script lockdown belongs per-repo
+# via `"pnpm": { "onlyBuiltDependencies": [...] }` in package.json.
+#
+# `packageManagerStrict` and `auditLevel` are not accepted at the global
+# config.yaml level in pnpm 11 — set them per-project in `.npmrc` or
+# `pnpm-workspace.yaml` where applicable.

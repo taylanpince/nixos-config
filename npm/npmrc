@@ -1,36 +1,19 @@
-# Supply-chain hardening — global npm/pnpm settings.
+# Global npm settings (for the npm CLI specifically).
 # Managed declaratively via home-manager (~/config/nixos/home/taylan.nix).
 # Project-level .npmrc overrides any setting here.
-# References: https://pnpm.io/npmrc, https://docs.npmjs.com/cli/v10/configuring-npm/npmrc
+#
+# Most pnpm-specific supply-chain settings (minimumReleaseAge etc.) live in
+# ~/.config/pnpm/config.yaml — pnpm 10+ stopped reading them from .npmrc.
 
-# === Supply-chain quarantine (pnpm 10+) ====================================
-# Refuse to install any package version published less than 14 days ago
-# (14 * 24 * 60 = 20160 minutes). Buys time for the community + registry to
-# catch malicious releases before we pull them in. Honored by pnpm; ignored
-# by npm — but installs on this machine go through pnpm.
-minimum-release-age=20160
-
-# === Package-manager enforcement (pnpm) ====================================
-# If a project pins `packageManager` in package.json, refuse to install with
-# the wrong tool. No effect when the field is absent, so safe as a default.
-package-manager-strict=true
-
-# Honor `engines.node` in package.json — refuse to install on an unsupported
-# Node major. Both npm and pnpm respect this.
+# Honor `engines.node` in package.json — refuse to install on unsupported Node.
 engine-strict=true
 
-# === Noise / signal ========================================================
+# Noise reduction.
 fund=false
 audit-level=moderate
 
-# === Auth ==================================================================
-# Token sourced from environment — never committed. Set NPM_TOKEN in a
+# Auth token — sourced from environment, never committed. Set NPM_TOKEN in a
 # non-committed shell file (or a sops/age-managed secret) before publishing.
 # `npm login` will NOT work against this file (it's a read-only symlink into
 # the Nix store) — use the env var instead.
 //registry.npmjs.org/:_authToken=${NPM_TOKEN}
-
-# NOTE: We deliberately do NOT set `ignore-scripts=true` here. It would
-# disable postinstall scripts globally and break esbuild/sharp/sqlite3/
-# prisma/puppeteer across every project. Lifecycle-script lockdown belongs
-# per-repo via `"pnpm": { "onlyBuiltDependencies": [...] }` in package.json.
