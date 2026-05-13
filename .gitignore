@@ -1,5 +1,7 @@
 default.target.wants
 graphical-session.target.wants
+systemd/user/*.service
+systemd/user/*.target
 waybar/config
 swaync/config.json
 swaync/style.css
