@@ -52,6 +52,7 @@
 
     # Bash and Terminal
     kitty
+    tmux
     starship
     bash-completion
     fzf
