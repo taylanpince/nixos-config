@@ -20,8 +20,6 @@
     postgresql
     neovim
     tree-sitter
-    codex
-    claude-code
     websocat
     foundry
     solc

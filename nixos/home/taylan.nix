@@ -83,6 +83,7 @@
       devjs = "nix develop ~/config/nixos#node";
       devops = "nix develop ~/config/nixos#pulumi";
       devrust = "nix develop ~/config/nixos#rust";
+      devllm = "nix develop ~/config/nixos#llm";
     };
 
     initExtra = ''
