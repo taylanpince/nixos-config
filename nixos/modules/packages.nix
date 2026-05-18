@@ -155,6 +155,9 @@
     pngquant
     libwebp
 
+    # PDF tools
+    poppler_utils
+
     # Hardware
     btop
     power-profiles-daemon
