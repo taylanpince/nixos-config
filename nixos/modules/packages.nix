@@ -156,7 +156,7 @@
     libwebp
 
     # PDF tools
-    poppler_utils
+    poppler-utils
 
     # Hardware
     btop
