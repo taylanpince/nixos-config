@@ -5,3 +5,4 @@ systemd/user/*.target
 waybar/config
 swaync/config.json
 swaync/style.css
+vim/.netrwhist
