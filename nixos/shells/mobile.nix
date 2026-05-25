@@ -15,12 +15,18 @@
       kotlin
       ruby
       bundler
+      curl
+      git
     ];
 
     JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
 
+    # cocoapods → typhoeus → ethon → FFI dlopens libcurl by SONAME, which
+    # isn't on a default search path on NixOS.
+    LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.curl ];
+
     shellHook = ''
-      export GEM_HOME="$HOME/.gem"
+      export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
       export PATH="$GEM_HOME/bin:$PATH"
     '';
   };
