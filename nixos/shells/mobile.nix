@@ -8,8 +8,8 @@
 
 let
   androidEnv = pkgs.androidenv.composeAndroidPackages {
-    platformVersions = [ "34" "35" ];
-    buildToolsVersions = [ "35.0.0" ];
+    platformVersions = [ "34" "35" "36" ];
+    buildToolsVersions = [ "35.0.0" "36.0.0" ];
     includeEmulator = false;
     includeSystemImages = false;
     includeNDK = false;
@@ -34,7 +34,7 @@ in
     JAVA_HOME = "${pkgs.jdk21}/lib/openjdk";
     ANDROID_HOME = "${androidSdk}/libexec/android-sdk";
     ANDROID_SDK_ROOT = "${androidSdk}/libexec/android-sdk";
-    GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/35.0.0/aapt2";
+    GRADLE_OPTS = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${androidSdk}/libexec/android-sdk/build-tools/36.0.0/aapt2";
 
     # cocoapods → typhoeus → ethon → FFI dlopens libcurl by SONAME, which
     # isn't on a default search path on NixOS.
