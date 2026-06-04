@@ -3,11 +3,11 @@
 let
   agent-deck = pkgs.stdenv.mkDerivation rec {
     pname = "agent-deck";
-    version = "1.9.4";
+    version = "1.9.47";
 
     src = pkgs.fetchurl {
       url = "https://github.com/asheshgoplani/agent-deck/releases/download/v${version}/agent-deck_${version}_linux_amd64.tar.gz";
-      sha256 = "17dxcnmsampjx838b9dvl6gyd2asy3hjwz050kk83670wyah5qfj";
+      sha256 = "1f2q1n55xs89b7gdnsbln8p6r1yc9q0xrz3fv83z850p5ib150r3";
     };
 
     sourceRoot = ".";
