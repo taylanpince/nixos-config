@@ -25,6 +25,7 @@
     model.name = "small";
     service.enable = true;
     settings.output.notification.on_transcription = false;
+    settings.osd.enabled = false;
   };
 
   programs.git = {
