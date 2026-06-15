@@ -26,6 +26,10 @@
     service.enable = true;
     settings.output.notification.on_transcription = false;
     settings.osd.enabled = false;
+    # Audible cue when the mic actually opens — avoids losing first words
+    # while PipeWire spins up the capture stream (waybar icon flips before
+    # the audio device is ready).
+    settings.audio.feedback.enabled = true;
   };
 
   programs.git = {
