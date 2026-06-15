@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, voxtype, ... }:
 
 {
+  imports = [
+    voxtype.homeManagerModules.default
+  ];
+
   home.username = "taylan";
   home.homeDirectory = "/home/taylan";
 
@@ -9,6 +13,16 @@
 
   # Keep this minimal to start. We can migrate your dotfiles/configs here gradually.
   programs.home-manager.enable = true;
+
+  # Voxtype: push-to-talk voice-to-text. Hotkey is bound in Hyprland (right Alt).
+  # Vulkan variant for AMD Radeon 890M iGPU.
+  programs.voxtype = {
+    enable = true;
+    package = voxtype.packages.${pkgs.system}.vulkan;
+    engine = "whisper";
+    model.name = "small";
+    service.enable = true;
+  };
 
   programs.git = {
     enable = true;
