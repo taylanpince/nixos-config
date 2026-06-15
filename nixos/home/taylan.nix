@@ -24,6 +24,7 @@
     engine = "whisper";
     model.name = "small";
     service.enable = true;
+    settings.output.notification.on_transcription = false;
   };
 
   programs.git = {

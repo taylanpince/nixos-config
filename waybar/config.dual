@@ -94,7 +94,7 @@
     "custom/voxtype": {
       "exec": "voxtype status --follow --format json",
       "return-type": "json",
-      "format": "{}",
+      "format": "●",
       "tooltip": true,
       "on-click": "voxtype record toggle"
     },
@@ -289,7 +289,7 @@
     "custom/voxtype": {
       "exec": "voxtype status --follow --format json",
       "return-type": "json",
-      "format": "{}",
+      "format": "●",
       "tooltip": true,
       "on-click": "voxtype record toggle"
     },
