@@ -19,6 +19,11 @@
     # Turn *right* control into its own layer key.
     rightcontrol = layer(rctrl)
 
+    # Right Meta (the physically-right top-row mod key on this keyboard)
+    # is remapped to F20 so Hyprland can bind it as a plain key — used as
+    # push-to-talk for voxtype without modifier-state weirdness.
+    rightmeta = f20
+
     # --- Right Ctrl: line/doc navigation ---
     # rctrl behaves like Control for everything *except* what we override here.
     [rctrl:C]
