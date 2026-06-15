@@ -14,8 +14,9 @@
   # Keep this minimal to start. We can migrate your dotfiles/configs here gradually.
   programs.home-manager.enable = true;
 
-  # Voxtype: push-to-talk voice-to-text. Hotkey is bound in Hyprland (right Alt).
-  # Vulkan variant for AMD Radeon 890M iGPU.
+  # Voxtype: voice-to-text on the keyboard's dedicated mic key (Alt+C chord).
+  # Vulkan variant for AMD Radeon 890M iGPU. osd-gtk4 provides the on-screen
+  # recording indicator (without it the daemon runs but you get no feedback).
   programs.voxtype = {
     enable = true;
     package = voxtype.packages.${pkgs.system}.vulkan;
@@ -23,6 +24,10 @@
     model.name = "small";
     service.enable = true;
   };
+
+  home.packages = [
+    voxtype.packages.${pkgs.system}.osd-gtk4
+  ];
 
   programs.git = {
     enable = true;
@@ -211,6 +216,5 @@
     };
   };
 
-  # Let home-manager manage user packages as you decide. Starting empty.
-  home.packages = [ ];
+  # (home.packages declared earlier in this file with the voxtype config.)
 }
