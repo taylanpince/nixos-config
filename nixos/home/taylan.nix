@@ -15,8 +15,9 @@
   programs.home-manager.enable = true;
 
   # Voxtype: voice-to-text on the keyboard's dedicated mic key (Alt+C chord).
-  # Vulkan variant for AMD Radeon 890M iGPU. osd-gtk4 provides the on-screen
-  # recording indicator (without it the daemon runs but you get no feedback).
+  # Vulkan variant for AMD Radeon 890M iGPU. Status indicator is provided by
+  # a custom/voxtype Waybar module (see waybar/config.{single,dual}); the
+  # heavier GTK4 OSD is intentionally not installed.
   programs.voxtype = {
     enable = true;
     package = voxtype.packages.${pkgs.system}.vulkan;
@@ -24,10 +25,6 @@
     model.name = "small";
     service.enable = true;
   };
-
-  home.packages = [
-    voxtype.packages.${pkgs.system}.osd-gtk4
-  ];
 
   programs.git = {
     enable = true;

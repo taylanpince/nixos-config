@@ -45,6 +45,7 @@ window#waybar {
 #custom-brightness,
 #custom-bluetooth,
 #idle_inhibitor,
+#custom-voxtype,
 #custom-mic,
 #pulseaudio,
 #custom-volume,
@@ -90,6 +91,18 @@ window#waybar {
 
 #custom-mic.muted {
   color: @red;
+}
+
+#custom-voxtype.recording {
+  color: @red;
+}
+
+#custom-voxtype.transcribing {
+  color: @yellow;
+}
+
+#custom-voxtype.stopped {
+  color: @base01;
 }
 
 tooltip {

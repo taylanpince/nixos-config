@@ -18,6 +18,7 @@
     "custom/brightness",
     "custom/bluetooth",
     "idle_inhibitor",
+    "custom/voxtype",
     "custom/mic",
     "custom/volume",
     "network",
@@ -106,6 +107,14 @@
     "return-type": "json",
     "on-click": "~/.config/waybar/scripts/mic.sh --toggle",
     "tooltip": true
+  },
+
+  "custom/voxtype": {
+    "exec": "voxtype status --follow --format json",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "on-click": "voxtype record toggle"
   },
 
   "custom/volume": {
