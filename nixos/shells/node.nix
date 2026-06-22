@@ -13,6 +13,13 @@ let
       inherit src;
       outputHash = "sha256-MaqocUoaHDR+orOOwPy3ta3AzzwmguebRlcMO4WCHHU=";
     });
+    postBuild = ''
+      mv packages/vitest-pool-workers packages/~vitest-pool-workers
+
+      for pkg in unenv-preset workers-utils cli-shared-helpers codemod config local-explorer-ui miniflare autoconfig deploy-helpers workers-auth wrangler; do
+        NODE_ENV="production" pnpm --filter "$pkg" run build
+      done
+    '';
   });
 in
 {

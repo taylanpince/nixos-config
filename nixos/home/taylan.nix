@@ -20,7 +20,7 @@
   # heavier GTK4 OSD is intentionally not installed.
   programs.voxtype = {
     enable = true;
-    package = voxtype.packages.${pkgs.system}.vulkan;
+    package = voxtype.packages.${pkgs.stdenv.hostPlatform.system}.vulkan;
     engine = "whisper";
     model.name = "small";
     service.enable = true;
