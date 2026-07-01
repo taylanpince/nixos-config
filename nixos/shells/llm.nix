@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, pkgsLlm }:
 
 let
   agent-deck = pkgs.stdenv.mkDerivation rec {
@@ -27,10 +27,11 @@ in
 {
   llm = pkgs.mkShell {
     name = "llm";
-    packages = with pkgs; [
-      nodejs_24
-      claude-code
-      codex
+    packages = [
+      pkgs.nodejs_24
+      # AI CLIs come from pkgsLlm (independent nixpkgs pin — see flake.nix)
+      pkgsLlm.claude-code
+      pkgsLlm.codex
       agent-deck
     ];
   };

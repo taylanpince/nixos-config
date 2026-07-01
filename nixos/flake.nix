@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Independent pin used ONLY by the `llm` devshell (claude-code, codex).
+    # Kept separate so bumping AI CLIs never drags the system nixpkgs along.
+    # Bump with: nix flake update --update-input nixpkgs-llm
+    nixpkgs-llm.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,7 +20,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, voxtype, ... }:
+  outputs = { self, nixpkgs, nixpkgs-llm, home-manager, voxtype, ... }:
     let
       system = "x86_64-linux";
 
@@ -27,13 +32,18 @@
         };
       };
 
+      pkgsLlm = import nixpkgs-llm {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       goShells = import ./shells/go.nix { inherit pkgs; };
       pyShells = import ./shells/python.nix { inherit pkgs; };
       nodeShells = import ./shells/node.nix { inherit pkgs; };
       pulumiShells = import ./shells/pulumi.nix { inherit pkgs; };
       postgresShells = import ./shells/postgres.nix { inherit pkgs; };
       rustShells = import ./shells/rust.nix { inherit pkgs; };
-      llmShells = import ./shells/llm.nix { inherit pkgs; };
+      llmShells = import ./shells/llm.nix { inherit pkgs pkgsLlm; };
       mobileShells = import ./shells/mobile.nix { inherit pkgs; };
     in
     {
