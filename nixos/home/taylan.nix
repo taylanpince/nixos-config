@@ -107,6 +107,7 @@
       devrust = "nix develop ~/config/nixos#rust";
       devllm = "nix develop ~/config/nixos#llm";
       devmobile = "nix develop ~/config/nixos#mobile";
+      devkurtosis = "nix develop ~/config/nixos#kurtosis";
     };
 
     initExtra = ''

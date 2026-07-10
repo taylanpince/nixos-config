@@ -45,6 +45,7 @@
       rustShells = import ./shells/rust.nix { inherit pkgs; };
       llmShells = import ./shells/llm.nix { inherit pkgs pkgsLlm; };
       mobileShells = import ./shells/mobile.nix { inherit pkgs; };
+      kurtosisShells = import ./shells/kurtosis.nix { inherit pkgs; };
     in
     {
       nixosConfigurations.bloomware = nixpkgs.lib.nixosSystem {
@@ -71,6 +72,7 @@
         // postgresShells
         // rustShells
         // llmShells
-        // mobileShells;
+        // mobileShells
+        // kurtosisShells;
     };
 }
