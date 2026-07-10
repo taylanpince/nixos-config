@@ -90,6 +90,7 @@ in
     eza
     fd
     zoxide
+    glow
 
     # Nix ergonomics
     nix-output-monitor # `nom`
