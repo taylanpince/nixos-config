@@ -1,8 +1,37 @@
 { pkgs, ... }:
 
+let
+  polycli = pkgs.stdenvNoCC.mkDerivation rec {
+    pname = "polycli";
+    version = "0.1.115";
+
+    src = pkgs.fetchurl {
+      url = "https://github.com/0xPolygon/polygon-cli/releases/download/v${version}/polycli_v${version}_linux_amd64.tar.gz";
+      hash = "sha256-1T73ZUSO+xqeAZbONGwCeIgyY3cUEAAi34cOR+d6Bzs=";
+    };
+
+    sourceRoot = ".";
+
+    installPhase = ''
+      runHook preInstall
+      install -Dm755 polycli_v${version}_linux_amd64 $out/bin/polycli
+      runHook postInstall
+    '';
+
+    meta = with pkgs.lib; {
+      description = "Polygon CLI - Swiss army knife for Polygon/EVM chains";
+      homepage = "https://github.com/0xPolygon/polygon-cli";
+      license = licenses.lgpl3Only;
+      platforms = [ "x86_64-linux" ];
+      mainProgram = "polycli";
+    };
+  };
+in
 {
   # $ nix search to find packages
   environment.systemPackages = with pkgs; [
+    polycli
+
     # Development tools
     curl
     vim
