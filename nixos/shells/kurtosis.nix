@@ -41,7 +41,7 @@ in
     packages = [
       kurtosis-cli
       pkgs.yq-go
-      pkgs.bat
+      pkgs.bats
     ];
   };
 }
