@@ -17,4 +17,8 @@
     TimeoutStopSec = "10s";
     SendSIGKILL = true;
   };
+
+  security.pki.certificateFiles = [
+    ../../certs/wintermute-root-ca.crt
+  ];
 }
