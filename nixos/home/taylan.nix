@@ -221,4 +221,22 @@
   };
 
   # (home.packages declared earlier in this file with the voxtype config.)
+
+  # Trust the Wintermute local CA in the user NSS DB used by Chromium/Brave.
+  # Firefox picks up the system trust via ImportEnterpriseRoots (NixOS module).
+  home.activation.trustWintermuteCA =
+    config.lib.dag.entryAfter [ "writeBoundary" ] ''
+      set -eu
+      CERT=${../../certs/wintermute-root-ca.crt}
+      DB="$HOME/.pki/nssdb"
+      CERTUTIL=${pkgs.nss.tools}/bin/certutil
+      NICK=wintermute
+
+      mkdir -p "$DB"
+      if [ ! -f "$DB/cert9.db" ]; then
+        $CERTUTIL -N -d "sql:$DB" --empty-password
+      fi
+      $CERTUTIL -d "sql:$DB" -D -n "$NICK" 2>/dev/null || true
+      $CERTUTIL -d "sql:$DB" -A -t "C,," -n "$NICK" -i "$CERT"
+    '';
 }

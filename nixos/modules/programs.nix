@@ -9,7 +9,11 @@
   security.pki.installCACerts = true;
 
   # Install firefox
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    # Trust CAs from the system store (security.pki.certificateFiles).
+    policies.Certificates.ImportEnterpriseRoots = true;
+  };
 
   # direnv
   programs.direnv.enable = true;
