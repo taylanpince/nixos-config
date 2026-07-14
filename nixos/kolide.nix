@@ -6,7 +6,7 @@ let
   # nix-prefetch-url --unpack https://github.com/kolide/nix-agent/archive/refs/heads/main.tar.gz
   kolideSrc = builtins.fetchTarball {
     url = "https://github.com/kolide/nix-agent/archive/refs/heads/main.tar.gz";
-    sha256 = "13y4zpbc2yrpff098jg9qdiv14pwd01xx60j2kqsdphvxbjjqjzj";
+    sha256 = "0pf46flbi734c5642fjmyq16dszlcqy10bml7jjidarr2a6fab4j";
   };
 in
 {
