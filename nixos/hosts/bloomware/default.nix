@@ -19,6 +19,7 @@
     ../../modules/packages.nix
     ../../modules/fonts.nix
     ../../nordvpn.nix
+    ../../modules/cloudflare-warp.nix
     ../../modules/logging.nix
     ../../modules/power.nix
   ];
