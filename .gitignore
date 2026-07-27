@@ -6,3 +6,5 @@ waybar/config
 swaync/config.json
 swaync/style.css
 vim/.netrwhist
+applications/mimeinfo.cache
+applications/warp-cli.desktop
