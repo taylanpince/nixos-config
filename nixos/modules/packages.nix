@@ -162,6 +162,7 @@ in
     # Apps
     brave
     opencode
+    claude-desktop-fhs # FHS variant for MCP support (from claude-desktop flake)
     slack
     obsidian
     code-cursor

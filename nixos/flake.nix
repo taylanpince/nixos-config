@@ -18,9 +18,17 @@
       url = "github:peteonrails/voxtype/v1.0.0-rc1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Claude Desktop for Linux. Repackages Anthropic's official Linux .deb
+    # for NixOS (v3.0.0+). Provides overlays.default with `claude-desktop`
+    # and `claude-desktop-fhs` (FHS variant needed for MCP server support).
+    claude-desktop = {
+      url = "github:aaddrick/claude-desktop-debian";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-llm, home-manager, voxtype, ... }:
+  outputs = { self, nixpkgs, nixpkgs-llm, home-manager, voxtype, claude-desktop, ... }:
     let
       system = "x86_64-linux";
 
@@ -52,6 +60,9 @@
         inherit system;
         modules = [
           ./configuration.nix
+
+          # Make `pkgs.claude-desktop` / `pkgs.claude-desktop-fhs` available.
+          { nixpkgs.overlays = [ claude-desktop.overlays.default ]; }
 
           home-manager.nixosModules.home-manager
           {
