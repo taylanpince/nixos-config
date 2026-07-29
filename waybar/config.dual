@@ -23,6 +23,7 @@
       "custom/bluetooth",
       "idle_inhibitor",
       "custom/voxtype",
+      "custom/meeting-record",
       "custom/mic",
       "custom/volume",
       "network",
@@ -97,6 +98,15 @@
       "format": "●",
       "tooltip": true,
       "on-click": "voxtype record toggle"
+    },
+
+    "custom/meeting-record": {
+      "exec": "~/.config/scripts/meeting-record.sh status",
+      "return-type": "json",
+      "format": "●",
+      "signal": 8,
+      "tooltip": true,
+      "on-click": "~/.config/scripts/meeting-record.sh toggle"
     },
 
     "custom/volume": {
@@ -218,6 +228,7 @@
       "custom/bluetooth",
       "idle_inhibitor",
       "custom/voxtype",
+      "custom/meeting-record",
       "custom/mic",
       "custom/volume",
       "network",
@@ -292,6 +303,15 @@
       "format": "●",
       "tooltip": true,
       "on-click": "voxtype record toggle"
+    },
+
+    "custom/meeting-record": {
+      "exec": "~/.config/scripts/meeting-record.sh status",
+      "return-type": "json",
+      "format": "●",
+      "signal": 8,
+      "tooltip": true,
+      "on-click": "~/.config/scripts/meeting-record.sh toggle"
     },
 
     "custom/volume": {

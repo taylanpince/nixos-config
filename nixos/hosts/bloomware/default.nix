@@ -17,6 +17,7 @@
     ../../modules/desktop/greetd.nix
     ../../modules/desktop/hyprland.nix
     ../../modules/packages.nix
+    ../../modules/whisper-models.nix
     ../../modules/fonts.nix
     ../../nordvpn.nix
     ../../modules/cloudflare-warp.nix
