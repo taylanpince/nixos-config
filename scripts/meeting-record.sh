@@ -51,14 +51,20 @@ start_recording() {
   sink_monitor="$(pactl get-default-sink).monitor"
   mic_source="$(pactl get-default-source)"
 
-  # amix with duration=longest keeps recording as long as either input is
-  # producing samples — the mic source can go SUSPENDED between utterances,
-  # and the monitor keeps the timeline flowing.
+  # Keep stereo so whisper --diarize can separate remote party (L, from the
+  # sink monitor) from mic (R, you). Each side is downmixed to mono first
+  # (webcam mics and Meet's monitor are 2ch) and then joined as L/R.
+  # apad on both sides keeps the timeline rolling when the mic goes
+  # SUSPENDED between utterances — otherwise the join stops at the shorter
+  # input and drops the remote party's audio after that point.
   ffmpeg -hide_banner -loglevel warning -nostdin -y \
     -f pulse -i "$sink_monitor" \
     -f pulse -i "$mic_source" \
-    -filter_complex "[0:a][1:a]amix=inputs=2:duration=longest:dropout_transition=0,aresample=16000,pan=mono|c0=c0" \
-    -c:a pcm_s16le \
+    -filter_complex "\
+      [0:a]aresample=16000,pan=mono|c0=c0+c1,apad[l];\
+      [1:a]aresample=16000,pan=mono|c0=c0+c1,apad[r];\
+      [l][r]join=inputs=2:channel_layout=stereo[a]" \
+    -map "[a]" -shortest -c:a pcm_s16le \
     "$wav" \
     </dev/null >"$LOG_FILE" 2>&1 &
 
@@ -134,10 +140,17 @@ transcribe() {
       --model "$MODEL" \
       --language "$LANG" \
       --file "$wav" \
+      --diarize \
       --output-txt \
       --output-file "$base" \
       --print-progress \
       >"$log" 2>&1; then
+    # By construction L=sink monitor (remote), R=mic (you) — rename whisper's
+    # generic `(speaker N)` labels so the transcript reads at a glance
+    # instead of forcing you to remember the channel order.
+    if [[ -f "$base.txt" ]]; then
+      sed -i -e 's/(speaker 0)/[Them]/g' -e 's/(speaker 1)/[Me]/g' "$base.txt"
+    fi
     write_state stopped "meeting: idle"
     notify "Transcript ready" "$(basename "$base").txt"
   else
