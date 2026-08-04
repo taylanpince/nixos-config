@@ -1,7 +1,9 @@
 { ... }:
 
 {
-  time.timeZone = "Europe/Istanbul";
+  # Timezone follows GeoClue2 location detection (see services.automatic-timezoned).
+  services.automatic-timezoned.enable = true;
+  services.geoclue2.enable = true;
 
   i18n.defaultLocale = "en_CA.UTF-8";
 
