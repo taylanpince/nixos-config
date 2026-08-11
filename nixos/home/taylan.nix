@@ -47,19 +47,16 @@
     enableBashIntegration = true;
   };
 
-  # Manage Starship + Kitty configs via Home Manager (source-controlled in this repo).
+  # Manage Starship config via Home Manager (source-controlled in this repo).
   xdg.configFile."starship/starship.toml".source = ../../starship/starship.toml;
-  xdg.configFile."kitty/kitty.conf".source = ../../kitty/kitty.conf;
 
-  # Desktop config (Hyprland + bars/launchers/notifications)
-  # NOTE: waybar is excluded - it uses mutable symlinks for display switching
-  # (managed manually via: ln -s ~/config/waybar ~/.config/waybar)
+  # Desktop config. hypr/wlogout stay declarative. waybar was already excluded
+  # (mutable symlinks for display switching); kitty/wofi/rofi/wob/swaync are now
+  # ALSO excluded and symlinked from the checkout so theme.sh can swap theme
+  # files at runtime:
+  #   for a in waybar kitty wofi rofi wob swaync; do ln -sfn ~/config/$a ~/.config/$a; done
   xdg.configFile."hypr".source = ../../hypr;
-  xdg.configFile."swaync".source = ../../swaync;
-  xdg.configFile."rofi".source = ../../rofi;
-  xdg.configFile."wofi".source = ../../wofi;
   xdg.configFile."wlogout".source = ../../wlogout;
-  xdg.configFile."wob".source = ../../wob;
 
   # Media/editor configs
   xdg.configFile."mpv".source = ../../mpv;

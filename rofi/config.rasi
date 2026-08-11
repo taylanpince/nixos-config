@@ -8,4 +8,4 @@ configuration {
   display-window: "";
 }
 
-@theme "~/config/rofi/themes/solarized-dark.rasi"
+@theme "~/config/rofi/themes/current.rasi"
