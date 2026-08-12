@@ -11,6 +11,7 @@ in
       nodejs_24
       pnpm
       yarn
+      bun
       typescript
       typescript-language-server
       wrangler-latest
