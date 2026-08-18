@@ -8,3 +8,7 @@ swaync/style.css
 vim/.netrwhist
 applications/mimeinfo.cache
 applications/warp-cli.desktop
+
+# Nix build artifacts (nix build / nixos-rebuild build symlinks)
+result
+result-*
