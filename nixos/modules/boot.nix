@@ -1,12 +1,15 @@
-{ pkgs, ... }:
+{ pkgs, kernelPackages, ... }:
 
 {
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Kernel — pinned to 6.18; linuxPackages_latest (6.19+) breaks CrowdStrike eBPF
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  # Kernel — 6.18 series, sourced from the dedicated `nixpkgs-kernel` pin
+  # (see flake.nix) so we track the latest 6.18.x point release for CVE
+  # backports without moving the rest of the system. Staying on 6.18 keeps
+  # CrowdStrike Falcon eBPF working; linuxPackages_latest (7.x) breaks it.
+  boot.kernelPackages = kernelPackages;
 
   boot.kernel.sysctl = {
     "net.ipv6.conf.all.disable_ipv6" = 1;

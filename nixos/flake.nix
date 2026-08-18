@@ -9,6 +9,13 @@
     # Bump with: nix flake update --update-input nixpkgs-llm
     nixpkgs-llm.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Independent pin used ONLY for the kernel (linuxPackages_6_18).
+    # Lets us track the latest 6.18.x point release (CVE backports)
+    # without dragging the rest of the system off its pin. Staying on the
+    # 6.18 series keeps CrowdStrike Falcon eBPF working; a new series does not.
+    # Bump with: nix flake update nixpkgs-kernel
+    nixpkgs-kernel.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +35,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-llm, home-manager, voxtype, claude-desktop, ... }:
+  outputs = { self, nixpkgs, nixpkgs-llm, nixpkgs-kernel, home-manager, voxtype, claude-desktop, ... }:
     let
       system = "x86_64-linux";
 
@@ -41,6 +48,13 @@
       };
 
       pkgsLlm = import nixpkgs-llm {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      # Kernel-only pin: newest 6.18.x point release, isolated from the
+      # system nixpkgs. Consumed by modules/boot.nix via specialArgs.
+      pkgsKernel = import nixpkgs-kernel {
         inherit system;
         config.allowUnfree = true;
       };
@@ -58,6 +72,7 @@
     {
       nixosConfigurations.bloomware = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { kernelPackages = pkgsKernel.linuxPackages_6_18; };
         modules = [
           ./configuration.nix
 

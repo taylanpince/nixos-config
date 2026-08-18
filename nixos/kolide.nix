@@ -1,12 +1,13 @@
 { config, pkgs, ... }:
 
 let
-  # Pin the repo (recommended). Get sha256 via:
-  # nix-shell -p nix-prefetch
-  # nix-prefetch-url --unpack https://github.com/kolide/nix-agent/archive/refs/heads/main.tar.gz
+  # Pinned to an immutable commit so a moving `main` branch can't drift the
+  # tarball out from under a rebuild (which silently breaks with a hash
+  # mismatch). Bump by updating both rev and sha256; get the sha256 via:
+  #   nix-prefetch-url --unpack https://github.com/kolide/nix-agent/archive/<rev>.tar.gz
   kolideSrc = builtins.fetchTarball {
-    url = "https://github.com/kolide/nix-agent/archive/refs/heads/main.tar.gz";
-    sha256 = "0pf46flbi734c5642fjmyq16dszlcqy10bml7jjidarr2a6fab4j";
+    url = "https://github.com/kolide/nix-agent/archive/c323b0ab830bdfef89edf0765ae35ce6d9362784.tar.gz";
+    sha256 = "04yn63rilab7jfav87rkk4j112x9wlsimxsijzh8i724ihb34738";
   };
 in
 {
