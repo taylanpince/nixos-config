@@ -68,8 +68,13 @@
   # ~/.config/scripts and reference them from Hyprland via ~/.config/scripts/*.
   xdg.configFile."scripts".source = ../../scripts;
 
-  # Needed by systemd user unit (hypr-mru-tracker.service)
-  home.file.".local/bin/hypr-mru-tracker.sh".source = ../../scripts/hypr-mru-tracker.sh;
+  # Needed by systemd user unit (hypr-mru-tracker.service). Must be
+  # executable — the unit execs it directly (ExecStart), so a read-only
+  # store copy fails with EACCES ("Permission denied").
+  home.file.".local/bin/hypr-mru-tracker.sh" = {
+    source = ../../scripts/hypr-mru-tracker.sh;
+    executable = true;
+  };
 
   # pnpm supply-chain hardening (pnpm 10+). 14-day publish-age quarantine
   # + engines.node strictness. pnpm 10+ no longer reads these from .npmrc,
