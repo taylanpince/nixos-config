@@ -165,6 +165,13 @@ in
     socat
     yazi
 
+    # GUI file manager (Nautilus-style, GTK3 so catppuccin-gtk applies).
+    # nemo-with-extensions bundles nemo-fileroller etc.; file-roller is the
+    # archive backend it drives for right-click Extract/Compress. Trash and
+    # drive/MTP/network mounting come from services.gvfs (see services.nix).
+    nemo-with-extensions
+    file-roller
+
     # Fingerprint support
     fprintd
     libfprint

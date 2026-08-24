@@ -42,6 +42,12 @@
 
   xdg.enable = true;
 
+  # Open folders in Nemo (xdg-open ., "reveal in file manager" from other apps).
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications."inode/directory" = "nemo.desktop";
+  };
+
   programs.starship = {
     enable = true;
     enableBashIntegration = true;

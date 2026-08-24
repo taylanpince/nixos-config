@@ -4,6 +4,10 @@
   # Flatpak
   services.flatpak.enable = true;
 
+  # gvfs backend for GUI file managers (Nemo): Trash, removable-drive/USB
+  # mounting, MTP (phones), and network shares (SMB/SFTP).
+  services.gvfs.enable = true;
+
   # BIOS Updates
   services.fwupd.enable = true;
 
