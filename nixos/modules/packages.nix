@@ -171,6 +171,7 @@ in
     kdePackages.kate
     gnome-text-editor
     zoom-us
+    libreoffice-fresh # Office suite (docx, xlsx, etc.)
 
     # Video
     mpv
