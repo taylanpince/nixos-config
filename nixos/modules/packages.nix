@@ -26,6 +26,30 @@ let
       mainProgram = "polycli";
     };
   };
+
+  # LibreOffice launcher entries.
+  # wofi 1.5.3 silently drops any .desktop file containing a line longer than
+  # its parse buffer (~256B). LibreOffice's stock writer/calc/impress/draw
+  # entries carry a huge single-line MimeType= list, so they never show up in
+  # the launcher (only Base/Math, which have short mime lists, appear). These
+  # slim, uniquely-named entries are wofi-safe. File-type associations still
+  # come from the upstream .desktop files, which we leave untouched.
+  mkLoLauncher = { app, name, generic }: pkgs.makeDesktopItem {
+    name = "libreoffice-${app}-launch";
+    desktopName = name;
+    genericName = generic;
+    exec = "libreoffice --${app} %U";
+    icon = "libreoffice-${app}";
+    categories = [ "Office" ];
+    startupWMClass = "libreoffice-${app}";
+    startupNotify = true;
+  };
+  libreofficeLaunchers = map mkLoLauncher [
+    { app = "writer";  name = "LibreOffice Writer";  generic = "Word Processor"; }
+    { app = "calc";    name = "LibreOffice Calc";    generic = "Spreadsheet"; }
+    { app = "impress"; name = "LibreOffice Impress"; generic = "Presentation"; }
+    { app = "draw";    name = "LibreOffice Draw";    generic = "Drawing Program"; }
+  ];
 in
 {
   # $ nix search to find packages
@@ -208,5 +232,5 @@ in
     libsodium
     libssh
     zstd
-  ];
+  ] ++ libreofficeLaunchers;
 }

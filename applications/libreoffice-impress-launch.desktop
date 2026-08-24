@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=LibreOffice Impress
+GenericName=LibreOffice Impress
+Exec=libreoffice --impress %U
+Icon=libreoffice-impress
+Terminal=false
+Categories=Office;
+StartupNotify=true
+StartupWMClass=libreoffice-impress

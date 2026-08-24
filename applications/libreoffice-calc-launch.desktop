@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=LibreOffice Calc
+GenericName=LibreOffice Calc
+Exec=libreoffice --calc %U
+Icon=libreoffice-calc
+Terminal=false
+Categories=Office;
+StartupNotify=true
+StartupWMClass=libreoffice-calc

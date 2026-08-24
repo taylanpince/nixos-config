@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=LibreOffice Writer
+GenericName=LibreOffice Writer
+Exec=libreoffice --writer %U
+Icon=libreoffice-writer
+Terminal=false
+Categories=Office;
+StartupNotify=true
+StartupWMClass=libreoffice-writer
