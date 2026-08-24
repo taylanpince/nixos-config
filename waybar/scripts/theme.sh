@@ -15,11 +15,13 @@ apply_mode() {
   # 'prefer-light' -> portal color-scheme 2 (true light); 'default' would be 0 (no pref).
   if [[ "$mode" == "dark" ]]; then
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'  >/dev/null 2>&1 || true
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'    >/dev/null 2>&1 || true
+    gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-mocha-mauve-standard' >/dev/null 2>&1 || true
+    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'   >/dev/null 2>&1 || true
     gsettings set org.gnome.desktop.interface gtk-application-prefer-dark-theme true  >/dev/null 2>&1 || true
   else
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' >/dev/null 2>&1 || true
-    gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita'         >/dev/null 2>&1 || true
+    gsettings set org.gnome.desktop.interface gtk-theme 'catppuccin-latte-mauve-standard' >/dev/null 2>&1 || true
+    gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Light'  >/dev/null 2>&1 || true
     gsettings set org.gnome.desktop.interface gtk-application-prefer-dark-theme false >/dev/null 2>&1 || true
   fi
 

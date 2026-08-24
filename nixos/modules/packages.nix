@@ -149,10 +149,15 @@ in
     blueman
     glib # provides gsettings
 
-    # GTK theming
+    # GTK theming (Catppuccin, mauve accent to match hyprland's active border).
+    # theme.sh selects the flavor at runtime via gsettings: mocha (dark) /
+    # latte (light). catppuccin-papirus-folders bundles Papirus itself and
+    # provides Papirus-Dark/Papirus-Light with mauve-tinted folders.
     nwg-look
     adwaita-icon-theme
-    catppuccin-gtk
+    (catppuccin-gtk.override { accents = [ "mauve" ]; variant = "mocha"; size = "standard"; })
+    (catppuccin-gtk.override { accents = [ "mauve" ]; variant = "latte"; size = "standard"; })
+    (catppuccin-papirus-folders.override { flavor = "mocha"; accent = "mauve"; })
     gsettings-desktop-schemas
 
     # Thumbnailers for file picker previews
