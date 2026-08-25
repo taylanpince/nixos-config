@@ -10,14 +10,14 @@
   "ignore-gtk-theme": true,
 
   "fit-to-screen": false,
-  "control-center-width": 1040,
-  "control-center-height": 1280,
-  "control-center-margin-top": 24,
-  "control-center-margin-right": 24,
+  "control-center-width": 520,
+  "control-center-height": 640,
+  "control-center-margin-top": 12,
+  "control-center-margin-right": 12,
 
-  "notification-window-width": 840,
-  "notification-window-margin-top": 24,
-  "notification-window-margin-right": 24,
+  "notification-window-width": 420,
+  "notification-window-margin-top": 12,
+  "notification-window-margin-right": 12,
 
   "timeout": 6,
   "timeout-low": 3,
@@ -50,4 +50,3 @@
     }
   }
 }
-

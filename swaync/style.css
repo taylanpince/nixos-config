@@ -2,7 +2,7 @@
 
 * {
   font-family: Inter, system-ui, sans-serif;
-  font-size: 26px;
+  font-size: 13px;
   color: @base1;
   background: transparent;
 }
@@ -29,10 +29,10 @@ listview row:selected, listview row:hover, listview row:focus {
 }
 
 .notification-row .notification {
-  margin: 20px 24px 0 24px;
-  padding: 20px 24px;
+  margin: 10px 12px 0 12px;
+  padding: 10px 12px;
 
-  border-radius: 28px;
+  border-radius: 14px;
   border: 2px solid @base02;
   background-color: @base03;
 }
@@ -43,9 +43,9 @@ listview row:selected, listview row:hover, listview row:focus {
 
 .notification-row .summary {
   color: @base2;
-  font-size: 28px;
+  font-size: 14px;
   font-weight: 700;
-  margin: 0 0 8px 0;
+  margin: 0 0 4px 0;
 }
 
 .notification-row .body {
@@ -57,15 +57,15 @@ listview row:selected, listview row:hover, listview row:focus {
 .notification-row .time,
 .notification-row .app-name {
   color: @base01;
-  font-size: 24px;
+  font-size: 12px;
 }
 
 /* Action buttons */
 .notification-row .actions button {
   background-color: @base02;
   border: 1px solid @base01;
-  border-radius: 10px;
-  padding: 6px 10px;
+  border-radius: 5px;
+  padding: 3px 5px;
 }
 
 .notification-row .actions button:hover {
@@ -80,25 +80,25 @@ listview row:selected, listview row:hover, listview row:focus {
 .control-center {
   background-color: @base03;
   border: 2px solid @base02;
-  border-radius: 36px;
-  padding: 24px;
+  border-radius: 18px;
+  padding: 12px;
 }
 
 .widget-title {
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
 }
 
 .widget-title label {
   color: @base2;
-  font-size: 44px;
+  font-size: 22px;
   font-weight: 800;
 }
 
 .widget-title button {
   background-color: @base02;
   border: 1px solid @base01;
-  border-radius: 12px;
-  padding: 8px 12px;
+  border-radius: 6px;
+  padding: 4px 6px;
 }
 
 .widget-title button:hover {
@@ -109,9 +109,9 @@ listview row:selected, listview row:hover, listview row:focus {
 
 /* DND row */
 .widget-dnd {
-  margin: 0 0 12px 0;
-  padding: 8px 10px;
-  border-radius: 14px;
+  margin: 0 0 6px 0;
+  padding: 4px 5px;
+  border-radius: 7px;
   background-color: @base02;
   border: 1px solid @base01;
 }
@@ -125,9 +125,9 @@ listview row:selected, listview row:hover, listview row:focus {
 .control-center .notification {
   background-color: @base02;
   border: 1px solid @base01;
-  border-radius: 14px;
-  padding: 10px 12px;
-  margin: 0 0 10px 0;
+  border-radius: 7px;
+  padding: 5px 6px;
+  margin: 0 0 5px 0;
 }
 
 .control-center .summary {
@@ -141,8 +141,8 @@ listview row:selected, listview row:hover, listview row:focus {
 
 /* ===== Title row fixes ===== */
 .widget-title button {
-  padding: 6px 10px;
-  border-radius: 10px;
+  padding: 3px 5px;
+  border-radius: 5px;
 }
 
 .widget-title button label {
@@ -153,22 +153,22 @@ listview row:selected, listview row:hover, listview row:focus {
 
 /* Prevent it from inheriting giant styles */
 .widget-title > box {
-  spacing: 10px;
+  spacing: 5px;
 }
 
 /* ===== DND switch visibility ===== */
 .widget-dnd switch {
-  min-height: 24px;
-  min-width: 46px;
+  min-height: 12px;
+  min-width: 23px;
   border-radius: 999px;
   background-color: @base02;
   border: 1px solid @base01;
 }
 
 .widget-dnd switch slider {
-  min-height: 18px;
-  min-width: 18px;
-  margin: 2px;
+  min-height: 9px;
+  min-width: 9px;
+  margin: 1px;
   border-radius: 999px;
   background-color: @base1;
 }
@@ -215,12 +215,12 @@ scrollbar slider {
 
 /* Make cards use the full content width */
 .control-center .notification {
-  margin: 0 0 10px 0;
+  margin: 0 0 5px 0;
 }
 
 /* Match DND row to same visual width as cards */
 .widget-dnd {
-  margin: 0 0 12px 0;
+  margin: 0 0 6px 0;
 }
 
 /* ===== Control center list container: remove inset padding ===== */
@@ -270,21 +270,21 @@ scrollbar slider {
 .control-center .notification image,
 .control-center .notification .image,
 .control-center .notification .icon {
-  min-width: 72px;
-  min-height: 72px;
-  -gtk-icon-size: 72px;
+  min-width: 36px;
+  min-height: 36px;
+  -gtk-icon-size: 36px;
 }
 
 /* Some apps provide oversized pixbufs; this clamps layout around it */
 .control-center .notification .app-icon,
 .control-center .notification .notification-icon {
-  min-width: 36px;
-  min-height: 36px;
+  min-width: 18px;
+  min-height: 18px;
 }
 
-/* Give it a little breathing room so text doesn’t collide */
+/* Give it a little breathing room so text doesn't collide */
 .control-center .notification box {
-  spacing: 10px;
+  spacing: 5px;
 }
 
 /* ===== Toasts: icon sizing + remove duplicate icon/image ===== */
@@ -293,13 +293,13 @@ scrollbar slider {
 .notification-row .notification image,
 .notification-row .notification .image,
 .notification-row .notification .icon {
-  min-width: 72px;
-  min-height: 72px;
-  -gtk-icon-size: 72px;
+  min-width: 36px;
+  min-height: 36px;
+  -gtk-icon-size: 36px;
 }
 
 /* Some apps provide both an app icon and an inline image.
-   Hide the inline image container to avoid the “second icon” in the corner. */
+   Hide the inline image container to avoid the "second icon" in the corner. */
 .notification-row .notification .body-image,
 .notification-row .notification .inline-reply,
 .notification-row .notification .image-container,
@@ -311,13 +311,12 @@ scrollbar slider {
 
 /* ===== Toast close button: pull it in from the edge ===== */
 .notification-row .close-button {
-  margin-right: 6px;
-  margin-top: 4px;
-  padding: 6px;
+  margin-right: 3px;
+  margin-top: 2px;
+  padding: 3px;
   border-radius: 999px;
 }
 
 .notification-row .notification box {
-  spacing: 10px;
+  spacing: 5px;
 }
-
