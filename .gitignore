@@ -5,6 +5,7 @@ systemd/user/*.target
 waybar/config
 swaync/config.json
 swaync/style.css
+swaync/palette.css
 vim/.netrwhist
 applications/mimeinfo.cache
 applications/warp-cli.desktop
