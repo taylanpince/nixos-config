@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  time.timeZone = "Europe/Istanbul";
+  time.timeZone = "Europe/Madrid";
 
   i18n.defaultLocale = "en_CA.UTF-8";
 
