@@ -61,9 +61,26 @@ Key scripts for desktop functionality:
 ## Key Patterns
 
 ### Dotfile Management
-Configs are symlinked from `/etc/nixos/config/` to `~/.config/`:
+Dotfiles reach `~/.config` two different ways. Know which, because it
+determines how an edit goes live. (The repo lives at `~/config`; `/etc/nixos`
+→ `~/config/nixos`.)
+
+**Declarative via home-manager (needs a rebuild).** `nixos/home/taylan.nix`
+copies these into the Nix store with `xdg.configFile.<name>.source = ../../<name>`:
+`hypr`, `wlogout`, `mpv`, `nvim`, `scripts`, `pnpm`, `starship`. The resulting
+`~/.config/<name>` is a **read-only Nix-store symlink, not the repo file** —
+editing the repo does nothing until you rebuild:
 ```bash
-ln -s /etc/nixos/config/hypr ~/.config/hypr
+sudo nixos-rebuild switch --flake ./nixos#bloomware   # from repo root
+```
+For Hyprland changes, follow with `hyprctl reload`. (`hyprctl reload` on its
+own re-reads the *old* Nix-store copy, so it can't pick up an unbuilt edit.)
+
+**Directly symlinked (live immediately).** These are excluded from home-manager
+and symlinked straight to the repo, so edits apply on the next app restart with
+no rebuild: `waybar`, `kitty`, `wofi`, `rofi`, `wob`, `swaync`. One-time setup:
+```bash
+for a in waybar kitty wofi rofi wob swaync; do ln -sfn ~/config/$a ~/.config/$a; done
 ```
 
 ### Adding System Packages
@@ -75,7 +92,9 @@ environment.systemPackages = with pkgs; [
 ```
 
 ### Modifying Keybindings
-Edit `hypr/hyprland.conf` - uses SUPER as mod key, vim-style navigation (H/J/K/L)
+Edit `hypr/hyprland.conf` - uses SUPER as mod key, vim-style navigation (H/J/K/L).
+`hypr` is declaratively managed, so apply changes with a rebuild + `hyprctl reload`
+(see Dotfile Management) — editing the file alone won't take effect.
 
 ### Enterprise Security
 CrowdStrike and Kolide require manual setup steps documented in `KOLIDE.md`. The dpkg status shim in `kolide.nix` satisfies Kolide's package-based compliance checks on NixOS.
