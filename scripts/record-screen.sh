@@ -12,7 +12,21 @@ APP="wf-recorder"
 ICON="video-x-generic"
 VIDEOS_DIR="${XDG_VIDEOS_DIR:-$HOME/Videos}"
 STAMP="$(date +%F_%H-%M-%S)"
-OUT_FILE="$VIDEOS_DIR/recording_${STAMP}.mp4"
+
+# Optional first arg enables microphone narration: `record-screen.sh audio`.
+# Narrated captures get a distinct filename so they're easy to spot later.
+WITH_AUDIO=0
+case "${1:-}" in
+  audio|-a|--audio) WITH_AUDIO=1 ;;
+  "") ;;
+  *) echo "usage: $0 [audio]" >&2; exit 1 ;;
+esac
+
+if [[ "$WITH_AUDIO" -eq 1 ]]; then
+  OUT_FILE="$VIDEOS_DIR/recording_narrated_${STAMP}.mp4"
+else
+  OUT_FILE="$VIDEOS_DIR/recording_${STAMP}.mp4"
+fi
 
 notify() {
   # dunst listens to notify-send (libnotify)
@@ -37,9 +51,19 @@ start() {
     exit 0
   fi
 
-  notify "Recording started" "Saving to: $(basename "$OUT_FILE")"
+  # Build the wf-recorder invocation; only add audio when narration is on so
+  # the default (silent) recording is untouched.
+  local -a args=(-g "$GEOM" -f "$OUT_FILE")
+  local mic_note=""
+  if [[ "$WITH_AUDIO" -eq 1 ]]; then
+    local mic; mic="$(pactl get-default-source)"
+    args+=(--audio="$mic")
+    mic_note=" (mic: $mic)"
+  fi
+
+  notify "Recording started${mic_note}" "Saving to: $(basename "$OUT_FILE")"
   # Blocks until stopped; that's fine for Hyprland exec binds
-  wf-recorder -g "$GEOM" -f "$OUT_FILE" \
+  wf-recorder "${args[@]}" \
     && notify "Recording saved" "$OUT_FILE" \
     || notify "Recording stopped" "Output may be incomplete: $OUT_FILE"
 }
