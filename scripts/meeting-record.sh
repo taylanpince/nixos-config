@@ -38,6 +38,21 @@ is_recording() {
   [[ -f "$PID_FILE" ]] && kill -0 "$(cat "$PID_FILE" 2>/dev/null)" 2>/dev/null
 }
 
+# A recording that was started but never transcribed — e.g. ffmpeg exited on
+# its own because the capture device (Bluetooth headset, USB mic) disconnected
+# mid-meeting, so stop never saw a live process. The WAV is on disk and valid;
+# it just needs finalizing.
+has_pending_capture() {
+  [[ -f "$META_FILE" ]] || return 1
+  local wav; wav="$(sed -n 's/^WAV=//p' "$META_FILE")"
+  [[ -n "$wav" && -s "$wav" ]]
+}
+
+current_class() {
+  [[ -f "$STATE_FILE" ]] || { echo stopped; return; }
+  sed -n 's/.*"class":"\([^"]*\)".*/\1/p' "$STATE_FILE"
+}
+
 start_recording() {
   if is_recording; then
     notify "Already recording" "$(basename "$(source "$META_FILE"; echo "$WAV")")"
@@ -93,26 +108,45 @@ EOF
 }
 
 stop_recording() {
-  if ! is_recording; then
+  local was_live=0
+  if is_recording; then
+    was_live=1
+    local pid; pid=$(cat "$PID_FILE")
+    # SIGINT lets ffmpeg finalize the WAV header.
+    kill -INT "$pid" 2>/dev/null
+    for _ in $(seq 1 50); do
+      kill -0 "$pid" 2>/dev/null || break
+      sleep 0.1
+    done
+    kill -KILL "$pid" 2>/dev/null || true
+  fi
+  rm -f "$PID_FILE"
+
+  # Nothing live and nothing left behind to finalize.
+  if [[ "$was_live" -eq 0 ]] && ! has_pending_capture; then
     notify "Not recording" ""
-    write_state stopped "meeting: idle"
+    # Don't stomp on an in-flight transcription — its background job owns the
+    # state and will reset it when done.
+    [[ "$(current_class)" == "transcribing" ]] || write_state stopped "meeting: idle"
     return 0
   fi
 
-  local pid; pid=$(cat "$PID_FILE")
-  # SIGINT lets ffmpeg finalize the WAV header.
-  kill -INT "$pid" 2>/dev/null
-  for _ in $(seq 1 50); do
-    kill -0 "$pid" 2>/dev/null || break
-    sleep 0.1
-  done
-  kill -KILL "$pid" 2>/dev/null || true
-  rm -f "$PID_FILE"
-
+  # Either we just stopped a live capture, or ffmpeg had already died and left
+  # an untranscribed WAV. Either way, finalize it.
   # shellcheck disable=SC1090
   source "$META_FILE"
+  # Consume the meta so a second stop/toggle won't re-transcribe the same WAV.
+  rm -f "$META_FILE"
 
-  if [[ ! -s "$WAV" ]]; then
+  finalize_and_transcribe "$BASE" "$WAV"
+}
+
+# Validate the WAV + model, then kick off transcription. Shared by
+# stop_recording and the `transcribe` recovery subcommand.
+finalize_and_transcribe() {
+  local base="$1" wav="$2"
+
+  if [[ ! -s "$wav" ]]; then
     write_state stopped "meeting: no audio"
     notify -u critical "Recording produced no audio" "See $LOG_FILE"
     return 1
@@ -120,16 +154,35 @@ stop_recording() {
 
   if [[ ! -f "$MODEL" ]]; then
     write_state stopped "meeting: model missing"
-    notify -u critical "Whisper model missing" "$MODEL — WAV kept at $(basename "$WAV")"
+    notify -u critical "Whisper model missing" "$MODEL — WAV kept at $(basename "$wav")"
     return 1
   fi
 
-  write_state transcribing "meeting: transcribing $(basename "$WAV")"
-  notify "Transcribing" "$(basename "$WAV")"
+  write_state transcribing "meeting: transcribing $(basename "$wav")"
+  notify "Transcribing" "$(basename "$wav")"
 
-  # Detach so the caller (hyprland bind) returns immediately.
-  ( transcribe "$BASE" "$WAV" ) &
-  disown 2>/dev/null || true
+  run_transcribe "$base" "$wav"
+}
+
+# Detach so the caller (hyprland bind) returns immediately. Set
+# MEETING_TRANSCRIBE_SYNC=1 to run in the foreground (used by tests).
+run_transcribe() {
+  if [[ -n "${MEETING_TRANSCRIBE_SYNC:-}" ]]; then
+    transcribe "$1" "$2"
+  else
+    ( transcribe "$1" "$2" ) &
+    disown 2>/dev/null || true
+  fi
+}
+
+# Recover an orphaned/existing recording by transcribing its WAV directly.
+recover_wav() {
+  local wav="${1:-}"
+  if [[ -z "$wav" || ! -s "$wav" ]]; then
+    echo "usage: $0 transcribe <recording.wav>  (must exist and be non-empty)" >&2
+    return 1
+  fi
+  finalize_and_transcribe "${wav%.wav}" "$wav"
 }
 
 transcribe() {
@@ -162,11 +215,12 @@ transcribe() {
 case "${1:-toggle}" in
   start)  start_recording ;;
   stop)   stop_recording ;;
-  toggle) if is_recording; then stop_recording; else start_recording; fi ;;
+  toggle) if is_recording || has_pending_capture; then stop_recording; else start_recording; fi ;;
+  transcribe|recover) recover_wav "${2:-}" ;;
   status)
     if [[ -f "$STATE_FILE" ]]; then cat "$STATE_FILE"
     else printf '{"text":"●","class":"stopped","tooltip":"meeting: idle","alt":"stopped"}\n'
     fi
     ;;
-  *) echo "usage: $0 {start|stop|toggle|status}" >&2; exit 1 ;;
+  *) echo "usage: $0 {start|stop|toggle|transcribe <wav>|status}" >&2; exit 1 ;;
 esac

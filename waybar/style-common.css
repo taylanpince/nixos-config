@@ -45,8 +45,7 @@ window#waybar {
 #custom-brightness,
 #custom-bluetooth,
 #idle_inhibitor,
-#custom-voxtype,
-#custom-meeting-record,
+#custom-recording,
 #custom-mic,
 #pulseaudio,
 #custom-volume,
@@ -94,18 +93,15 @@ window#waybar {
   color: @red;
 }
 
-#custom-voxtype.recording,
-#custom-meeting-record.recording {
+#custom-recording.recording {
   color: @red;
 }
 
-#custom-voxtype.transcribing,
-#custom-meeting-record.transcribing {
+#custom-recording.transcribing {
   color: @yellow;
 }
 
-#custom-voxtype.stopped,
-#custom-meeting-record.stopped {
+#custom-recording.idle {
   color: @base01;
 }
 

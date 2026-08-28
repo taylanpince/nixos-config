@@ -22,8 +22,7 @@
       "custom/brightness",
       "custom/bluetooth",
       "idle_inhibitor",
-      "custom/voxtype",
-      "custom/meeting-record",
+      "custom/recording",
       "custom/mic",
       "custom/volume",
       "network",
@@ -92,21 +91,15 @@
       "tooltip": true
     },
 
-    "custom/voxtype": {
-      "exec": "voxtype status --follow --format json",
+    "custom/recording": {
+      "exec": "~/.config/waybar/scripts/recording-status.sh",
       "return-type": "json",
       "format": "●",
-      "tooltip": true,
-      "on-click": "voxtype record toggle"
-    },
-
-    "custom/meeting-record": {
-      "exec": "~/.config/scripts/meeting-record.sh status",
-      "return-type": "json",
-      "format": "●",
+      "interval": 1,
       "signal": 8,
       "tooltip": true,
-      "on-click": "~/.config/scripts/meeting-record.sh toggle"
+      "on-click": "~/.config/scripts/meeting-record.sh toggle",
+      "on-click-right": "voxtype record toggle"
     },
 
     "custom/volume": {
@@ -227,8 +220,7 @@
       "custom/brightness",
       "custom/bluetooth",
       "idle_inhibitor",
-      "custom/voxtype",
-      "custom/meeting-record",
+      "custom/recording",
       "custom/mic",
       "custom/volume",
       "network",
@@ -297,21 +289,15 @@
       "tooltip": true
     },
 
-    "custom/voxtype": {
-      "exec": "voxtype status --follow --format json",
+    "custom/recording": {
+      "exec": "~/.config/waybar/scripts/recording-status.sh",
       "return-type": "json",
       "format": "●",
-      "tooltip": true,
-      "on-click": "voxtype record toggle"
-    },
-
-    "custom/meeting-record": {
-      "exec": "~/.config/scripts/meeting-record.sh status",
-      "return-type": "json",
-      "format": "●",
+      "interval": 1,
       "signal": 8,
       "tooltip": true,
-      "on-click": "~/.config/scripts/meeting-record.sh toggle"
+      "on-click": "~/.config/scripts/meeting-record.sh toggle",
+      "on-click-right": "voxtype record toggle"
     },
 
     "custom/volume": {
