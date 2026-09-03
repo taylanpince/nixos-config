@@ -34,12 +34,17 @@ case "$vox_class $mr_class" in
   *)           cls="idle" ;;
 esac
 
-# While a meeting is transcribing, surface whisper's live progress % on hover.
-# (voxtype's own transcription has no progress log, so it just reads "transcribing".)
+# While a meeting is transcribing, surface whisper's progress % on hover.
+# Round to 5% buckets: the module's output must stay byte-identical between
+# updates or waybar redraws the bar on every `interval` tick, and each redraw
+# dismisses any open tooltip bar-wide. Live 1% updates changed the output every
+# second, so tooltips vanished during transcription; 5% steps change it ~20x
+# total. (voxtype's own transcription has no progress log, so it just reads
+# "transcribing".)
 mr_label="$mr_class"
 if [[ "$mr_class" == "transcribing" && -f "$WHISPER_LOG" ]]; then
-  pct="$(grep -oE 'progress = *[0-9]+%' "$WHISPER_LOG" 2>/dev/null | grep -oE '[0-9]+%' | tail -n1)"
-  [[ -n "$pct" ]] && mr_label="transcribing ($pct)"
+  n="$(grep -oE 'progress = *[0-9]+%' "$WHISPER_LOG" 2>/dev/null | grep -oE '[0-9]+' | tail -n1)"
+  [[ -n "$n" ]] && mr_label="transcribing ($(( n / 5 * 5 ))%)"
 fi
 
 printf '{"text":"●","class":"%s","alt":"%s","tooltip":"voxtype: %s · meeting: %s"}\n' \
