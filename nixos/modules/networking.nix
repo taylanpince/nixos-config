@@ -20,5 +20,6 @@
 
   security.pki.certificateFiles = [
     ../../certs/wintermute-root-ca.crt
+    ../../certs/polygon-cloud-ca.pem
   ];
 }
