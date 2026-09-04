@@ -57,6 +57,10 @@ start() {
   local mic_note=""
   if [[ "$WITH_AUDIO" -eq 1 ]]; then
     local mic; mic="$(pactl get-default-source)"
+    # The USB mic drifts to a low input level on replug/reboot, which makes
+    # narration quiet. Unmute and floor it to 100% (0 dB) before capturing.
+    pactl set-source-mute "$mic" 0 || true
+    pactl set-source-volume "$mic" 100% || true
     args+=(--audio="$mic")
     mic_note=" (mic: $mic)"
   fi
