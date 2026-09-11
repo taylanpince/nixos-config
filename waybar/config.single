@@ -112,7 +112,7 @@
   "custom/recording": {
     "exec": "~/.config/waybar/scripts/recording-status.sh",
     "return-type": "json",
-    "format": "●",
+    "format": "{}",
     "interval": 1,
     "signal": 8,
     "tooltip": true,
