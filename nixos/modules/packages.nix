@@ -79,6 +79,7 @@ in
     aichat
     uv
     bash
+    awscli2
 
     # GitHub
     git
