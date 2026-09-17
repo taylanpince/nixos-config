@@ -82,9 +82,9 @@
     executable = true;
   };
 
-  # pnpm supply-chain hardening (pnpm 10+). 14-day publish-age quarantine
-  # + engines.node strictness. pnpm 10+ no longer reads these from .npmrc,
-  # so they must live in its own config.yaml.
+  # pnpm supply-chain hardening (pnpm 10+). 14-day publish-age quarantine.
+  # pnpm 10+ no longer reads these from .npmrc, so they must live in its own
+  # config.yaml.
   xdg.configFile."pnpm/config.yaml".source = ../../pnpm/config.yaml;
 
   programs.bash = {
@@ -100,7 +100,8 @@
 
       # npm/pnpm hardening. Set via env (not ~/.npmrc) so that file stays
       # writable for `pnpm login` / `npm login` to manage auth tokens.
-      npm_config_engine_strict = "true";
+      # NOTE: no npm_config_engine_strict here — see pnpm/config.yaml for why
+      # engines.node strictness is off. An env var would override that file.
       npm_config_fund = "false";
       npm_config_audit_level = "moderate";
     };
