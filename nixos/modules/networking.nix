@@ -22,8 +22,4 @@
     ../../certs/wintermute-root-ca.crt
     ../../certs/polygon-cloud-ca.pem
   ];
-
-  # LocalSend: LAN device discovery + file transfer on its default port
-  networking.firewall.allowedTCPPorts = [ 53317 ];
-  networking.firewall.allowedUDPPorts = [ 53317 ];
 }

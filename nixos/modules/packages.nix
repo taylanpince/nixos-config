@@ -209,7 +209,6 @@ in
     gnome-text-editor
     zoom-us
     libreoffice-fresh # Office suite (docx, xlsx, etc.)
-    localsend # AirDrop-alternative, LAN file transfer (see networking.nix for firewall port)
 
     # Video
     mpv

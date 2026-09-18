@@ -14,15 +14,9 @@ storeDir: /home/taylan/.local/share/pnpm/store
 # compromised maintainer accounts until the community catches them.
 minimumReleaseAge: 20160
 
-# Deliberately OFF (pnpm's own default). `engines.node` is advisory metadata
-# that goes stale: a dep published before the current Node major declares a
-# range that excludes it, and enabling this turns that into a hard
-# ERR_PNPM_UNSUPPORTED_ENGINE in every repo. It blocked sequence.js on
-# ava@6.1.3 (`^18.18 || ^20.8 || ^21 || ^22`) under Node 24 even though that
-# ava runs tests on 24 fine. It is a compatibility knob, not a supply-chain
-# control — the hardening above is unaffected. Opt in per-repo via
-# pnpm-workspace.yaml where a Node range is genuinely load-bearing.
-engineStrict: false
+# Honor `engines.node` in package.json — refuse to install on an unsupported
+# Node major.
+engineStrict: true
 
 # NOTE: We deliberately do NOT enable `ignoreScripts` here. It would disable
 # postinstall scripts globally and break esbuild/sharp/sqlite3/prisma/
