@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a NixOS dotfiles configuration repository for a development workstation running Hyprland (Wayland compositor). The system uses NixOS flakes for declarative, reproducible configuration.
 
 **Hostname:** bloomware
-**System:** NixOS 25.11 (nixos-unstable channel)
+**System:** NixOS 26.05 (nixos-unstable channel; `stateVersion` stays 25.11)
 **Desktop:** Hyprland + Waybar + Kitty terminal
 
 ## Common Commands
