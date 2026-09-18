@@ -9,6 +9,8 @@ swaync/palette.css
 vim/.netrwhist
 applications/mimeinfo.cache
 applications/warp-cli.desktop
+# Symlink into the Nix store, rewritten by every home-manager activation.
+applications/mimeapps.list
 
 # Nix build artifacts (nix build / nixos-rebuild build symlinks)
 result
