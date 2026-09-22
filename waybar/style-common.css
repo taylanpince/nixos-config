@@ -105,6 +105,32 @@ window#waybar {
   color: @base01;
 }
 
+/* GPU clock fault light. Healthy is the overwhelmingly common case and must
+   take up no space at all: the script emits empty text (which Waybar hides),
+   and this rule guarantees no stray pill even if it doesn't. */
+#custom-gpu-clock.ok {
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  background: transparent;
+}
+
+#custom-gpu-clock.wedged {
+  padding: 3px 15px;
+  margin: 6px 0px;
+  border-radius: 18px;
+  background: @base02;
+  color: @red;
+  animation: gpu-clock-wedged 2s ease-in-out infinite;
+}
+
+/* GTK's CSS parser rejects the comma-grouped "0%, 100%" selector form. */
+@keyframes gpu-clock-wedged {
+  from { color: @red; }
+  50% { color: @base01; }
+  to { color: @red; }
+}
+
 tooltip {
   background: @base02;
   color: @base1;

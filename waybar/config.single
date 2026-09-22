@@ -14,6 +14,7 @@
   ],
 
   "modules-right": [
+    "custom/gpu-clock",
     "custom/theme",
     "custom/brightness",
     "custom/bluetooth",
@@ -48,6 +49,14 @@
       "activated": "󰅶",
       "deactivated": "󰾪"
     },
+    "tooltip": true
+  },
+
+  "custom/gpu-clock": {
+    "exec": "~/.config/waybar/scripts/gpu-clock.sh",
+    "return-type": "json",
+    "format": "{}",
+    "interval": 5,
     "tooltip": true
   },
 
