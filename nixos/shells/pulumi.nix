@@ -11,6 +11,8 @@
       typescript
       typescript-language-server
       go
+
+      google-cloud-sdk
     ];
   };
 }
