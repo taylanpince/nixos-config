@@ -1,19 +1,19 @@
-{ pkgs }:
+{ pkgs, pkgsPulumi }:
 {
   pulumi = pkgs.mkShell {
     name = "pulumi";
-    packages = with pkgs; [
-      pulumi-bin
-      pulumiPackages.pulumi-nodejs
+    packages = [
+      # Pulumi comes from pkgsPulumi (independent nixpkgs pin — see flake.nix)
+      pkgsPulumi.pulumi-bin
+      pkgsPulumi.pulumiPackages.pulumi-nodejs
 
-      nodejs_22
-      pnpm
-      typescript
-      typescript-language-server
-      go
+      pkgs.nodejs_22
+      pkgs.pnpm
+      pkgs.typescript
+      pkgs.typescript-language-server
+      pkgs.go
 
-      google-cloud-sdk
+      pkgs.google-cloud-sdk
     ];
   };
 }
-

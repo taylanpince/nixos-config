@@ -9,6 +9,13 @@
     # Bump with: nix flake update --update-input nixpkgs-llm
     nixpkgs-llm.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Independent pin used ONLY by the `pulumi` devshell (pulumi-bin,
+    # pulumi-nodejs). The system nixpkgs pin lags far enough behind that
+    # Pulumi refuses to stop warning about its own age; this keeps the CLI
+    # current without moving the system off its pin.
+    # Bump with: nix flake update nixpkgs-pulumi
+    nixpkgs-pulumi.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     # Independent pin used ONLY for the kernel (linuxPackages_6_18).
     # Lets us track the latest 6.18.x point release (CVE backports)
     # without dragging the rest of the system off its pin. Staying on the
@@ -35,7 +42,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-llm, nixpkgs-kernel, home-manager, voxtype, claude-desktop, ... }:
+  outputs = { self, nixpkgs, nixpkgs-llm, nixpkgs-pulumi, nixpkgs-kernel, home-manager, voxtype, claude-desktop, ... }:
     let
       system = "x86_64-linux";
 
@@ -52,6 +59,11 @@
         config.allowUnfree = true;
       };
 
+      pkgsPulumi = import nixpkgs-pulumi {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       # Kernel-only pin: newest 6.18.x point release, isolated from the
       # system nixpkgs. Consumed by modules/boot.nix via specialArgs.
       pkgsKernel = import nixpkgs-kernel {
@@ -62,7 +74,7 @@
       goShells = import ./shells/go.nix { inherit pkgs; };
       pyShells = import ./shells/python.nix { inherit pkgs; };
       nodeShells = import ./shells/node.nix { inherit pkgs; };
-      pulumiShells = import ./shells/pulumi.nix { inherit pkgs; };
+      pulumiShells = import ./shells/pulumi.nix { inherit pkgs pkgsPulumi; };
       postgresShells = import ./shells/postgres.nix { inherit pkgs; };
       rustShells = import ./shells/rust.nix { inherit pkgs; };
       llmShells = import ./shells/llm.nix { inherit pkgs pkgsLlm; };
