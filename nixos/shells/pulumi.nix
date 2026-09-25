@@ -14,6 +14,7 @@
       pkgs.go
 
       pkgs.google-cloud-sdk
+      pkgs.kubectl
     ];
   };
 }
