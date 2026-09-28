@@ -6,7 +6,7 @@
 
     # Independent pin used ONLY by the `llm` devshell (claude-code, codex).
     # Kept separate so bumping AI CLIs never drags the system nixpkgs along.
-    # Bump with: nix flake update --update-input nixpkgs-llm
+    # Bump with: nix flake update nixpkgs-llm
     nixpkgs-llm.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Independent pin used ONLY by the `pulumi` devshell (pulumi-bin,

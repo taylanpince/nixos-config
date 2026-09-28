@@ -11,6 +11,9 @@ applications/mimeinfo.cache
 applications/warp-cli.desktop
 # Symlink into the Nix store, rewritten by every home-manager activation.
 applications/mimeapps.list
+# Self-registered by Claude Code, hardcoding the running binary's absolute
+# Nix store path — so it churns on every claude-code version bump.
+applications/claude-code-url-handler.desktop
 
 # Nix build artifacts (nix build / nixos-rebuild build symlinks)
 result
