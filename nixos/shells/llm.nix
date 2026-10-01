@@ -23,6 +23,24 @@ let
       platforms = [ "x86_64-linux" ];
     };
   };
+
+  # nixpkgs-llm lags upstream opencode; bump version + both hashes here.
+  # To get the node_modules hash, set it to lib.fakeHash and build.
+  opencode = pkgsLlm.opencode.overrideAttrs (final: prev: {
+    version = "1.18.33";
+    src = pkgsLlm.fetchFromGitHub {
+      owner = "anomalyco";
+      repo = "opencode";
+      tag = "v${final.version}";
+      hash = "sha256-x1ZG4/zsL1/EfpelNByRMi5mSHumXfmoq/LPQ3+jhrc=";
+    };
+    passthru = prev.passthru // {
+      node_modules = prev.passthru.node_modules.overrideAttrs {
+        inherit (final) version src;
+        outputHash = "sha256-3QJzASZSJfWqbFpbxzIQ/ZRRaFX8KAF4Jd2BI6v9e+s=";
+      };
+    };
+  });
 in
 {
   llm = pkgs.mkShell {
@@ -32,6 +50,7 @@ in
       # AI CLIs come from pkgsLlm (independent nixpkgs pin — see flake.nix)
       pkgsLlm.claude-code
       pkgsLlm.codex
+      opencode
       agent-deck
     ];
   };
