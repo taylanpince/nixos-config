@@ -24,6 +24,11 @@
     [control]
     esc = S-grave
 
+    # Alt+Esc types `. keyd sees keys before Hyprland's altwin:swap_lalt_lwin,
+    # so the key that acts as Alt is still Meta here.
+    [meta]
+    esc = grave
+
     # --- Right Ctrl: line/doc navigation ---
     # rctrl behaves like Control for everything *except* what we override here.
     [rctrl:C]
