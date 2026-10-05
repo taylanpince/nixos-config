@@ -2,6 +2,13 @@ default.target.wants
 graphical-session.target.wants
 systemd/user/*.service
 systemd/user/*.target
+# Home Manager-generated units (symlinks into the Nix store, rewritten on every switch)
+systemd/user/*.path
+systemd/user/*.timer
+systemd/user/*.socket
+paths.target.wants
+timers.target.wants
+sockets.target.wants
 waybar/config
 swaync/config.json
 swaync/style.css
