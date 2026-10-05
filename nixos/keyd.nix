@@ -10,6 +10,12 @@
     AmbientCapabilities = [ "CAP_SETGID" ];
   };
 
+  # keyd only reads its config at startup, and a raw environment.etc file
+  # doesn't restart it on rebuild — so tie the service to the config's content.
+  systemd.services.keyd.restartTriggers = [
+    config.environment.etc."keyd/default.conf".text
+  ];
+
   environment.etc."keyd/default.conf".text = ''
     [ids]
     *
