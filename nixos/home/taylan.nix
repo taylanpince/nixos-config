@@ -15,6 +15,23 @@
     extraDirs = [ "/home/taylan/Documents/transcripts/1-1s" ];
   };
 
+  # Pennyworth runner: coding jobs (Codex / OpenRouter) for Paperclip tasks labelled
+  # "engineer". Runs as you in its own clones under ~/pennyworth; never pushes on its own.
+  systemd.user.services.pennyworth-runner = {
+    Unit = {
+      Description = "Pennyworth runner (coding jobs for Paperclip tasks)";
+      After = [ "network-online.target" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.nodejs_24}/bin/node --disable-warning=ExperimentalWarning /home/taylan/development/pennyworth/services/runner/src/main.mjs";
+      # git, gh, ssh and nix come from the system profile; codex/opencode/go/... from devshells.
+      Environment = [ "PATH=/run/wrappers/bin:/etc/profiles/per-user/taylan/bin:/run/current-system/sw/bin" ];
+      Restart = "on-failure";
+      RestartSec = 30;
+    };
+    Install.WantedBy = [ "default.target" ];
+  };
+
   # Pennyworth todo list CLI (tasks live in Paperclip): `todo`, `todo add …`, `todo brief`.
   home.packages = [
     (pkgs.writeShellScriptBin "todo" ''
