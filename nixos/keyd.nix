@@ -24,9 +24,8 @@
     [control]
     esc = S-grave
 
-    # Alt+Esc types `. keyd sees keys before Hyprland's altwin:swap_lalt_lwin,
-    # so the key that acts as Alt is still Meta here.
-    [meta]
+    # Ctrl+Shift+Esc types ` (composite layer; keyd drops both modifiers).
+    [control+shift]
     esc = grave
 
     # --- Right Ctrl: line/doc navigation ---
@@ -37,6 +36,9 @@
     up    = C-home
     down  = C-end
     esc   = S-grave
+
+    [rctrl+shift]
+    esc = grave
   '';
 }
 
