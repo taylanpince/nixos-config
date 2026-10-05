@@ -3,7 +3,17 @@
 {
   imports = [
     voxtype.homeManagerModules.default
+    ./pennyworth-transcripts.nix
   ];
+
+  # Pennyworth: wake the Meeting Librarian when local transcripts change.
+  # Sends a signed, content-free webhook to Paperclip (127.0.0.1:3100).
+  services.pennyworth-transcripts = {
+    enable = true;
+    repoPath = "/home/taylan/development/pennyworth";
+    transcriptsDir = "/home/taylan/Documents/transcripts";
+    extraDirs = [ "/home/taylan/Documents/transcripts/1-1s" ];
+  };
 
   home.username = "taylan";
   home.homeDirectory = "/home/taylan";
