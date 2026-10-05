@@ -15,6 +15,13 @@
     extraDirs = [ "/home/taylan/Documents/transcripts/1-1s" ];
   };
 
+  # Pennyworth todo list CLI (tasks live in Paperclip): `todo`, `todo add …`, `todo brief`.
+  home.packages = [
+    (pkgs.writeShellScriptBin "todo" ''
+      exec ${pkgs.nodejs_24}/bin/node /home/taylan/development/pennyworth/scripts/todo.mjs "$@"
+    '')
+  ];
+
   home.username = "taylan";
   home.homeDirectory = "/home/taylan";
 
