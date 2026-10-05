@@ -19,6 +19,11 @@
     # Turn *right* control into its own layer key.
     rightcontrol = layer(rctrl)
 
+    # --- Left Ctrl: compact Keychron has no grave/tilde key ---
+    # Ctrl+Esc types ~ (keyd drops the Ctrl while emitting the binding).
+    [control]
+    esc = S-grave
+
     # --- Right Ctrl: line/doc navigation ---
     # rctrl behaves like Control for everything *except* what we override here.
     [rctrl:C]
@@ -26,6 +31,7 @@
     right = end
     up    = C-home
     down  = C-end
+    esc   = S-grave
   '';
 }
 

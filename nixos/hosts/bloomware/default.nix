@@ -5,6 +5,7 @@
     ../../hardware-configuration.nix
     ../../falcon.nix
     ../../kolide.nix
+    ../../keyd.nix
 
     ../../modules/boot.nix
     ../../modules/networking.nix

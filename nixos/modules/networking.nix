@@ -13,6 +13,10 @@
   networking.resolvconf.enable = true;
   networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
 
+  # Polygon go/ links: bare "go" hits the golinks proxy, which 301s to
+  # https://go.polygon.org/<path>. WARP's DNS doesn't answer for "go" here.
+  networking.hosts."34.54.162.223" = [ "go" ];
+
   systemd.services.NetworkManager.serviceConfig = {
     TimeoutStopSec = "10s";
     SendSIGKILL = true;
