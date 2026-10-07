@@ -24,9 +24,16 @@
     ../../modules/cloudflare-warp.nix
     ../../modules/logging.nix
     ../../modules/power.nix
+    ../../modules/pennyworth-mdns.nix
   ];
 
   networking.hostName = "bloomware";
+
+  # pennyworth.local for the Pennyworth board on the home Wi-Fi (phones; paired devices only).
+  services.pennyworth-mdns = {
+    enable = true;
+    ssid = "Mimi";
+  };
 
   # NixOS release compatibility.
   system.stateVersion = "25.11";
