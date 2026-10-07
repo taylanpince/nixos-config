@@ -30,6 +30,8 @@
       enable = true;
       addresses = true;
       workstation = true;
+      # Lets programs publish names over D-Bus (pennyworth.local for the Pennyworth board).
+      userServices = true;
     };
   };
 
