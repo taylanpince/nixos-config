@@ -22,6 +22,7 @@
     ../../modules/fonts.nix
     ../../nordvpn.nix
     ../../modules/cloudflare-warp.nix
+    ../../modules/tailscale.nix
     ../../modules/logging.nix
     ../../modules/power.nix
     ../../modules/pennyworth-mdns.nix
