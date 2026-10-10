@@ -267,3 +267,11 @@
 **CONCLUSION:** The reproduced failure does not require these partner-PDO reads; the local fork is not a working workaround. Other UCSI commands/initialization and firmware interactions remain untested. Later sysfs partner-label differences are not evidence of recovery. Full results and reviewed excerpts: `docs/PDO-TRIAL-RESULTS.md`.
 
 **RESTORED:** Stock modules restored after each leg and at finish; lab parameter absent, no capture/test processes remain. No persistent system changes. Taint4096 records the externally built module until reboot, with no additional taint bits. Do not enable this patch persistently. Broader UCSI-disabled control is a possible separately approved next test, not performed. Ticket untouched; native5K goal remains unresolved.
+
+### Broader UCSI backend-off trial approved and prepared
+
+**OWNER APPROVAL:** “Alright let's try ot” approves the proposed temporary backend-disabled test. Prepared `scripts/ucsi-backend-off-trial.sh`: detach/rebind stock deviceUSBC000:00 via sysfs, preserve loaded UCSI modules for probes and leave Thunderbolt running. One prompted same-port reconnect,180-second trace with at least120seconds afterward,5-second router/DRM/EDID snapshots, endpoint-only EC reads, automatic stock binding restoration and30-second post-restore observation. No custom module or persistent change.
+
+**SOURCE / LIMIT:** Installed source shows removal sends notification-disable before removing Type-C registration and ACPI notify handler. This is a broader behavioral intervention, not merely withholding reads. A negative result cannot alone isolate firmware because necessary role/mode handling is removed too. Primary acceptance remains actual display enumeration/native5K. Procedure/rollback: `docs/UCSI-BACKEND-OFF-TRIAL.md`.
+
+**VALIDATION:** Read-only host check matches6.18.44, stock bound UCSI, two USB4 hosts, battery79%. Syntax/ShellCheck pass. Live root preflight and unbind/rebind pending owner terminal authentication; sudo-n requires password. No driver state changed in preparing this test. Ticket untouched.

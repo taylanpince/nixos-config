@@ -1,5 +1,9 @@
 # LG UltraFine 5K investigation
 
+**Next approved test:** [temporarily detach the stock UCSI ACPI backend](docs/UCSI-BACKEND-OFF-TRIAL.md)
+while preserving Thunderbolt, record one reconnect, and restore the binding.
+Runner prepared and checked; live execution awaits local sudo authentication.
+
 **Latest result:** The approved [PDO suppression A/B/A trial](docs/PDO-TRIAL-RESULTS.md)
 completed cleanly. Targeted partner queries were5/0/7 across the legs, but none
 enumerated an external Thunderbolt router or display. All105 DRM/router snapshots
