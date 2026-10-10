@@ -1,5 +1,67 @@
 # Local workaround options and prepared Linux fork
 
+## Remaining options after both failed Linux trials
+
+Reviewed again after the backend-off result. Native5K/display enumeration remains
+the goal; there is no proven local workaround. No new live change or ticket post
+is authorized by this options review.
+
+1. **Borrow a genuine Thunderbolt hub/dock with downstream Thunderbolt.** First
+   verify that it enumerates on the Framework, then attach only LG downstream.
+   This changes the immediate PD/TB peers and could avoid a direct-connection
+   compatibility issue. That is a hypothesis, not a demonstrated fix. Use a path
+   capable of this monitor's dual-DP-stream5K operation, not a USB-only hub or
+   HDMI adapter. CalDigit's [Element4 specification](https://www.caldigit.com/thunderbolt-4-element-hub/)
+   lists USB4-host/Thunderbolt-display and5K60 support; it does not prove this
+   Framework/Linux combination works. Borrow/test before buying.
+2. **Verified EC restart/reset.** The earlier shutdown did not include a
+   before/after proof of EC/PD state clearance. The installed Framework tool has
+   `--reboot-ec` and uptime/reset information. Review the exact command path and
+   prepare a controlled restart, then verify uptime/reset flags; an EC restart
+   may not reset separately powered PD controllers. This could clear retained
+   state but cannot fix a persistent compatibility defect. Do not copy generic
+   older-board reset instructions onto Lilac without verifying applicability.
+3. **A known-working Thunderbolt peripheral on this Framework.** A real TB dock
+   or SSD must enumerate as an external router, not merely fall back to USB.
+   Success narrows the problem toward LG-specific interoperability; broad failure
+   makes host firmware/board diagnosis more valuable. Can be combined with1.
+4. **Windows on the same Framework, with its official driver bundle.** This
+   changes the USB4/Type-C software stack more substantially than another Linux
+   distribution. Use a separately planned spare-disk installation if pursued;
+   there is no prepared Windows image and no disk-write authorization here.
+   Lower priority: the [earlier firsthand report for HX370 +27MD5KL](https://community.frame.work/t/fw-13-ryzen-ai-9-thunderbolt-dp-display-output-is-broken/69643/4)
+   also failed under Windows11, although that report used older BIOS3.03 and is
+   not a test of this machine. It cannot substitute for a local comparison.
+5. **Firmware engineering.** A concrete offline project remains: identify the
+   installed EC image/source, reproduce a stock Lilac build, extend the ACK
+   regression to caller failures/event concurrency, then design a complete
+   recovery path. A read-only flash dump may help establish build identity; its
+   availability is advertised by the local tool but has not been exercised.
+   On-device testing still needs verified protection/rollback/recovery. The EC
+   and CCG8 policy firmware are distinct targets; no matching CCG8 source has
+   been located. Framework's [debugger documentation](https://github.com/FrameworkComputer/FrameworkDebugger)
+   describes EC debug connections separately from the JPD connector for PD-chip
+   programming, which generally requires fitting a connector and Cypress tools.
+   This is not another drop-in kernel-module experiment.
+6. **USB-PD/CC protocol analysis.** Capture the failing Framework exchange and
+   working Mac exchange with equipment that preserves the relevant Thunderbolt
+   path. This can identify the actual packets/reset/CC sequence rather than only
+   host-reported state. Framework's [maintainer explicitly describes analyzer
+   capture as the next step for persistent compatibility failures](https://github.com/FrameworkComputer/SoftwareFirmwareIssueTracker/issues/225#issuecomment-5490733359).
+   This needs suitable hardware or a lab; a voltage/current display alone is not
+   an equivalent trace.
+
+**Practical order:** borrow/test a suitable TB hub if available; otherwise prepare
+a verified EC restart as the next low-equipment diagnostic. For sustained local
+coding work, choose the firmware source/build/recovery investigation. Keep USB4
+runtime-power experiments lower priority unless new logs implicate suspend; both
+recent traces retained functioning host routers but no external router.
+
+Respect the owner's working Mac/cable control and request to stop cable swapping.
+BIOS downgrade is not the proposed next step: failure predates4.02, and rollback
+support/PD-version effects have not been established. Framework's existing ticket
+is awaiting a response; this review neither adds a post nor opens a new contact.
+
 **Trial now completed:** [Results](PDO-TRIAL-RESULTS.md). Suppression worked as
 implemented but did not restore Thunderbolt/display detection in any leg. Stock
 modules are restored. The runner/proposal below is retained as a reproducible
