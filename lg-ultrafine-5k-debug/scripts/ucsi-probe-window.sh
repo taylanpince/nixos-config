@@ -4,13 +4,17 @@
 set -euo pipefail
 mode=${1:---check}
 duration=${2:-120}
-[[ $mode == --check || $mode == --capture ]] || {
-  echo 'Usage: ucsi-probe-window.sh [--check | --capture [seconds]]' >&2; exit 2;
+[[ $mode == --check || $mode == --capture || $mode == --capture-with-ec ]] || {
+  echo 'Usage: ucsi-probe-window.sh [--check | --capture [seconds] | --capture-with-ec [seconds]]' >&2; exit 2;
 }
 if [[ ! $duration =~ ^[0-9]{1,3}$ ]] || (( 10#$duration < 10 || 10#$duration > 300 )); then
   echo 'Duration must be 10–300 seconds.' >&2; exit 2;
 fi
 duration=$((10#$duration))
+ec_tool=/nix/store/g0zppkc1w8f96rhns7vbm6gdm0xl8mmh-framework-tool-0.6.2/bin/framework_tool
+if [[ $mode == --capture-with-ec && ! -x $ec_tool ]]; then
+  echo 'Pinned Framework tool is missing; nothing changed.' >&2; exit 1
+fi
 (( EUID == 0 )) || { echo 'Run with sudo in a local terminal.' >&2; exit 1; }
 [[ $(uname -r) == 6.18.44 && $(uname -m) == x86_64 ]] || {
   echo 'Probe signatures were reviewed for x86_64 Linux 6.18.44 only.' >&2; exit 1;
@@ -42,9 +46,10 @@ instance="$tracefs/instances/$group"
 }
 created=0
 probes=()
+ec_pid=
 start=$(date --iso-8601=seconds)
 cleanup() {
-  local rc=$? failed=0 event stat
+  local rc=$? failed=0 event stat ec_rc
   trap - EXIT INT TERM HUP
   set +e
   if (( created )); then
@@ -67,6 +72,17 @@ cleanup() {
   for event in "${probes[@]}"; do
     printf -- '-:%s/%s\n' "$group" "$event" >> "$tracefs/kprobe_events" || failed=1
   done
+  if [[ -n $ec_pid ]]; then
+    kill -TERM "$ec_pid" 2>/dev/null
+    wait "$ec_pid"
+    ec_rc=$?
+    printf '%s\n' "$ec_rc" > "$out/ec-follow-exit-status.txt"
+    # timeout returns 143 when terminated by cleanup, or 124 at its deadline.
+    if (( ec_rc != 143 && ec_rc != 124 )); then
+      printf 'EC stream ended unexpectedly (status %d); inspect ec-console-live.txt.\n' "$ec_rc" >&2
+      rc=1
+    fi
+  fi
   timeout 15 journalctl -k -b --since "$start" -o short-monotonic --no-pager > "$out/kernel.txt" 2>&1
   date --iso-8601=seconds > "$out/finished-at.txt"
   if (( failed )); then
@@ -112,9 +128,40 @@ done
 if [[ -f $instance/events/thunderbolt/enable ]]; then
   printf '1\n' > "$instance/events/thunderbolt/enable"
 fi
+if [[ $mode == --capture-with-ec ]]; then
+  {
+    date --iso-8601=ns
+    cat /proc/uptime
+    timeout 20 "$ec_tool" --driver cros-ec --uptimeinfo
+    cat /proc/uptime
+    date --iso-8601=ns
+  } > "$out/ec-clock-anchor.txt" 2>&1
+  timeout --kill-after=3 "$((duration + 15))" "$ec_tool" --driver cros-ec --console follow > "$out/ec-console-live.txt" 2>&1 &
+  ec_pid=$!
+  sleep 1
+  kill -0 "$ec_pid" 2>/dev/null || {
+    echo 'EC stream exited before capture; saving output and cleaning up.' >&2; exit 1;
+  }
+fi
 printf '1\n' > "$instance/tracing_on"
 printf 'LG UCSI observation begins\n' > "$instance/trace_marker"
 printf 'ENABLED: %s seconds. Unplug LG, wait 10 seconds, reconnect SAME port/module/cable.\n' "$duration"
 printf 'Keep this terminal open; Ctrl-C also saves and removes the probes.\n'
 deadline=$((SECONDS + duration))
-while (( SECONDS < deadline )); do sleep 1; done
+while (( SECONDS < deadline )); do
+  if [[ $mode == --capture-with-ec ]]; then
+    {
+      date --iso-8601=ns
+      cat /proc/uptime
+      for attribute in /sys/class/power_supply/BAT1/{status,capacity} \
+        /sys/class/power_supply/ACAD/online \
+        /sys/class/power_supply/ucsi-source-psy-USBC000:004/{online,usb_type,voltage_now,current_max}; do
+        if [[ -r $attribute ]]; then
+          printf '%s: ' "$attribute"
+          cat "$attribute" || true
+        fi
+      done
+    } >> "$out/power-live.txt"
+  fi
+  sleep 1
+done

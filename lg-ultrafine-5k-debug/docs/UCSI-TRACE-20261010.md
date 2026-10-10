@@ -84,3 +84,43 @@ the EC reports a reset, contract loss, role/mux change or controller error. If t
 console lacks the relevant events, the next useful experiment needs a synchronized
 EC/kernel recording, or Framework's model-specific PD diagnostic firmware. The
 already compiled patch is instrumentation only and remains uninstalled.
+
+## EC snapshot result and next capture
+
+Owner ran the snapshot successfully. All four queries returned0 in
+`evidence/20261010T120050Z-ec-console-UbE18K/` at14:00:50. The EC independently
+reports port3 `Debug`, no contract, sink/UFP, VCONN off, negotiated0V/0A. Ports0/1
+report no partner; port2 supplies5V/1.5A to its sink device. Both PD controllers
+remain on0.0.21. The tool's unsupported `Back` controller query is not evidence of
+a third failed controller on this two-controller laptop.
+
+The console output is4096bytes and begins mid-line. Its first visible timestamp
+is EC5541.02s; newest5728.84s, about188seconds of history. EC uptime query
+reports1h35m30s. The UCSI loss occurred about7m46s before this snapshot, so its EC
+events have already scrolled out. The retained log shows battery discharge and
+routine host/POST messages, not the failure transition. A successful read therefore
+does **not** show there were no controller errors during the earlier failure.
+
+Prepared `ucsi-probe-window.sh --capture-with-ec 120` to reuse the verified UCSI
+probes while streaming the console continuously. It adds an EC/kernel clock anchor
+and one-second battery/port3 power samples. The Framework tool reads existing console
+output using ConsoleSnapshot/ConsoleRead, polling roughly every100ms when empty;
+this adds EC host-command traffic and could perturb timing, but does not send PD
+negotiation or console-control commands. EC uptime output has only second resolution,
+so cross-clock alignment is approximate. Raw EC timestamps are retained.
+
+```bash
+sudo bash /home/taylan/config/lg-ultrafine-5k-debug/scripts/ucsi-probe-window.sh --capture-with-ec 120
+```
+
+After **ENABLED**, unplug only LG at the laptop, wait10seconds, reconnect to the
+same left-rear module, and leave it untouched for the rest of the window. Wait for
+**RESTORED**. The stream is bounded by `timeout`; cleanup terminates it and removes
+the probes/instance. Existing tracing and firmware settings are preserved. Source
+inspection shows public EC handlers log disconnect, hard-reset/error-recovery and
+contract events; installed-firmware correspondence remains unverified. The purpose
+is to retain whichever of these events the installed EC actually emits at failure.
+
+Validation: Bash syntax/ShellCheck pass; the console read was exercised successfully
+by the snapshot; timeout termination behavior checked using a harmless sleep child.
+The combined live capture itself has not yet run.

@@ -229,3 +229,9 @@
 **LIMIT:** Initial20V read is in conversation tool output; the saved collector already spans/follows the drop. Camera no longer faces LG, so that snapshot cannot establish its visual state. Sysfs still shows no external router and all external DP disconnected. Timeline and inference limits: `docs/UCSI-TRACE-20261010.md`; reviewed excerpt versioned under `evidence/framework-support-packet/nixos-ucsi-command-timeline.txt`.
 
 **NEXT:** Prepared/source-reviewed `scripts/ec-console-snapshot.sh` to read existing EC console, uptime and PD state without changing connections or firmware. Bash/ShellCheck pass. Owner asked to run it with local authentication. Query suppression is not yet justified; inspect EC-side events before choosing a behavioral intervention.
+
+### EC snapshot returned; failure event already outside retained buffer
+
+**OBSERVED:** Owner ran `ec-console-snapshot.sh`; all four queries returned0. `20261010T120050Z-ec-console-UbE18K/` confirms port3 Debug/no PD contract/0V, ports0/1 Nothing, port2 sourcing5V/1.5A, both PD controllers0.0.21. Console is4096bytes, starts mid-line and retains only~188seconds, later than the failure~7m46s before collection. No inference about errors at the failure can be drawn from their absence in this truncated window.
+
+**PREPARED:** Added optional `--capture-with-ec` mode to the tested UCSI window. It streams the read-only console, records EC/kernel clock anchors and one-second power samples while retaining the same UCSI probes and automatic cleanup. No firmware or negotiation changes. Bash/ShellCheck and harmless timeout termination test pass; combined live run pending. One controlled left-rear reconnect will now retain the EC events that the delayed snapshot lost. See `docs/UCSI-TRACE-20261010.md` for exact effects and procedure.
