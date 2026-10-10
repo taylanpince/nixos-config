@@ -1,5 +1,7 @@
 # LG UltraFine 5K investigation
 
+**Local engineering prepared:** [source assessment and experiments](docs/LOCAL-ENGINEERING.md), a bounded UCSI command/connector capture with automatic cleanup, a command decoder, and an instrumentation patch for Linux 6.18.44. The source defines a command trace event without emitting it; the prepared probes fill that observation gap. No negotiation workaround has been validated or kernel change activated. Next local step: capture command ordering before choosing a behavior-changing patch.
+
 Goal: stable native 5120×2880@60 on Framework 13 Ryzen AI HX 370, NixOS and Hyprland, with eDP preserved. The working brief is [the investigation plan](../framework-lg-ultrafine-5k-investigation.md).
 
 **Latest finding:** Fedora44 Live on kernel6.19.10 reproduces NixOS6.18.44's failure: transient LG USB hubs, UCSI debug-accessory state, no external Thunderbolt router, disconnected DP connectors and empty external EDIDs. [Comparison and limitations](docs/NIXOS-FEDORA-COMPARISON.md). Firmware/interoperability and shared Linux-driver behavior remain possible; root cause is not proven. **Next: Framework engineering review using the prepared [support report](docs/FRAMEWORK-SUPPORT-DRAFT.md).** Native5K remains unresolved.

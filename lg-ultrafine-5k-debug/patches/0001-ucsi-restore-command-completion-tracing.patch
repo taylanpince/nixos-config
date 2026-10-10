@@ -1,0 +1,22 @@
+--- a/drivers/usb/typec/ucsi/ucsi.c
++++ b/drivers/usb/typec/ucsi/ucsi.c
+@@ -240,6 +240,7 @@
+ 	if (cci & UCSI_CCI_ERROR)
+ 		ret = ucsi_read_error(ucsi, connector_num);
+ 
++	trace_ucsi_run_command(cmd, ret);
+ 	mutex_unlock(&ucsi->ppm_lock);
+ 	return ret;
+ }
+--- a/drivers/usb/typec/ucsi/trace.h
++++ b/drivers/usb/typec/ucsi/trace.h
+@@ -23,7 +23,8 @@
+ 		__entry->ctrl = command;
+ 		__entry->ret = ret;
+ 	),
+-	TP_printk("%s -> %s (err=%d)", ucsi_cmd_str(__entry->ctrl),
++	TP_printk("%s ctrl=0x%016llx -> %s (err=%d)",
++		ucsi_cmd_str(__entry->ctrl), __entry->ctrl,
+ 		__entry->ret < 0 ? "FAIL" : "OK",
+ 		__entry->ret < 0 ? __entry->ret : 0)
+ );
