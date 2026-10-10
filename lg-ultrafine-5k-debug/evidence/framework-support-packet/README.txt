@@ -31,3 +31,10 @@ Additional 10 October EC/UCSI engineering evidence:
 - ec-ack-regression.txt: offline actual-function fixture, pinned public EC source,
   original false-success reproduction and RFC guard results. Not a hardware test.
 See docs/EC-ACK-INVESTIGATION.md for source pin, limits and capture cleanup checks.
+
+Local PDO-suppression trial:
+- ucsi-pdo-trial-tests.txt: eight offline source-function checks.
+- pdo-trial-{A1,B,A2}-ucsi.txt: decoded request/write/return and connector events
+  from the A/B/A run, filtered without kernel journals or personal identifiers.
+  Source directory mapping and interpretation: docs/PDO-TRIAL-RESULTS.md.
+  Targeted partner-query writes5/0/7; no display recovered; stock restored.

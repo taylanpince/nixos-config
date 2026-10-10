@@ -1,0 +1,117 @@
+            bash-1054220 [016] ...1.  6257.012080: tracing_mark_write: LG UCSI observation begins
+     kworker/7:2-994580  [007] .....  6257.018745: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.042943: lg_ucsi_1054220_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+     kworker/7:2-994580  [007] .....  6257.042988: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x300030010 | GET_PDOS connector=3 (sysfs port2) partner=0 source_pdos=0 offset=0 count=4
+     kworker/7:2-994580  [007] .....  6257.042990: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x300030010 | GET_PDOS connector=3 (sysfs port2) partner=0 source_pdos=0 offset=0 count=4
+     kworker/7:2-994580  [007] .....  6257.069410: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.094930: lg_ucsi_1054220_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=8
+     kworker/7:2-994580  [007] .....  6257.095146: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x300000c | GET_ALTERNATE_MODES connector=3 (sysfs port2) recipient=0:connector offset=0
+     kworker/7:2-994580  [007] .....  6257.095152: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x300000c | GET_ALTERNATE_MODES connector=3 (sysfs port2) recipient=0:connector offset=0
+     kworker/7:2-994580  [007] .....  6257.121584: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.147835: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=6
+     kworker/7:2-994580  [007] .....  6257.148047: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x10300000c | GET_ALTERNATE_MODES connector=3 (sysfs port2) recipient=0:connector offset=1
+     kworker/7:2-994580  [007] .....  6257.148059: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x10300000c | GET_ALTERNATE_MODES connector=3 (sysfs port2) recipient=0:connector offset=1
+     kworker/7:2-994580  [007] .....  6257.172722: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.197484: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+     kworker/7:2-994580  [007] .....  6257.197487: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x30012 | GET_CONNECTOR_STATUS connector=3 (sysfs port2)
+     kworker/7:2-994580  [007] .....  6257.197489: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30012 | GET_CONNECTOR_STATUS connector=3 (sysfs port2)
+     kworker/7:2-994580  [007] .....  6257.224543: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.249767: lg_ucsi_1054220_result: (ucsi_init_work+0x409/0x9b0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/7:2-994580  [007] .....  6257.249879: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x30011 | GET_CABLE_PROPERTY connector=3 (sysfs port2)
+     kworker/7:2-994580  [007] .....  6257.249881: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30011 | GET_CABLE_PROPERTY connector=3 (sysfs port2)
+     kworker/7:2-994580  [007] .....  6257.276842: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.302782: lg_ucsi_1054220_result: (ucsi_check_cable+0x92/0x290 [typec_ucsi] <- ucsi_send_command_common) ret=5
+     kworker/7:2-994580  [007] .....  6257.302944: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x302000c | GET_ALTERNATE_MODES connector=3 (sysfs port2) recipient=2:cable_SOP_prime offset=0
+     kworker/7:2-994580  [007] .....  6257.302946: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x302000c | GET_ALTERNATE_MODES connector=3 (sysfs port2) recipient=2:cable_SOP_prime offset=0
+     kworker/7:2-994580  [007] .....  6257.327766: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.353544: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30013 | GET_ERROR_STATUS connector=3 (sysfs port2)
+     kworker/7:2-994580  [007] .....  6257.380531: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.405640: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=-5
+     kworker/7:2-994580  [007] .....  6257.405801: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40007 | GET_CONNECTOR_CAPABILITY connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6257.405804: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40007 | GET_CONNECTOR_CAPABILITY connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6257.432804: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.457608: lg_ucsi_1054220_result: (ucsi_init_work+0x27b/0x9b0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+     kworker/7:2-994580  [007] .....  6257.458137: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x700040010 | GET_PDOS connector=4 (sysfs port3) partner=0 source_pdos=1 offset=0 count=4
+     kworker/7:2-994580  [007] .....  6257.458140: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x700040010 | GET_PDOS connector=4 (sysfs port3) partner=0 source_pdos=1 offset=0 count=4
+     kworker/7:2-994580  [007] .....  6257.484559: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.511620: lg_ucsi_1054220_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+     kworker/7:2-994580  [007] .....  6257.511666: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x300040010 | GET_PDOS connector=4 (sysfs port3) partner=0 source_pdos=0 offset=0 count=4
+     kworker/7:2-994580  [007] .....  6257.511669: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x300040010 | GET_PDOS connector=4 (sysfs port3) partner=0 source_pdos=0 offset=0 count=4
+     kworker/7:2-994580  [007] .....  6257.537598: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.563205: lg_ucsi_1054220_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=8
+     kworker/7:2-994580  [007] .....  6257.563281: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x400000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=0:connector offset=0
+     kworker/7:2-994580  [007] .....  6257.563283: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x400000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=0:connector offset=0
+     kworker/7:2-994580  [007] .....  6257.588344: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.607728: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=6
+     kworker/7:2-994580  [007] .....  6257.607767: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x10400000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=0:connector offset=1
+     kworker/7:2-994580  [007] .....  6257.607768: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x10400000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=0:connector offset=1
+     kworker/7:2-994580  [007] .....  6257.633802: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.653708: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=6
+     kworker/7:2-994580  [007] .....  6257.653756: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6257.653757: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6257.679690: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.704676: lg_ucsi_1054220_result: (ucsi_init_work+0x409/0x9b0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/7:2-994580  [007] .....  6257.704679: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x1dbe70005 | SET_NOTIFICATION_ENABLE connector=0
+     kworker/7:2-994580  [007] .....  6257.704679: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x1dbe70005 | SET_NOTIFICATION_ENABLE connector=0
+     kworker/7:2-994580  [007] .....  6257.727255: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6257.748688: lg_ucsi_1054220_result: (ucsi_init_work+0x877/0x9b0 [typec_ucsi] <- ucsi_send_command_common) ret=0
+    kworker/11:0-1050397 [011] .....  6266.920819: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+    kworker/11:0-1050397 [011] .....  6266.920822: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+    kworker/11:0-1050397 [011] .....  6266.949766: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+    kworker/11:0-1050397 [011] .....  6266.975744: lg_ucsi_1054220_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+    kworker/11:0-1050397 [011] .....  6266.975747: ucsi_connector_change: port3 status: change=4800, opmode=4, connected=1, sourcing=1, partner_flags=1, partner_type=2, request_data_obj=00000000, BC status=0
+     kworker/7:2-994580  [007] .....  6267.037628: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6267.037632: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6267.062590: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6267.082717: lg_ucsi_1054220_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/7:2-994580  [007] .....  6267.082718: ucsi_connector_change: port3 status: change=0040, opmode=3, connected=1, sourcing=1, partner_flags=1, partner_type=2, request_data_obj=12800000, BC status=0
+     kworker/3:0-969088  [003] .....  6267.106552: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/3:0-969088  [003] .....  6267.106559: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/3:0-969088  [003] .....  6267.128541: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+     kworker/3:0-969088  [003] .....  6267.147408: lg_ucsi_1054220_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/3:0-969088  [003] .....  6267.147409: ucsi_connector_change: port3 status: change=0900, opmode=3, connected=1, sourcing=1, partner_flags=2, partner_type=2, request_data_obj=12800000, BC status=0
+     kworker/5:2-1017547 [005] .....  6267.302889: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/5:2-1017547 [005] .....  6267.302895: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/5:2-1017547 [005] .....  6267.323918: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+     kworker/5:2-1017547 [005] .....  6267.344763: lg_ucsi_1054220_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/5:2-1017547 [005] .....  6267.344765: ucsi_connector_change: port3 status: change=1242, opmode=3, connected=1, sourcing=0, partner_flags=2, partner_type=2, request_data_obj=4284b12c, BC status=1
+     kworker/6:1-753380  [006] .....  6267.410550: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/6:1-753380  [006] .....  6267.410553: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/6:1-753380  [006] .....  6267.662609: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+     kworker/6:1-753380  [006] .....  6267.815827: lg_ucsi_1054220_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/6:1-753380  [006] .....  6267.815832: ucsi_connector_change: port3 status: change=0200, opmode=0, connected=0, sourcing=0, partner_flags=0, partner_type=0, request_data_obj=00000000, BC status=0
+     kworker/7:2-994580  [007] .....  6267.924945: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6267.924962: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/7:2-994580  [007] .....  6268.004878: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+     kworker/7:2-994580  [007] .....  6268.031740: lg_ucsi_1054220_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/7:2-994580  [007] .....  6268.031742: ucsi_connector_change: port3 status: change=4802, opmode=4, connected=1, sourcing=0, partner_flags=1, partner_type=5, request_data_obj=00000000, BC status=1
+   kworker/u96:0-965795  [017] .....  6268.031771: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+   kworker/u96:0-965795  [017] .....  6268.031773: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+   kworker/u96:0-965795  [020] .....  6268.059670: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.080572: lg_ucsi_1054220_result: (ucsi_check_cable+0x92/0x290 [typec_ucsi] <- ucsi_send_command_common) ret=5
+   kworker/u96:0-965795  [020] .....  6268.080671: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+   kworker/u96:0-965795  [020] .....  6268.080672: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+   kworker/u96:0-965795  [020] .....  6268.099767: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.123486: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40013 | GET_ERROR_STATUS connector=4 (sysfs port3)
+   kworker/u96:0-965795  [020] .....  6268.141701: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.166532: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=-5
+   kworker/u96:0-965795  [020] .....  6268.166541: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+   kworker/u96:0-965795  [020] .....  6268.166542: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+   kworker/u96:0-965795  [020] .....  6268.321847: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.396920: lg_ucsi_1054220_result: (ucsi_check_connection+0x47/0xd0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+   kworker/u96:0-965795  [020] .....  6268.397080: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:0-965795  [020] .....  6268.397084: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:0-965795  [020] .....  6268.425618: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.442716: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+   kworker/u96:0-965795  [020] .....  6268.442897: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:0-965795  [020] .....  6268.442900: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:0-965795  [020] .....  6268.467570: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.494781: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+   kworker/u96:0-965795  [020] .l...  6268.494866: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:0-965795  [020] .l...  6268.494868: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:0-965795  [020] .....  6268.513806: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [020] .....  6268.537580: lg_ucsi_1054220_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+   kworker/u96:0-965795  [022] .....  6269.080039: lg_ucsi_1054220_request: (ucsi_send_command_common+0x0/0x200 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+   kworker/u96:0-965795  [022] .....  6269.080044: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+   kworker/u96:0-965795  [022] .....  6269.103548: lg_ucsi_1054220_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+   kworker/u96:0-965795  [022] .....  6269.128716: lg_ucsi_1054220_result: (ucsi_check_connection+0x47/0xd0 [typec_ucsi] <- ucsi_send_command_common) ret=16

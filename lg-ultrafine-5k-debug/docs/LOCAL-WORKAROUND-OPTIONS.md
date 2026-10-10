@@ -1,5 +1,10 @@
 # Local workaround options and prepared Linux fork
 
+**Trial now completed:** [Results](PDO-TRIAL-RESULTS.md). Suppression worked as
+implemented but did not restore Thunderbolt/display detection in any leg. Stock
+modules are restored. The runner/proposal below is retained as a reproducible
+record, not a recommendation to repeat or install the unsuccessful patch.
+
 **Activation approved:** Owner agreed to proceed after reviewing the proposal.
 Prepared `scripts/ucsi-pdo-trial.sh --run`: one locally authenticated A/B/A
 session with exact module hash/kernel/DMI checks, exclusive lock, bounded manual

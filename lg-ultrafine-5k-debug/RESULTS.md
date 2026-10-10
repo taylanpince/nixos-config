@@ -259,3 +259,11 @@
 **OWNER DIRECTION:** Proceed with the reviewed local trial. Display recognition and native5K remain the acceptance criteria; charging alone is not success. No further ticket posts.
 
 **PREFLIGHT / PREPARED:** Kernel6.18.44, stock UCSI modules, only ucsi_acpi holding typec_ucsi, battery89%. Local sudo authentication required. Added `scripts/ucsi-pdo-trial.sh`, pinned to the compiled module SHA256, with exclusive lock, bounded prompts, speaker alerts, equal180-second UCSI-only captures and5-second router/DRM/EDID/power snapshots. Suppression off/on/off; restores stock between legs and on catchable interruption, never forces unload. Minimum120seconds after reconnect confirmation, progress printed every30seconds. Root preflight and actual module lifecycle remain to be exercised by the owner-launched command. Bash syntax/ShellCheck pass. No kernel module changed yet. Reboot is the fallback for failed restoration and clears any external-module taint.
+
+### Completed A/B/A trial: PDO suppression did not recover the display
+
+**OBSERVED:** Owner launched the runner; all3 legs completed22:11–22:21 with exit0. Parameter N/Y/N verified. Connector4 partner-PDO writes5/0/7 prove intervention and reversal. All105 router/DRM snapshots show host routers only, all external DP disconnected/EDIDs empty, internal eDP connected. Each trace has152 host-route0 TB transactions. The modified leg still reports disconnect/debug shortly after attach. All probe misses and buffer losses zero. Supporting battery samples Discharging/ACAD offline, not used as acceptance criteria.
+
+**CONCLUSION:** The reproduced failure does not require these partner-PDO reads; the local fork is not a working workaround. Other UCSI commands/initialization and firmware interactions remain untested. Later sysfs partner-label differences are not evidence of recovery. Full results and reviewed excerpts: `docs/PDO-TRIAL-RESULTS.md`.
+
+**RESTORED:** Stock modules restored after each leg and at finish; lab parameter absent, no capture/test processes remain. No persistent system changes. Taint4096 records the externally built module until reboot, with no additional taint bits. Do not enable this patch persistently. Broader UCSI-disabled control is a possible separately approved next test, not performed. Ticket untouched; native5K goal remains unresolved.

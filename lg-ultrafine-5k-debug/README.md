@@ -1,5 +1,11 @@
 # LG UltraFine 5K investigation
 
+**Latest result:** The approved [PDO suppression A/B/A trial](docs/PDO-TRIAL-RESULTS.md)
+completed cleanly. Targeted partner queries were5/0/7 across the legs, but none
+enumerated an external Thunderbolt router or display. All105 DRM/router snapshots
+show only internal eDP and empty external EDIDs. Stock modules restored; this
+patch is not a working workaround. No further ticket posts made.
+
 **Local workaround trial prepared:** [options, compiled Linux fork and rollback](docs/LOCAL-WORKAROUND-OPTIONS.md).
 A default-off parameter suppresses partner PDO reads only on this model's
 left-rear connector. It compiles for6.18.44 and passes8 offline checks; it has not
