@@ -1,5 +1,29 @@
 # Local workaround options and prepared Linux fork
 
+**Activation approved:** Owner agreed to proceed after reviewing the proposal.
+Prepared `scripts/ucsi-pdo-trial.sh --run`: one locally authenticated A/B/A
+session with exact module hash/kernel/DMI checks, exclusive lock, bounded manual
+prompts,180-second captures,5-second Thunderbolt/DRM/EDID snapshots, progress
+messages and stock-module restoration between legs and on catchable interruption.
+Bash syntax and ShellCheck pass; the live run is pending local authentication.
+The owner emphasized that display detection/native5K is the goal; charging is
+supporting evidence, not an acceptance requirement.
+
+```bash
+sudo bash /home/taylan/config/lg-ultrafine-5k-debug/scripts/ucsi-pdo-trial.sh --run
+```
+
+Save work first. Follow terminal prompts: disconnect LG and press Enter, then
+reconnect to the same left-rear module only at READY and press Enter immediately.
+Each leg retains at least120seconds after that confirmation. Leave other
+connections unchanged. Speaker prompts are attempted through the desktop user's
+audio server; alert failure is printed. Ctrl-C stops and attempts restoration.
+A process crash/SIGKILL cannot run cleanup; reboot restores the unchanged installed
+system. An externally built module may taint the running kernel; that taint can
+persist after stock restoration until reboot. The script never forces an unload.
+
+Historical proposal and preparation details follow; approval is now recorded.
+
 No working local workaround is established yet. We can test a Linux-side change
 without waiting for a ticket response. The strongest source-level defect found so
 far is in public EC code, but its relationship to installed firmware and the
@@ -124,7 +148,8 @@ record ACAD/battery, EC state and external-router enumeration. Changing console
 streaming between legs would introduce the timing confound seen previously.
 
 Fewer UCSI error messages are not success: B necessarily removes some requests.
-The first useful outcome is sustained PD plus a real external Thunderbolt router.
+The first useful outcome is a real external Thunderbolt router; PD stability is
+supporting evidence, not a requirement for display success.
 If that succeeds, investigate DRM/EDID and native5120×2880@60 next. Then repeat
 hotplug, boot and resume tests while preserving eDP. A single lucky connection
 cannot establish a reliable workaround. If B still fails, restore stock and

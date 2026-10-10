@@ -253,3 +253,9 @@
 **PREPARED / COMPILED:** Patch0003 adds default-off `lab_skip_partner_pdos`, limited to Framework Ryzen AI300 DMI and connector4. It suppresses partner PDO reads and clears their destination; no other queries or reported connector state are changed. Eight actual-function offline checks pass. Build `ucsi-build-CHVJka` links/modposts successfully against exact6.18.44; parameter and vermagic verified. BTF skipped for absent vmlinux. Build also includes diagnostic patch0001. Nothing installed or loaded.
 
 **PROPOSED / LIMIT:** A/B/A transient module replacement, flag0/1/0 with equal backend reloads, trace verification and stock-module/reboot rollback. Reload may affect all Type-C ports; missing power metadata is expected in B. This tests a lower-confidence query-triggered hypothesis; the EC defect is not fixed by it. Activation needs approval under the working brief. Full comparison, alternatives and rollback: `docs/LOCAL-WORKAROUND-OPTIONS.md`.
+
+### A/B/A activation approved; terminal runner prepared
+
+**OWNER DIRECTION:** Proceed with the reviewed local trial. Display recognition and native5K remain the acceptance criteria; charging alone is not success. No further ticket posts.
+
+**PREFLIGHT / PREPARED:** Kernel6.18.44, stock UCSI modules, only ucsi_acpi holding typec_ucsi, battery89%. Local sudo authentication required. Added `scripts/ucsi-pdo-trial.sh`, pinned to the compiled module SHA256, with exclusive lock, bounded prompts, speaker alerts, equal180-second UCSI-only captures and5-second router/DRM/EDID/power snapshots. Suppression off/on/off; restores stock between legs and on catchable interruption, never forces unload. Minimum120seconds after reconnect confirmation, progress printed every30seconds. Root preflight and actual module lifecycle remain to be exercised by the owner-launched command. Bash syntax/ShellCheck pass. No kernel module changed yet. Reboot is the fallback for failed restoration and clears any external-module taint.
