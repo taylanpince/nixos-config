@@ -1,0 +1,10 @@
+USB-C Port 3:
+  Type-C State:  Debug
+  PD Contract:   No
+  Power Role:    Sink
+  Data Role:     Ufp
+  VCONN:         Off
+  Negotiated:    0.000 V, 0 mA, 0.0 W
+  EPR:           Inactive
+  CC Polarity:   CC1
+  Active Port:   No

@@ -1,5 +1,11 @@
 # Approved UCSI backend-off display test
 
+**Completed:** [Results](UCSI-BACKEND-OFF-RESULTS.md). The trace verifies zero
+ongoing UCSI requests during the reconnect window, yet no external router/display
+appeared and the EC still reported Debug/no contract. Stock binding and all ports
+restored; exit0. The following procedure is retained as the experiment record,
+not a recommendation to leave UCSI disabled or repeat the failed test.
+
 The owner approved this broader test after the PDO-suppression A/B/A failed.
 Goal: determine whether the LG enumerates as an external Thunderbolt device and
 display while the Linux UCSI ACPI backend is detached. Charging is supporting

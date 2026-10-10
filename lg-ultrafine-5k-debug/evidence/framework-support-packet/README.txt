@@ -38,3 +38,11 @@ Local PDO-suppression trial:
   from the A/B/A run, filtered without kernel journals or personal identifiers.
   Source directory mapping and interpretation: docs/PDO-TRIAL-RESULTS.md.
   Targeted partner-query writes5/0/7; no display recovered; stock restored.
+
+UCSI backend-off trial:
+- ucsi-backend-off-probe-stats.txt: actual request/write/return counts, all zero.
+- ucsi-backend-off-ec-port3.txt: only port3 from the unbound EC endpoint query.
+- ucsi-backend-off-hotplug.txt: full trial hotplug journal minus USB serial-value
+  line, with hostname replaced by HOST.
+- ucsi-backend-off-{drm,thunderbolt}.txt: endpoints before stock rebinding.
+Source/coverage/limits and restoration: docs/UCSI-BACKEND-OFF-RESULTS.md.

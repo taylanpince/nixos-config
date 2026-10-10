@@ -1,8 +1,14 @@
 # LG UltraFine 5K investigation
 
-**Next approved test:** [temporarily detach the stock UCSI ACPI backend](docs/UCSI-BACKEND-OFF-TRIAL.md)
-while preserving Thunderbolt, record one reconnect, and restore the binding.
-Runner prepared and checked; live execution awaits local sudo authentication.
+**Newest result:** [UCSI backend-off trial](docs/UCSI-BACKEND-OFF-RESULTS.md)
+also failed to detect the display. The recorded reconnect had zero UCSI requests,
+host-only Thunderbolt traffic and transient LG USB hubs; the independent EC
+endpoint read still reported Debug/no PD contract. Stock binding and all four
+Type-C ports restored, internal eDP preserved. Neither tested Linux workaround
+recovered enumeration. No ticket update posted.
+
+The [backend-off procedure](docs/UCSI-BACKEND-OFF-TRIAL.md) remains versioned as
+a reproducible record; it is not a recommendation to disable UCSI persistently.
 
 **Latest result:** The approved [PDO suppression A/B/A trial](docs/PDO-TRIAL-RESULTS.md)
 completed cleanly. Targeted partner queries were5/0/7 across the legs, but none

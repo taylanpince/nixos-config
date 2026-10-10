@@ -275,3 +275,11 @@
 **SOURCE / LIMIT:** Installed source shows removal sends notification-disable before removing Type-C registration and ACPI notify handler. This is a broader behavioral intervention, not merely withholding reads. A negative result cannot alone isolate firmware because necessary role/mode handling is removed too. Primary acceptance remains actual display enumeration/native5K. Procedure/rollback: `docs/UCSI-BACKEND-OFF-TRIAL.md`.
 
 **VALIDATION:** Read-only host check matches6.18.44, stock bound UCSI, two USB4 hosts, battery79%. Syntax/ShellCheck pass. Live root preflight and unbind/rebind pending owner terminal authentication; sudo-n requires password. No driver state changed in preparing this test. Ticket untouched.
+
+### Backend-off trial completed: no enumeration without ongoing UCSI requests
+
+**OBSERVED:** Owner ran the approved script. Parent `20261010T202923Z-ucsi-backend-off-6Ljz0D`, trace `20261010T202947Z-ucsi-probes-aW8stL`,22:29:47–22:32:47. Backend unbound in all35 periodic test snapshots; UCSI request/write/return probes0/0/0, zero misses and buffer losses. All152 TB TX/RX records address host route0. LG USB2 hubs briefly appear/disconnect. No external router, connected external DP or nonempty external EDID in45 total snapshots, including restoration; internal eDP preserved. Independent EC endpoint read while unbound reports port3 Debug/no PD contract/0V/VCONN off, both controllers0.0.21.
+
+**CONCLUSION:** The reproduced failure does not require ongoing Linux UCSI requests in this reconnect window. Neither this broader intervention nor partner-PDO suppression is a working workaround. Unbinding also changes notifications/removes role handling, and prior state/other Linux drivers remain, so this is not proof of a firmware-only cause. More query-suppression patches are not supported by the evidence. Public EC defect remains unproven on the installed build.
+
+**RESTORED:** Wrapper exit0, probes removed, stock ucsi_acpi binding and all four Type-C ports restored,30-second post-restore observation complete, no trial processes remain. Existing taint4096 unchanged; no new custom module or persistent change. Findings and reviewed excerpts: `docs/UCSI-BACKEND-OFF-RESULTS.md`. No external post. Display goal remains unresolved.
