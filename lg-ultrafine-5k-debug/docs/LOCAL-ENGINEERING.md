@@ -128,11 +128,33 @@ command in normal trace text. This is an observation improvement, **not a displa
 fix**, and a fallback if dynamic probes are unavailable. It records completion,
 whereas the probes additionally record command-entry timing.
 
-The patch passes an application dry run against the exact 6.18.44 archive. It has
-**not been compiled or loaded**. Shell syntax, ShellCheck and decoder vectors are
-checked before handing over the capture. **No live probe capture has run yet.**
+The patch passes an application dry run and **compiles successfully** against the
+installed kernel's exact 6.18.44 build files using GCC15.3.0 and binutils2.46.
+`modinfo` reports `6.18.44 SMP preempt mod_unload`; the resulting module contains
+the command tracepoint. BTF generation was skipped because the packaged build files
+lack `vmlinux`. This is a compile check, not proof of runtime correctness.
+**The module has not been installed or loaded.** Shell syntax, ShellCheck and
+decoder vectors pass. **No live probe capture has run yet.**
 Future kernel activation requires a concrete proposal/rollback and owner approval
 under the working investigation brief.
+
+Reproduce the compile-only check with
+[`build-ucsi-instrumentation.sh`](../scripts/build-ucsi-instrumentation.sh). It verifies
+the source hash, creates a fresh ignored build directory, applies the patch and
+builds only `typec_ucsi.ko`; it never installs or loads a module. Local validated
+run: `evidence/ucsi-build-7H3b0k/`, with build log, module metadata and checksum.
+The script's full run and ShellCheck passed. If the pinned inputs have been garbage
+collected, restore them first (the development closure fetched about825MiB here):
+
+```bash
+nix-store --realise /nix/store/0mniicxkibs3lq5nz7g34f78fg3m6qmd-linux-6.18.44.tar.xz.drv
+nix build '/nix/store/y7rn8r4ywff7y88n7k25fxk58qymgmkf-linux-6.18.44.drv^dev' --no-link
+bash lg-ultrafine-5k-debug/scripts/build-ucsi-instrumentation.sh
+```
+
+These store paths identify this machine's investigated build; the recipe assumes
+their derivations remain available locally. Nix store downloads do not activate
+a new kernel or modify the system configuration.
 
 Primary references:
 
