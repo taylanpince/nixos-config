@@ -134,7 +134,10 @@ installed kernel's exact 6.18.44 build files using GCC15.3.0 and binutils2.46.
 the command tracepoint. BTF generation was skipped because the packaged build files
 lack `vmlinux`. This is a compile check, not proof of runtime correctness.
 **The module has not been installed or loaded.** Shell syntax, ShellCheck and
-decoder vectors pass. **No live probe capture has run yet.**
+decoder vectors pass. **Live capture now passed:** 27 requests/27 returns/60 writes,
+zero reported misses/overruns and successful cleanup. The [capture analysis](UCSI-TRACE-20261010.md)
+finds temporary PD charging followed by spontaneous loss after a long UCSI-quiet
+interval; suppressing a query is not yet justified as a fix.
 Future kernel activation requires a concrete proposal/rollback and owner approval
 under the working investigation brief.
 

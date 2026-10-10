@@ -37,6 +37,16 @@ while IFS= read -r line || [[ -n $line ]]; do
       printf ' partner=%d source_pdos=%d offset=%d count=%d' \
         "$(((command >> 23) & 1))" "$(((command >> 34) & 1))" \
         "$(((command >> 24) & 255))" "$((((command >> 32) & 3) + 1))"
+    elif (( opcode == 12 )); then
+      recipient=$(((command >> 16) & 7))
+      case $recipient in
+        0) recipient_name=connector ;;
+        1) recipient_name=partner_SOP ;;
+        2) recipient_name=cable_SOP_prime ;;
+        3) recipient_name=cable_SOP_double_prime ;;
+        *) recipient_name=unknown ;;
+      esac
+      printf ' recipient=%d:%s offset=%d' "$recipient" "$recipient_name" "$(((command >> 32) & 255))"
     elif (( opcode == 21 )); then
       printf ' recipient=%d offset=%d bytes=%d type=%d' \
         "$(((command >> 23) & 7))" "$(((command >> 26) & 255))" \

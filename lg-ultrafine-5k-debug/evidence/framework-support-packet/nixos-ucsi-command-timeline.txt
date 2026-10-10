@@ -1,0 +1,127 @@
+# UCSI probe capture 2026-10-10 13:52:07–13:54:07 Europe/Madrid
+# Linux 6.18.44; left-rear expansion module; owner confirms no second physical change.
+# Timestamps: boot-relative monotonic seconds. Requests/results paired by PID in raw local trace.
+# 27 requests, 60 writes, 27 returns; no missed probes or buffer overruns. Cleanup succeeded.
+# Initial stdout also showed battery Charging and port4 supply PD 20V/4.7A limit; later snapshots show Discharging.
+2160.183845: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2160.183849: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2160.208203: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2160.239578: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2160.239581: ucsi_connector_change: port3 status: change=4802, opmode=0, connected=0, sourcing=0, partner_flags=0, partner_type=0, request_data_obj=00000000, BC status=0
+2169.852660: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2169.852664: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2169.880568: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2169.907587: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2169.907589: ucsi_connector_change: port3 status: change=4800, opmode=4, connected=1, sourcing=1, partner_flags=1, partner_type=2, request_data_obj=00000000, BC status=0
+2169.968603: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2169.968606: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2169.993891: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2170.013829: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.013837: ucsi_connector_change: port3 status: change=0040, opmode=3, connected=1, sourcing=1, partner_flags=1, partner_type=2, request_data_obj=12800000, BC status=0
+2170.013885: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2170.013890: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2170.067658: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.086720: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.086724: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2170.086725: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2170.106647: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.124951: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40013 | GET_ERROR_STATUS connector=4 (sysfs port3)
+2170.146737: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.164727: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=-95
+2170.164776: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2170.164779: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2170.182697: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2170.203705: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.203707: ucsi_connector_change: port3 status: change=0900, opmode=4, connected=1, sourcing=0, partner_flags=2, partner_type=2, request_data_obj=00000000, BC status=0
+2170.248084: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2170.248100: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2170.276611: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2170.295897: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.295903: ucsi_connector_change: port3 status: change=1242, opmode=3, connected=1, sourcing=0, partner_flags=2, partner_type=2, request_data_obj=4284b12c, BC status=1
+2170.295936: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2170.295941: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2170.318968: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.342889: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.342897: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2170.342900: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2170.368927: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.489020: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+2170.489093: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2170.489101: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2170.519941: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2170.541649: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.541651: ucsi_connector_change: port3 status: change=0240, opmode=3, connected=1, sourcing=0, partner_flags=2, partner_type=2, request_data_obj=428759d6, BC status=1
+2170.541675: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2170.541678: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2170.680997: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.707639: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2170.707644: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2170.707647: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2170.733139: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2170.752805: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+2170.968026: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+2170.968029: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+2170.987662: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.007873: lg_ucsi_477255_result: (ucsi_check_cable+0x92/0x290 [typec_ucsi] <- ucsi_send_command_common) ret=5
+2171.008009: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+2171.008012: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+2171.025752: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.050958: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40013 | GET_ERROR_STATUS connector=4 (sysfs port3)
+2171.080601: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.098628: lg_ucsi_477255_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=-5
+2171.098633: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2171.098634: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2171.125814: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.150713: lg_ucsi_477255_result: (ucsi_check_connection+0x47/0xd0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2171.150777: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2171.150778: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+2171.176682: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.202002: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2171.202004: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2171.202005: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+2171.221653: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.247922: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+2171.248029: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x300840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=0 offset=0 count=4
+2171.248033: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x300840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=0 offset=0 count=4
+2171.281517: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.306588: lg_ucsi_477255_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+2171.306637: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.306638: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.332520: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.358476: lg_ucsi_477255_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+2171.358525: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.358526: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.383667: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.403573: lg_ucsi_477255_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+2171.403645: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.403646: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.420715: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.440606: lg_ucsi_477255_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+2171.543043: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.543049: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+2171.570554: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2171.595507: lg_ucsi_477255_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+2212.086509: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2212.086512: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2212.107586: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2212.126469: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2212.126470: ucsi_connector_change: port3 status: change=4802, opmode=0, connected=0, sourcing=0, partner_flags=0, partner_type=0, request_data_obj=00000000, BC status=0
+2212.318528: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2212.318531: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2212.339625: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x30004 | ACK_CC_CI connector=0
+2212.442159: lg_ucsi_477255_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+2212.442170: ucsi_connector_change: port3 status: change=4800, opmode=4, connected=1, sourcing=0, partner_flags=1, partner_type=5, request_data_obj=00000000, BC status=1
+2213.464031: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+2213.464035: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+2213.491784: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2213.515512: lg_ucsi_477255_result: (ucsi_check_cable+0x92/0x290 [typec_ucsi] <- ucsi_send_command_common) ret=5
+2213.515654: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+2213.515656: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+2213.534978: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2213.560543: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40013 | GET_ERROR_STATUS connector=4 (sysfs port3)
+2213.586555: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2213.611785: lg_ucsi_477255_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=-5
+2213.611793: lg_ucsi_477255_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2213.611795: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+2213.639672: lg_ucsi_477255_write: (ucsi_acpi_async_control+0x4/0x30 [ucsi_acpi]) command=0x20004 | ACK_CC_CI connector=0
+2213.663665: lg_ucsi_477255_result: (ucsi_check_connection+0x47/0xd0 [typec_ucsi] <- ucsi_send_command_common) ret=16

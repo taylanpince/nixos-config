@@ -1,5 +1,7 @@
 # LG UltraFine 5K investigation
 
+**Newest evidence:** The [UCSI capture](docs/UCSI-TRACE-20261010.md) recorded a PD connection and observed charging, followed about42seconds later by a spontaneous return to the debug-accessory failure. The owner confirms no further cable movement. No UCSI commands were issued in the preceding~40seconds. Charging then ceased; no external TB router or display was detected. Next: read existing EC logs before choosing a behavior-changing patch.
+
 **Local engineering prepared:** [source assessment and experiments](docs/LOCAL-ENGINEERING.md), a bounded UCSI command/connector capture with automatic cleanup, a command decoder, and an instrumentation patch for Linux 6.18.44. The source defines a command trace event without emitting it; the prepared probes fill that observation gap. No negotiation workaround has been validated or kernel change activated. Next local step: capture command ordering before choosing a behavior-changing patch.
 
 Goal: stable native 5120×2880@60 on Framework 13 Ryzen AI HX 370, NixOS and Hyprland, with eDP preserved. The working brief is [the investigation plan](../framework-lg-ultrafine-5k-investigation.md).
