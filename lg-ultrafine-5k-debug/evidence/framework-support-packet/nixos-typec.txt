@@ -1,0 +1,65 @@
+
+/sys/class/typec/port0
+data_role: host [device]
+power_role: source [sink]
+power_operation_mode: default
+preferred_role: usb_power_delivery_revision: 3.1
+usb_typec_revision: 2.2
+
+/sys/class/typec/port1
+data_role: [host] device
+power_role: [source] sink
+power_operation_mode: 1.5A
+preferred_role: usb_power_delivery_revision: 3.1
+usb_typec_revision: 2.2
+
+/sys/class/typec/port1-cable
+usb_power_delivery_revision: 0.0
+type: passive
+plug_type: type-a
+
+/sys/class/typec/port1-partner
+usb_power_delivery_revision: 0.0
+accessory_mode: none
+supports_usb_power_delivery: no
+
+/sys/class/typec/port1-plug0
+
+/sys/class/typec/port2
+data_role: [host] device
+power_role: [source] sink
+power_operation_mode: 1.5A
+preferred_role: usb_power_delivery_revision: 3.1
+usb_typec_revision: 2.2
+
+/sys/class/typec/port2-cable
+usb_power_delivery_revision: 0.0
+type: passive
+plug_type: type-a
+
+/sys/class/typec/port2-partner
+usb_power_delivery_revision: 0.0
+accessory_mode: none
+supports_usb_power_delivery: no
+
+/sys/class/typec/port2-plug0
+
+/sys/class/typec/port3
+data_role: [host] device
+power_role: source [sink]
+power_operation_mode: usb_power_delivery
+preferred_role: usb_power_delivery_revision: 3.1
+usb_typec_revision: 2.2
+
+/sys/class/typec/port3-cable
+usb_power_delivery_revision: 0.0
+type: passive
+plug_type: type-a
+
+/sys/class/typec/port3-partner
+usb_power_delivery_revision: 0.0
+accessory_mode: debug
+supports_usb_power_delivery: no
+number_of_alternate_modes: 0
+
+/sys/class/typec/port3-plug0

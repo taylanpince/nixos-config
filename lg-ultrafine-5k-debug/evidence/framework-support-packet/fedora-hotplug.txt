@@ -1,0 +1,14 @@
+[  677.862455] localhost-live kernel: ucsi_acpi USBC000:00: UCSI_GET_PDOS failed (-95)
+[  678.879094] localhost-live kernel: usb 7-1: new high-speed USB device number 14 using xhci_hcd
+[  678.882056] localhost-live kernel: ucsi_acpi USBC000:00: UCSI_GET_PDOS failed (-95)
+[  679.010059] localhost-live kernel: usb 7-1: New USB device found, idVendor=043e, idProduct=9a61, bcdDevice=52.50
+[  679.010492] localhost-live kernel: usb 7-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[  679.010631] localhost-live kernel: usb 7-1: Product: USB2.1 Hub
+[  679.010752] localhost-live kernel: usb 7-1: Manufacturer: LG Electronics Inc.
+[  679.050061] localhost-live kernel: hub 7-1:1.0: USB hub found
+[  679.053035] localhost-live kernel: hub 7-1:1.0: 4 ports detected
+[  679.419097] localhost-live kernel: usb 7-1.4: new high-speed USB device number 15 using xhci_hcd
+[  679.515077] localhost-live kernel: usb 7-1: USB disconnect, device number 14
+[  679.524093] localhost-live kernel: usb 7-1.4: device descriptor read/all, error -71
+[  679.524406] localhost-live kernel: usb 7-1-port4: attempt power cycle
+[  679.960109] localhost-live kernel: ucsi_acpi USBC000:00: unknown error 256

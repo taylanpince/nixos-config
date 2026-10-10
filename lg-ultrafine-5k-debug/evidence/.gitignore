@@ -1,0 +1,7 @@
+*
+!.gitignore
+
+# Keep the reviewed, small support evidence excerpts under version control.
+!framework-support-packet/
+!framework-support-packet/*.txt
+!framework-support-packet/*.md

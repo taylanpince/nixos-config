@@ -1,0 +1,5 @@
+total 0
+lrwxrwxrwx. 1 root root 0 Oct 10 11:02 0-0 -> ../../../devices/pci0000:00/0000:00:08.3/0000:c3:00.5/domain0/0-0
+lrwxrwxrwx. 1 root root 0 Oct 10 11:02 1-0 -> ../../../devices/pci0000:00/0000:00:08.3/0000:c3:00.6/domain1/1-0
+lrwxrwxrwx. 1 root root 0 Oct 10 11:02 domain0 -> ../../../devices/pci0000:00/0000:00:08.3/0000:c3:00.5/domain0
+lrwxrwxrwx. 1 root root 0 Oct 10 11:02 domain1 -> ../../../devices/pci0000:00/0000:00:08.3/0000:c3:00.6/domain1

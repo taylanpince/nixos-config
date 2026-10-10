@@ -1,0 +1,16 @@
+[   77.271033] framework-host kernel: ucsi_acpi USBC000:00: UCSI_GET_PDOS failed (-70)
+[   77.578103] framework-host kernel: usb 7-1: new high-speed USB device number 2 using xhci_hcd
+[   77.649025] framework-host kernel: ucsi_acpi USBC000:00: unknown error 256
+[   77.708032] framework-host kernel: usb 7-1: New USB device found, idVendor=043e, idProduct=9a61, bcdDevice=52.50
+[   77.708438] framework-host kernel: usb 7-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+[   77.708591] framework-host kernel: usb 7-1: Product: USB2.1 Hub
+[   77.708718] framework-host kernel: usb 7-1: Manufacturer: LG Electronics Inc.
+[   77.744033] framework-host kernel: hub 7-1:1.0: USB hub found
+[   77.747034] framework-host kernel: hub 7-1:1.0: 4 ports detected
+[   77.998027] framework-host kernel: ucsi_acpi USBC000:00: UCSI_GET_PDOS failed (-95)
+[   78.102091] framework-host kernel: usb 7-1.4: new high-speed USB device number 3 using xhci_hcd
+[   78.202022] framework-host kernel: usb 7-1.4: New USB device found, idVendor=043e, idProduct=9a73, bcdDevice= 1.00
+[   78.202409] framework-host kernel: usb 7-1.4: New USB device strings: Mfr=0, Product=0, SerialNumber=1
+[   78.202474] framework-host kernel: usb 7-1.4: SerialNumber: [redacted]
+[   78.232056] framework-host kernel: usb 7-1: USB disconnect, device number 2
+[   78.288133] framework-host kernel: usb 7-1.4: USB disconnect, device number 3

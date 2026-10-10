@@ -1,0 +1,40 @@
+
+/sys/class/power_supply/ACAD
+type: Mains
+online: 0
+
+/sys/class/power_supply/BAT1
+type: Battery
+status: Discharging
+capacity: 81
+voltage_now: 15241000
+current_now: 2093000
+
+/sys/class/power_supply/hidpp_battery_0
+type: Battery
+online: 1
+status: Discharging
+
+/sys/class/power_supply/ucsi-source-psy-USBC000:001
+type: USB
+online: 0
+voltage_now: 0
+current_now: 0
+
+/sys/class/power_supply/ucsi-source-psy-USBC000:002
+type: USB
+online: 0
+voltage_now: 5000000
+current_now: 0
+
+/sys/class/power_supply/ucsi-source-psy-USBC000:003
+type: USB
+online: 0
+voltage_now: 5000000
+current_now: 0
+
+/sys/class/power_supply/ucsi-source-psy-USBC000:004
+type: USB
+online: 1
+voltage_now: 5000000
+current_now: 0

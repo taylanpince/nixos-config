@@ -1,0 +1,10 @@
+card1-DP-1: disconnected
+card1-DP-2: disconnected
+card1-DP-3: disconnected
+card1-DP-4: disconnected
+card1-DP-5: disconnected
+card1-DP-6: disconnected
+card1-DP-7: disconnected
+card1-DP-8: disconnected
+card1-eDP-1: connected
+card1-Writeback-1: unknown

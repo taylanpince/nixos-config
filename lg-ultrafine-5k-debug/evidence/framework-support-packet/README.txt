@@ -1,0 +1,23 @@
+Framework 13 AI 300 + LG 27MD5KL investigation, 10 October 2026
+
+This package is a local draft for review, not a submitted support ticket.
+REPORT.md states the problem and the model-specific help requested.
+COMPARISON.md distinguishes observed results from remaining hypotheses.
+
+Selected evidence:
+- nixos-ec-pd.txt: read-only Framework tool report with unrelated NVMe section omitted.
+- nixos-hotplug.txt: NixOS post-shutdown journal lines 1384-1402, hostname replaced
+  and USB serial number redacted.
+- fedora-hotplug.txt: complete 14-line last labeled Fedora hotplug kernel trace.
+- {nixos,fedora}-{drm-status,typec,power,thunderbolt-list}.txt: original snapshots.
+
+NixOS source: 20261010T122735-left-rear-module-after-shutdown-Kstoz1
+Fedora source: 20261010T111336-fedora-left-rear-connected-WI6uSJ
+Fedora trace: 20261010T111242-fedora-left-rear-trace-5GvFca
+
+File paths in the reports refer to the original local investigation tree.
+Full boot logs, udev logs and camera images are retained locally, not included.
+Early Fedora DRM cleanup warnings are described in the reports; the complete
+boot log is available for further review if specifically needed.
+Known personal hostname, hardware serials and network addresses were checked
+in these selected files. Review before external sharing.
