@@ -245,3 +245,11 @@
 **OFFLINE REPRODUCED:** Extracted actual `cypd_write_reg8_wait_ack` from pinned public EC commit01e6abe. Hardware mocks demonstrate false success for the captured tuple, a matching IRQ with an asynchronous event, and a wrong-port ACK. RFC guard returns BUSY without clearing pending events. All8 regression cases pass with guard; baseline reproduces exactly3 false successes. Bash syntax/ShellCheck and warning-as-error compile pass. Test output and reviewed trace excerpts are versioned.
 
 **LIMIT / NEXT:** Installed `lilac-4.0.2-fdbf549` is not verified as this public source. Installed extended-PD logging differs from its handler. Charge-port callers ignore helper errors/update cached state, so the guard alone is not a fix ready for firmware. No firmware/kernel/system changes. Next: Framework review of exact source/build, ACK/event serialization and recovery, with model-specific diagnostic firmware if applicable. Follow-up text prepared locally; not posted. Native5K remains unresolved.
+
+### Local Linux fork prepared at owner's request
+
+**OWNER DIRECTION:** No more ticket posts while awaiting the existing response. Investigate local workarounds/forks. No external action taken.
+
+**PREPARED / COMPILED:** Patch0003 adds default-off `lab_skip_partner_pdos`, limited to Framework Ryzen AI300 DMI and connector4. It suppresses partner PDO reads and clears their destination; no other queries or reported connector state are changed. Eight actual-function offline checks pass. Build `ucsi-build-CHVJka` links/modposts successfully against exact6.18.44; parameter and vermagic verified. BTF skipped for absent vmlinux. Build also includes diagnostic patch0001. Nothing installed or loaded.
+
+**PROPOSED / LIMIT:** A/B/A transient module replacement, flag0/1/0 with equal backend reloads, trace verification and stock-module/reboot rollback. Reload may affect all Type-C ports; missing power metadata is expected in B. This tests a lower-confidence query-triggered hypothesis; the EC defect is not fixed by it. Activation needs approval under the working brief. Full comparison, alternatives and rollback: `docs/LOCAL-WORKAROUND-OPTIONS.md`.

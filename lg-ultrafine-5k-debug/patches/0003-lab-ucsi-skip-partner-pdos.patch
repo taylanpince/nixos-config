@@ -1,0 +1,46 @@
+--- a/drivers/usb/typec/ucsi/ucsi.c
++++ b/drivers/usb/typec/ucsi/ucsi.c
+@@ -9,6 +9,7 @@
+ #include <linux/completion.h>
+ #include <linux/property.h>
+ #include <linux/device.h>
++#include <linux/dmi.h>
+ #include <linux/module.h>
+ #include <linux/delay.h>
+ #include <linux/slab.h>
+@@ -17,6 +18,20 @@
+ #include "ucsi.h"
+ #include "trace.h"
+ 
++/* Local diagnostic experiment, not an upstream device quirk. */
++static bool lab_skip_partner_pdos;
++module_param(lab_skip_partner_pdos, bool, 0444);
++MODULE_PARM_DESC(lab_skip_partner_pdos,
++	"LAB: skip partner PDO reads on Framework Ryzen AI 300 connector 4");
++
++static bool ucsi_lab_skip_partner_pdos(struct ucsi_connector *con,
++				     int is_partner)
++{
++	return lab_skip_partner_pdos && is_partner && con->num == 4 &&
++		dmi_match(DMI_SYS_VENDOR, "Framework") &&
++		dmi_match(DMI_PRODUCT_NAME, "Laptop 13 (AMD Ryzen AI 300 Series)");
++}
++
+ /*
+  * UCSI_TIMEOUT_MS - PPM communication timeout
+  *
+@@ -841,6 +856,14 @@
+ 	u8 num_pdos;
+ 	int ret;
+ 
++	if (ucsi_lab_skip_partner_pdos(con, is_partner)) {
++		/* Never expose PDOs cached before a disconnect as current data. */
++		memset(pdos, 0, PDO_MAX_OBJECTS * sizeof(*pdos));
++		dev_warn_once(ucsi->dev,
++			"LAB: connector 4 partner PDO reads disabled; power telemetry incomplete\n");
++		return 0;
++	}
++
+ 	if (!(ucsi->cap.features & UCSI_CAP_PDO_DETAILS))
+ 		return 0;
+ 

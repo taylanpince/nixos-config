@@ -1,0 +1,9 @@
+patching file drivers/usb/typec/ucsi/ucsi.c
+PASS: default off (return=7, queries=2)
+PASS: target partner suppressed (return=0, queries=0)
+PASS: other connector untouched (return=7, queries=2)
+PASS: local capabilities untouched (return=7, queries=2)
+PASS: other vendor untouched (return=7, queries=2)
+PASS: other product untouched (return=7, queries=2)
+PASS: stock errors preserved (return=-95, queries=1)
+PASS: missing feature preserved (return=0, queries=0)

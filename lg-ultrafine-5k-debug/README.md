@@ -1,5 +1,10 @@
 # LG UltraFine 5K investigation
 
+**Local workaround trial prepared:** [options, compiled Linux fork and rollback](docs/LOCAL-WORKAROUND-OPTIONS.md).
+A default-off parameter suppresses partner PDO reads only on this model's
+left-rear connector. It compiles for6.18.44 and passes8 offline checks; it has not
+been loaded or shown to fix the display. Owner requested no further ticket posts.
+
 **Newest evidence:** The [combined EC/UCSI capture and offline reproduction](docs/EC-ACK-INVESTIGATION.md) retained a brief PD/AC pulse, an unexpected command acknowledgment, then disconnect and return to debug accessory. The two-minute probe completed and restored logging normally. Public EC code can falsely report success for the captured response pattern; an offline regression reproduces this and tests an RFC guard. Installed-source correspondence and causality remain unproven. Next: Framework review of the exact EC build, acknowledgment handling and caller recovery. No firmware change made.
 
 **Local engineering prepared:** [source assessment and experiments](docs/LOCAL-ENGINEERING.md), tested UCSI/EC captures with automatic cleanup, a command decoder, a compiled instrumentation-only kernel patch, and an offline EC acknowledgment regression/RFC guard. The guard is incomplete for firmware deployment: callers ignore failures and need recovery/error propagation. No negotiation workaround has been validated or kernel change activated.

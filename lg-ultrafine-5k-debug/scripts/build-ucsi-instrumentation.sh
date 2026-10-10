@@ -2,6 +2,11 @@
 # Compile only: no installation, module loading, boot entry or system rebuild.
 # Pinned to the source/build files of the investigated NixOS kernel.
 set -euo pipefail
+mode=${1:---instrumentation}
+[[ $# -le 1 && ( $mode == --instrumentation || $mode == --pd-query-test ) ]] || {
+  echo 'Usage: build-ucsi-instrumentation.sh [--instrumentation|--pd-query-test]' >&2
+  exit 2
+}
 project=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
 archive=/nix/store/qdb5ymc1mx7k19rqdi6qaqsz6l0jv359-linux-6.18.44.tar.xz
 dev=/nix/store/r4z3nvwwwbg9x9lxddbdjbkbpi5sgnin-linux-6.18.44-dev
@@ -16,6 +21,10 @@ work=$(mktemp -d "$project/evidence/ucsi-build-XXXXXX")
 printf 'Build directory: %s\n' "$work"
 tar -xJf "$archive" -C "$work" --strip-components=1 linux-6.18.44/drivers/usb/typec/ucsi
 patch -p1 -d "$work" < "$project/patches/0001-ucsi-restore-command-completion-tracing.patch"
+if [[ $mode == --pd-query-test ]]; then
+  patch --fuzz=0 -p1 -d "$work" < "$project/patches/0003-lab-ucsi-skip-partner-pdos.patch"
+fi
+printf '%s\n' "$mode" > "$work/build-mode.txt"
 make -C "$dev/lib/modules/6.18.44/build" M="$work/drivers/usb/typec/ucsi" \
   CC="$compiler" LD="$linker" -j4 typec_ucsi.ko 2>&1 | tee "$work/build.log"
 modinfo "$work/drivers/usb/typec/ucsi/typec_ucsi.ko" > "$work/modinfo.txt"
