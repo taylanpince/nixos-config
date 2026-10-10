@@ -1,0 +1,16 @@
+--- a/zephyr/program/framework/src/cypd_ccg8.c
++++ b/zephyr/program/framework/src/cypd_ccg8.c
+@@ -104,6 +104,13 @@
+ 		CPRINTS("P1 0x%x", event);
+ 	}
+ 
++	/* An asynchronous event or another interrupt is not our command ACK.
++	 * Leave it pending for the PD event dispatcher. The caller must handle
++	 * BUSY; this guard alone does not implement transaction retry.
++	 */
++	if (ack_mask != expected_ack_mask || event >= 0x80)
++		return EC_ERROR_BUSY;
++
+ 	/* only clear response code let main task handle event code */
+ 	if (event < 0x80) {
+ 		cypd_clear_int(controller, ack_mask);

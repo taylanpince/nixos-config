@@ -1,0 +1,20 @@
+Original public source (expect exactly three false-success failures):
+PASS: device ACK: result=0 expected=0 clear=1 expected=1
+PASS: port0 ACK: result=0 expected=0 clear=2 expected=2
+PASS: port1 ACK: result=0 expected=0 clear=4 expected=4
+FAIL: captured IRQ=0, P1=0x0886: result=0 expected=6 clear=0 expected=0
+FAIL: matching IRQ, async contract event: result=0 expected=6 clear=0 expected=0
+FAIL: wrong-port ACK: result=0 expected=6 clear=0 expected=0
+PASS: empty response: result=5 expected=5 clear=4 expected=4
+PASS: invalid-state response: result=5 expected=5 clear=4 expected=4
+patching file zephyr/program/framework/src/cypd_ccg8.c
+RFC guard (expect all eight cases to pass):
+PASS: device ACK: result=0 expected=0 clear=1 expected=1
+PASS: port0 ACK: result=0 expected=0 clear=2 expected=2
+PASS: port1 ACK: result=0 expected=0 clear=4 expected=4
+PASS: captured IRQ=0, P1=0x0886: result=6 expected=6 clear=0 expected=0
+PASS: matching IRQ, async contract event: result=6 expected=6 clear=0 expected=0
+PASS: wrong-port ACK: result=6 expected=6 clear=0 expected=0
+PASS: empty response: result=5 expected=5 clear=4 expected=4
+PASS: invalid-state response: result=5 expected=5 clear=4 expected=4
+Offline reproduction and guard checks passed; no firmware was built or changed.

@@ -1,5 +1,10 @@
 # UCSI capture: charging followed by spontaneous loss
 
+**Follow-up completed:** The combined EC/UCSI capture below has now run and
+cleaned up successfully. It retained the short AC pulse and a pre-disconnect
+acknowledgment mismatch. See [EC findings and offline regression](EC-ACK-INVESTIGATION.md).
+The procedures and pending-test notes below describe the earlier sequence.
+
 Capture: `evidence/20261010T115207Z-ucsi-probes-DxUUhQ/`, 10 October2026,
 13:52:07–13:54:07 Europe/Madrid. Linux6.18.44, BIOS4.02. Owner confirms LG on
 the left-rear port and **no further touching/reconnection after the requested

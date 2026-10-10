@@ -1,5 +1,10 @@
 # Local engineering assessment — 10 October 2026
 
+**Latest:** [Combined EC/UCSI evidence and offline acknowledgment regression](EC-ACK-INVESTIGATION.md)
+identify a public EC false-success path matching a captured response pattern.
+An RFC guard passes the offline fixture, but installed-source correspondence and
+caller recovery remain unresolved; it is not a deployable display fix.
+
 Useful local work remains at the **Linux UCSI ↔ EC ↔ PD-controller boundary**.
 Fedora strongly deprioritizes Hyprland as the current cause; it does not eliminate
 shared Linux code. No external Thunderbolt router exists yet, so modesetting and

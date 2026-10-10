@@ -1,0 +1,48 @@
+    kworker/16:2-513133  [016] .....  3550.266964: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+    kworker/16:2-513133  [016] .....  3550.310648: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+    kworker/16:2-513133  [016] .....  3550.310653: ucsi_connector_change: port3 status: change=4800, opmode=0, connected=0, sourcing=0, partner_flags=0, partner_type=0, request_data_obj=00000000, BC status=0
+     kworker/9:2-612384  [009] .....  3559.180982: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/9:2-612384  [009] .....  3559.230552: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/9:2-612384  [009] .....  3559.230555: ucsi_connector_change: port3 status: change=4800, opmode=4, connected=1, sourcing=1, partner_flags=1, partner_type=2, request_data_obj=00000000, BC status=0
+     kworker/9:2-612384  [009] .l...  3559.250871: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/9:2-612384  [009] .....  3559.295712: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/9:2-612384  [009] .....  3559.295715: ucsi_connector_change: port3 status: change=0040, opmode=3, connected=1, sourcing=1, partner_flags=1, partner_type=2, request_data_obj=12800000, BC status=0
+   kworker/u96:3-434758  [016] .....  3559.295746: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+   kworker/u96:3-434758  [016] .....  3559.355751: lg_ucsi_648030_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+   kworker/u96:3-434758  [016] .....  3559.355755: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+   kworker/u96:3-434758  [000] .....  3559.442392: lg_ucsi_648030_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=-95
+     kworker/9:2-612384  [009] .....  3559.442519: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/9:2-612384  [009] .....  3559.483715: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/9:2-612384  [009] .....  3559.483721: ucsi_connector_change: port3 status: change=0900, opmode=4, connected=1, sourcing=0, partner_flags=2, partner_type=2, request_data_obj=00000000, BC status=0
+     kworker/1:0-589197  [001] .....  3559.518499: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/1:0-589197  [001] .....  3559.567888: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/1:0-589197  [001] .....  3559.567930: ucsi_connector_change: port3 status: change=1242, opmode=3, connected=1, sourcing=0, partner_flags=2, partner_type=2, request_data_obj=4284b12c, BC status=1
+   kworker/u96:3-434758  [003] .....  3559.568060: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+   kworker/u96:3-434758  [003] .....  3559.615847: lg_ucsi_648030_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+   kworker/u96:3-434758  [003] .....  3559.615850: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x604840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=4 count=3
+   kworker/u96:3-434758  [011] .....  3559.664328: lg_ucsi_648030_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=4
+    kworker/21:2-561285  [021] .....  3559.664399: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+    kworker/21:2-561285  [021] .....  3559.945605: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+    kworker/21:2-561285  [021] .....  3559.945608: ucsi_connector_change: port3 status: change=0200, opmode=0, connected=0, sourcing=0, partner_flags=0, partner_type=0, request_data_obj=00000000, BC status=0
+    kworker/19:0-639032  [019] .....  3560.054587: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+    kworker/19:0-639032  [019] .....  3560.096554: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+    kworker/19:0-639032  [019] .....  3560.096556: ucsi_connector_change: port3 status: change=4802, opmode=0, connected=0, sourcing=0, partner_flags=0, partner_type=0, request_data_obj=00000000, BC status=0
+     kworker/6:2-328442  [006] .....  3560.196598: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+     kworker/6:2-328442  [006] .....  3560.264585: lg_ucsi_648030_result: (ucsi_handle_connector_change+0x7f/0x420 [typec_ucsi] <- ucsi_send_command_common) ret=16
+     kworker/6:2-328442  [006] .....  3560.264588: ucsi_connector_change: port3 status: change=4800, opmode=4, connected=1, sourcing=0, partner_flags=1, partner_type=5, request_data_obj=00000000, BC status=1
+   kworker/u96:1-410811  [017] .....  3560.280015: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40011 | GET_CABLE_PROPERTY connector=4 (sysfs port3)
+   kworker/u96:1-410811  [017] .....  3560.327505: lg_ucsi_648030_result: (ucsi_check_cable+0x92/0x290 [typec_ucsi] <- ucsi_send_command_common) ret=5
+   kworker/u96:1-410811  [017] .....  3560.327627: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x402000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=2:cable_SOP_prime offset=0
+   kworker/u96:1-410811  [006] .....  3560.597537: lg_ucsi_648030_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=-5
+   kworker/u96:1-410811  [006] .....  3560.597544: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+   kworker/u96:1-410811  [006] .....  3560.642772: lg_ucsi_648030_result: (ucsi_check_connection+0x47/0xd0 [typec_ucsi] <- ucsi_send_command_common) ret=16
+   kworker/u96:1-410811  [006] .....  3560.643097: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x700840010 | GET_PDOS connector=4 (sysfs port3) partner=1 source_pdos=1 offset=0 count=4
+   kworker/u96:1-410811  [006] .....  3560.739023: lg_ucsi_648030_result: (ucsi_read_pdos+0x82/0xa0 [typec_ucsi] <- ucsi_send_command_common) ret=-95
+   kworker/u96:1-410811  [006] .....  3560.739042: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:1-410811  [006] .....  3560.789699: lg_ucsi_648030_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+   kworker/u96:1-410811  [006] .....  3560.789776: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:1-410811  [006] .....  3560.834762: lg_ucsi_648030_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+   kworker/u96:1-410811  [006] .l...  3560.834972: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x401000c | GET_ALTERNATE_MODES connector=4 (sysfs port3) recipient=1:partner_SOP offset=0
+   kworker/u96:1-410811  [006] .....  3560.872766: lg_ucsi_648030_result: (ucsi_register_altmodes+0xe2/0x200 [typec_ucsi] <- ucsi_send_command_common) ret=0
+   kworker/u96:1-410811  [000] .....  3561.303036: lg_ucsi_648030_request: (ucsi_send_command_common+0x0/0x1b0 [typec_ucsi]) command=0x40012 | GET_CONNECTOR_STATUS connector=4 (sysfs port3)
+   kworker/u96:1-410811  [000] .....  3561.355109: lg_ucsi_648030_result: (ucsi_check_connection+0x47/0xd0 [typec_ucsi] <- ucsi_send_command_common) ret=16

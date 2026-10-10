@@ -21,3 +21,13 @@ Early Fedora DRM cleanup warnings are described in the reports; the complete
 boot log is available for further review if specifically needed.
 Known personal hostname, hardware serials and network addresses were checked
 in these selected files. Review before external sharing.
+
+Additional 10 October EC/UCSI engineering evidence:
+- nixos-ec-failure-live.txt: source20261010T121518Z-ucsi-probes-N3nlVt,
+  ec-console-live.txt lines195-310, omitting POST codes, host-event notifications,
+  battery percentages and SOC power-limit chatter. Original event order retained.
+- nixos-ucsi-with-ec.txt: request/return and connector-change records from that
+  capture's decoded trace, retaining raw command arguments and monotonic times.
+- ec-ack-regression.txt: offline actual-function fixture, pinned public EC source,
+  original false-success reproduction and RFC guard results. Not a hardware test.
+See docs/EC-ACK-INVESTIGATION.md for source pin, limits and capture cleanup checks.
