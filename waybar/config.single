@@ -2,6 +2,7 @@
   "name": "single",
   "layer": "top",
   "position": "top",
+  "output": "!DP-8",
   "height": 60,
   "spacing": 12,
 
