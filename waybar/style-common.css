@@ -35,6 +35,12 @@ window#waybar {
   color: @blue;
 }
 
+/* Workspace shown on a screen that isn't the focused one (e.g. the LG tiles
+   while you're on the laptop). Marked in blue without the focused background. */
+#workspaces button.visible {
+  color: @blue;
+}
+
 #workspaces button.urgent {
   background: @red;
   color: @base03;
