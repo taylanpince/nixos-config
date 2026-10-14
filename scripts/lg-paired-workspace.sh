@@ -24,11 +24,11 @@ focused=$(printf '%s\n' "$mons" | awk '/^Monitor /{n=$2} /focused: yes/{print n;
 have7=$(printf '%s\n' "$mons" | grep -c '^Monitor DP-7 ')
 have8=$(printf '%s\n' "$mons" | grep -c '^Monitor DP-8 ')
 
-fallback() { # single-screen relative switch, incl. empty workspaces (old behaviour)
+fallback() { # single-screen switch among the focused monitor's own workspaces
   if [ "$d" = 1 ]; then
-    hyprctl dispatch workspace r+1 >/dev/null
+    hyprctl dispatch workspace m+1 >/dev/null
   else
-    hyprctl dispatch workspace r-1 >/dev/null
+    hyprctl dispatch workspace m-1 >/dev/null
   fi
 }
 
