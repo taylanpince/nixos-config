@@ -25,6 +25,7 @@
     ../../modules/tailscale.nix
     ../../modules/logging.nix
     ../../modules/power.nix
+    ../../modules/wifi-resume.nix
     ../../modules/pennyworth-mdns.nix
   ];
 
