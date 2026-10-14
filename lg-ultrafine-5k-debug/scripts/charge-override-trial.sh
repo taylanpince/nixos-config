@@ -119,7 +119,7 @@ printf 'Now: battery=%s ACAD=%s chg_input=%s\n' "$(cat /sys/class/power_supply/B
   "$(cat /sys/class/power_supply/ACAD/online)" "$(ec chargestate show 2>/dev/null | awk -F'= ' '/chg_input_current/ {print $2}')"
 
 # 2. Operator moves the cable under capture.
-read -r -p 'STEP 1: Unplug the LG cable from the FRONT-RIGHT port. Press Enter once it is out. ' < "$tty"
+read -r -p 'STEP 1: Unplug the LG cable from the laptop. Press Enter once it is out. ' < "$tty"
 date --iso-8601=ns > "$out/unplugged-at.txt"
 sleep 5
 state after-unplug
@@ -133,7 +133,7 @@ for _ in $(seq 1 60); do
 done
 grep -q '^ENABLED' "$out/capture-stdout.txt" || { echo 'Capture did not report ENABLED within 60 s.' >&2; exit 1; }
 
-read -r -p 'STEP 2: Plug the LG into the REAR-LEFT USB-C module now, then press Enter immediately. ' < "$tty"
+read -r -p 'STEP 2: Plug the LG into a REAR USB4 port now, then press Enter immediately. ' < "$tty"
 date --iso-8601=ns > "$out/plugged-at.txt"
 echo "Observing for the rest of the ${duration}-second window; snapshots every 5 s. Leave everything alone."
 while kill -0 "$capture_pid" 2>/dev/null; do
