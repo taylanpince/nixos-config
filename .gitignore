@@ -9,7 +9,6 @@ systemd/user/*.socket
 paths.target.wants
 timers.target.wants
 sockets.target.wants
-waybar/config
 swaync/config.json
 swaync/style.css
 swaync/palette.css

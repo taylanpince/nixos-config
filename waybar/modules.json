@@ -1,35 +1,4 @@
 {
-  "name": "single",
-  "layer": "top",
-  "position": "top",
-  "output": "!DP-8",
-  "height": 60,
-  "spacing": 12,
-
-  "modules-left": [
-    "hyprland/workspaces"
-  ],
-
-  "modules-center": [
-    
-  ],
-
-  "modules-right": [
-    "custom/gpu-clock",
-    "custom/theme",
-    "custom/brightness",
-    "custom/bluetooth",
-    "idle_inhibitor",
-    "custom/recording",
-    "custom/mic",
-    "custom/volume",
-    "network",
-    "battery",
-    "clock",
-    "custom/notification",
-    "tray"
-  ],
-
   "hyprland/workspaces": {
     "all-outputs": false,
     "move-to-monitor": true,

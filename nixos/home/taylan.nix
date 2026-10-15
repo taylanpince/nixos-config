@@ -50,7 +50,7 @@
 
   # Voxtype: voice-to-text on the keyboard's dedicated mic key (Alt+C chord).
   # Vulkan variant for AMD Radeon 890M iGPU. Status indicator is provided by
-  # a custom/voxtype Waybar module (see waybar/config.{single,dual}); the
+  # a custom/voxtype Waybar module (see waybar/config); the
   # heavier GTK4 OSD is intentionally not installed.
   programs.voxtype = {
     enable = true;

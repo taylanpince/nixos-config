@@ -1,0 +1,65 @@
+// Three bars sharing the module definitions in modules.json. The LG UltraFine
+// is driven as two side-by-side tiles (DP-7 left, DP-8 right), so the bar is
+// split across them like one wide menubar: page dots on the left tile, the
+// status widgets on the right tile. Every other output gets the full bar.
+[
+  {
+    "name": "lg-left",
+    "include": ["~/.config/waybar/modules.json"],
+    "layer": "top",
+    "position": "top",
+    "output": "DP-7",
+    "height": 60,
+    "spacing": 12,
+    "modules-left": ["hyprland/workspaces"]
+  },
+  {
+    "name": "lg-right",
+    "include": ["~/.config/waybar/modules.json"],
+    "layer": "top",
+    "position": "top",
+    "output": "DP-8",
+    "height": 60,
+    "spacing": 12,
+    "modules-right": [
+      "custom/gpu-clock",
+      "custom/theme",
+      "custom/brightness",
+      "custom/bluetooth",
+      "idle_inhibitor",
+      "custom/recording",
+      "custom/mic",
+      "custom/volume",
+      "network",
+      "battery",
+      "clock",
+      "custom/notification",
+      "tray"
+    ]
+  },
+  {
+    "name": "main",
+    "include": ["~/.config/waybar/modules.json"],
+    "layer": "top",
+    "position": "top",
+    "output": ["!DP-7", "!DP-8", "*"],
+    "height": 60,
+    "spacing": 12,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-right": [
+      "custom/gpu-clock",
+      "custom/theme",
+      "custom/brightness",
+      "custom/bluetooth",
+      "idle_inhibitor",
+      "custom/recording",
+      "custom/mic",
+      "custom/volume",
+      "network",
+      "battery",
+      "clock",
+      "custom/notification",
+      "tray"
+    ]
+  }
+]
