@@ -33,27 +33,19 @@ fake_gpu() { # <root> <min_mhz> <cur_mhz> <max_mhz> <busy_pct>
   printf '55000\n' >"$dev/hwmon/hwmon5/temp1_input"
 }
 
-# Fresh sandbox per test: its own fake sysfs, its own state dir, its own
-# notification log. Without this, trip counters leak between cases.
-new_case() { # <name> -> sets ROOT, STATE, NOTIFYLOG
+# Fresh sandbox per test: its own fake sysfs and its own state dir. Without
+# this, trip counters leak between cases.
+new_case() { # <name> -> sets ROOT, STATE
   CASE="$1"
-  ROOT="$TMP/$CASE/drm"; STATE="$TMP/$CASE/state"; NOTIFYLOG="$TMP/$CASE/notify.log"
+  ROOT="$TMP/$CASE/drm"; STATE="$TMP/$CASE/state"
   mkdir -p "$ROOT" "$STATE"
-  : >"$NOTIFYLOG"
-  cat >"$TMP/$CASE/notify.sh" <<EOF
-#!/usr/bin/env bash
-printf '%s\n' "\$*" >>"$NOTIFYLOG"
-EOF
-  chmod +x "$TMP/$CASE/notify.sh"
 }
 
 # One poll of the module.
 poll() {
-  GPU_DRM_ROOT="$ROOT" GPU_STATE_DIR="$STATE" GPU_NOTIFY_CMD="$TMP/$CASE/notify.sh" \
-    bash "$SCRIPT"
+  GPU_DRM_ROOT="$ROOT" GPU_STATE_DIR="$STATE" bash "$SCRIPT"
 }
 field() { poll | jq -r ".$1"; }
-notify_count() { wc -l <"$NOTIFYLOG" | tr -d ' '; }
 
 echo "gpu-clock.sh"
 
@@ -83,14 +75,6 @@ assert_eq "third consecutive bad poll trips" "wedged" "$(field class)"
 [[ -n "$(field text)" ]] && ok "  wedged state renders text" || no "  wedged state renders text" "non-empty" ""
 [[ "$(field text)" == *601* ]] && ok "  text reports the measured clock" || no "  text reports the measured clock" "*601*" "$(field text)"
 
-# --- notification fires once per trip, not once per poll -----------------
-new_case notify_once
-fake_gpu "$ROOT" 600 601 2900 90
-poll >/dev/null; poll >/dev/null; poll >/dev/null
-assert_eq "notifies on trip" "1" "$(notify_count)"
-poll >/dev/null; poll >/dev/null
-assert_eq "does not re-notify while still wedged" "1" "$(notify_count)"
-
 # --- recovery clears the fault and re-arms -------------------------------
 new_case recovery
 fake_gpu "$ROOT" 600 601 2900 90
@@ -98,11 +82,9 @@ poll >/dev/null; poll >/dev/null; poll >/dev/null
 assert_eq "wedged before recovery" "wedged" "$(field class)"
 fake_gpu "$ROOT" 600 2900 2900 90
 assert_eq "clears as soon as the clock rises" "ok" "$(field class)"
-assert_eq "  notification count unchanged by recovery" "1" "$(notify_count)"
 fake_gpu "$ROOT" 600 601 2900 90
 poll >/dev/null; poll >/dev/null
 assert_eq "counter reset by recovery (needs 3 again)" "wedged" "$(field class)"
-assert_eq "  re-arms and notifies on the next trip" "2" "$(notify_count)"
 
 # --- a brief burst must not trip -----------------------------------------
 new_case burst

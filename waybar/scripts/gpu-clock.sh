@@ -19,7 +19,6 @@ set -uo pipefail
 
 DRM_ROOT="${GPU_DRM_ROOT:-/sys/class/drm}"
 STATE_DIR="${GPU_STATE_DIR:-${XDG_RUNTIME_DIR:-/run/user/$UID}/waybar-gpu-clock}"
-NOTIFY_CMD="${GPU_NOTIFY_CMD:-notify-send}"
 
 BUSY_MIN=50    # % busy below which a floor clock is simply idle, not a fault
 FLOOR_PCT=115  # a clock within this % of minimum counts as "at the floor"
@@ -64,7 +63,6 @@ is_num "$min" && is_num "$max" && is_num "$busy" && is_num "$cur" || healthy
 
 mkdir -p "$STATE_DIR" 2>/dev/null || healthy
 count_file="$STATE_DIR/consecutive"
-notified_file="$STATE_DIR/notified"
 
 count="$(cat "$count_file" 2>/dev/null)"
 is_num "$count" || count=0
@@ -73,22 +71,14 @@ floor=$(( min * FLOOR_PCT / 100 ))
 if (( busy >= BUSY_MIN && cur <= floor )); then
   count=$(( count + 1 ))
 else
-  # Any healthy poll clears the run and re-arms the notification, so a later
-  # trip is reported again.
+  # Any healthy poll clears the run.
   count=0
-  rm -f "$notified_file"
 fi
 printf '%s\n' "$count" >"$count_file" 2>/dev/null
 
 (( count >= TRIP_POLLS )) || healthy
 
-# Notify once per trip, not once per poll.
-if [[ ! -e "$notified_file" ]]; then
-  "$NOTIFY_CMD" -u critical "GPU clock stuck" \
-    "iGPU pinned at ${cur}MHz (max ${max}MHz) under ${busy}% load — SMU wedged, usually after a long suspend. Reboot to clear." \
-    >/dev/null 2>&1
-  : >"$notified_file"
-fi
+# The bar pill is the only alert; no desktop notification.
 
 printf '{"text":"󰢮 GPU %sMHz","class":"wedged","alt":"wedged","tooltip":"iGPU stuck at %sMHz (min %s, max %s) at %s%% busy\\nDPM is not ramping — SMU wedged, usually after a long s2idle resume\\nReboot to clear; forcing power_dpm_force_performance_level does not work"}\n' \
   "$cur" "$cur" "$min" "$max" "$busy"
