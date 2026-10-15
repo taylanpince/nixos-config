@@ -53,9 +53,7 @@ sudo nix-collect-garbage -d     # Clean old generations
 
 ### Helper Scripts (scripts/)
 Key scripts for desktop functionality:
-- `display-hotplug.sh` - Multi-monitor workspace management
 - `window-switcher.sh` - Advanced window switcher with MRU tracking
-- `switch-waybar-config.sh` - Theme/display mode switching
 - `osd-volume.sh`, `osd-brightness.sh` - Visual feedback via wob
 
 ## Key Patterns

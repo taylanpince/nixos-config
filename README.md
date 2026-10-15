@@ -86,10 +86,8 @@ config/
 ├── mpv/
 │   └── mpv.conf                   # Media player config
 ├── scripts/
-│   ├── display-hotplug.sh         # Multi-monitor setup
 │   ├── record-screen.sh           # Screen recording
 │   ├── set-random-wallpaper.sh    # Wallpaper management
-│   ├── switch-waybar-config.sh    # Waybar config switching
 │   ├── toggle-terminal.sh         # Terminal toggle script
 │   ├── osd-brightness.sh          # Brightness OSD
 │   ├── osd-volume.sh              # Volume OSD
@@ -166,7 +164,7 @@ config/
   - `SUPER + S`: Screenshot (area selection)
   - `SUPER + SHIFT + S`: Screen recording
   - `SUPER + ALT + S`: Screenshot annotation (Satty)
-- **Multi-monitor**: Auto workspace switching with display-hotplug script
+- **Multi-monitor**: LG UltraFine 5K driven as dual tiles with per-screen persistent workspaces and paired switching
 
 ### Waybar Modules
 - **Workspaces**: Hyprland workspace indicators with auto-switching
@@ -211,7 +209,7 @@ Edit `hypr/hyprland.conf` for keybindings, layouts, and rules.
 
 ### Theming
 - **Colors**: Edit `hypr/mocha.conf` for Catppuccin colors
-- **Waybar**: Modify `waybar/style.css` for bar styling, use `scripts/switch-waybar-config.sh` to switch themes
+- **Waybar**: Modify `waybar/style.css` for bar styling; toggle light/dark with `SUPER + SHIFT + T`
 - **Rofi**: Update `rofi/themes/solarized-dark.rasi`
 - **Wallpapers**: Use `scripts/set-random-wallpaper.sh` for random wallpaper selection
 
@@ -274,10 +272,8 @@ nix search <package-name>
 - **Power Management**: power-profiles-daemon for performance scaling
 
 ### Scripts
-- **display-hotplug.sh**: Multi-monitor workspace management
 - **record-screen.sh**: Screen recording with audio
 - **set-random-wallpaper.sh**: Wallpaper rotation
-- **switch-waybar-config.sh**: Theme switching
 - **toggle-terminal.sh**: Terminal visibility toggle
 - **osd-brightness.sh**: Brightness on-screen display
 - **osd-volume.sh**: Volume on-screen display
