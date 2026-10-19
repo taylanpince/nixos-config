@@ -69,7 +69,11 @@ if [ "${#tile_lines[@]}" -ge 2 ]; then
 fi
 
 # Build the hyprpaper config: halves on the tiles, cover-crops elsewhere.
-desired="splash = false"$'\n'
+# The layout comment records every screen's geometry, so moving a monitor (e.g.
+# a hyprctl reload with new positions) counts as a change and restarts hyprpaper:
+# its surfaces otherwise stay at the old positions and the desktop goes blank.
+layout="$(hyprctl monitors -j 2>/dev/null | jq -r '[.[] | "\(.name)@\(.x),\(.y):\(.width)x\(.height)"] | join(" ")')"
+desired="# layout: $layout"$'\n'"splash = false"$'\n'
 for m in "${mons[@]}"; do
   IFS=$'\t' read -r name x w h <<<"$m"
   if [ "$name" = "$left_name" ]; then img="$left"
@@ -82,7 +86,7 @@ for m in "${mons[@]}"; do
 done
 
 # Skip the restart if nothing changed and hyprpaper is already up (debounces the
-# second monitor event of a two-tile hot-plug).
+# second monitor event of a two-tile hot-plug, and plain config reloads).
 if [ "$desired" = "$(cat "$RUNTIME_CONF" 2>/dev/null)" ] && pgrep -x hyprpaper >/dev/null; then
   exit 0
 fi

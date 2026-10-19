@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
-# Re-apply the wallpaper across all screens when a monitor is added, so the LG
-# tiles (hot-plugged after login) get their halves of the current image instead
-# of a black desktop. Reuses the current source image (no re-randomize) and lets
-# set-random-wallpaper.sh handle the tile split and a no-op debounce.
+# Re-apply the wallpaper across all screens when a monitor is added or the config
+# is reloaded (which can move monitors), so the LG tiles (hot-plugged after login)
+# get their halves of the current image instead of a black desktop. Reuses the
+# current source image (no re-randomize) and lets set-random-wallpaper.sh handle
+# the tile split and a no-op debounce.
 set -u
 
 sig="${HYPRLAND_INSTANCE_SIGNATURE:-}"
@@ -21,6 +22,6 @@ reapply() {
 # Give a newly added monitor a moment to settle, then reconcile all screens.
 socat -U - UNIX-CONNECT:"$sock" | while read -r line; do
   case "$line" in
-    monitoradded*) sleep 0.6; reapply ;;
+    monitoradded*|configreloaded*) sleep 0.6; reapply ;;
   esac
 done
