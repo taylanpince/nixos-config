@@ -18,8 +18,8 @@ set -u
 tiles=(DP-7 DP-8)
 # Keep the re-add geometry in step with hypr/hyprland.conf.
 declare -A geometry=(
-  [DP-7]="2560x2880@60,0x0,1"
-  [DP-8]="2560x2880@60,2560x0,1"
+  [DP-7]="2560x2880@60,2880x0,1"
+  [DP-8]="2560x2880@60,5440x0,1"
 )
 log="${XDG_STATE_HOME:-$HOME/.local/state}/lg-dpms-cycle.log"
 mkdir -p "$(dirname "$log")"
