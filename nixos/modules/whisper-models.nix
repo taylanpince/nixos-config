@@ -3,7 +3,7 @@
 # Whisper.cpp ggml models placed on disk at stable paths so scripts can point
 # at them without threading env vars through every shell.  Kept out of
 # voxtype's model set on purpose — voxtype is pinned to `small` for latency,
-# meeting transcription runs `medium` in the background.
+# meeting transcription runs `medium` on the GPU (whisper-cpp-vulkan).
 
 let
   medium = pkgs.fetchurl {

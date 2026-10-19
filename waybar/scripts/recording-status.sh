@@ -46,6 +46,8 @@ if [[ "$mr_class" == "transcribing" && -f "$WHISPER_LOG" ]]; then
   if [[ -n "$n" ]]; then
     mr_pct="$(( n / 5 * 5 ))"
     mr_label="transcribing (${mr_pct}%)"
+  elif grep -q '^queued:' "$WHISPER_LOG" 2>/dev/null; then
+    mr_label="queued until your call ends"
   fi
 fi
 

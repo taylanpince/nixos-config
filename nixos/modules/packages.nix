@@ -216,7 +216,7 @@ in
     celluloid
 
     # Audio transcription
-    whisper-cpp
+    whisper-cpp-vulkan # meeting transcription on the 890M (CPU build pegs the APU power budget)
 
     # Image management
     imagemagick

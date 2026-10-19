@@ -185,11 +185,49 @@ recover_wav() {
   finalize_and_transcribe "${wav%.wav}" "$wav"
 }
 
+# True while some other app (Meet, Zoom, Slack huddle, a new meeting-record
+# capture...) is reading from a real mic. Sink monitors don't count — plenty
+# of things tap those without being a call.
+mic_in_use() {
+  pactl -f json list source-outputs 2>/dev/null | jq -e --argjson sources \
+    "$(pactl -f json list sources 2>/dev/null | jq '[.[] | select(.monitor_source == "" or .monitor_source == null) | .index]')" \
+    'any(.[]; .source as $s | $sources | index($s))' >/dev/null 2>&1
+}
+
+# whisper-cli is the Vulkan build, so the heavy lifting is on the 890M — a burst
+# of a few minutes that would still fight a video call for the GPU. So wait out
+# any active call, then run the leftover CPU side (decode, I/O) as background
+# work: idle-ish CPU weight, nice 19, idle I/O, pinned to the Zen 5c cores.
+WHISPER_CPUS="${WHISPER_CPUS:-4-11,16-23}"
+WHISPER_MAX_WAIT="${WHISPER_MAX_WAIT:-10800}"  # give up waiting after 3h
+
+wait_for_quiet() {
+  local log="$1" waited=0
+  while mic_in_use && (( waited < WHISPER_MAX_WAIT )); do
+    (( waited == 0 )) && echo "queued: waiting for call to end" >"$log"
+    sleep 30
+    waited=$(( waited + 30 ))
+  done
+}
+
+run_background() {
+  local cmd=(taskset -c "$WHISPER_CPUS" nice -n 19 ionice -c 3 "$@")
+  # No user manager reachable (e.g. tests): skip the cgroup weights.
+  if ! systemctl --user show-environment >/dev/null 2>&1; then
+    "${cmd[@]}"
+    return
+  fi
+  systemd-run --user --scope --quiet --collect \
+    --unit="meeting-transcribe-$$-$RANDOM" -p CPUWeight=1 -p IOWeight=1 -- "${cmd[@]}"
+}
+
 transcribe() {
   local base="$1" wav="$2"
   local log="$STATE_DIR/whisper.log"
 
-  if whisper-cli \
+  wait_for_quiet "$log"
+
+  if run_background whisper-cli \
       --model "$MODEL" \
       --language "$LANG" \
       --file "$wav" \
