@@ -27,6 +27,7 @@
     ../../modules/power.nix
     ../../modules/wifi-resume.nix
     ../../modules/pennyworth-mdns.nix
+    ../../modules/ca-trust.nix
   ];
 
   networking.hostName = "bloomware";

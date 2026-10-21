@@ -2,7 +2,7 @@
   description = "NixOS system config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # Independent pin used ONLY by the `llm` devshell (claude-code, codex, opencode).
     # Kept separate so bumping AI CLIs never drags the system nixpkgs along.
