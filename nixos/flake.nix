@@ -23,6 +23,12 @@
     # Bump with: nix flake update nixpkgs-kernel
     nixpkgs-kernel.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    # Independent pin used ONLY for the Cloudflare WARP client. nixos-26.05
+    # doesn't pick up new WARP releases, and a VPN client needs prompt
+    # security updates (e.g. the 2026-10 eMudhra CA advisory).
+    # Bump with: nix flake update nixpkgs-warp
+    nixpkgs-warp.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,7 +48,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-llm, nixpkgs-pulumi, nixpkgs-kernel, home-manager, voxtype, claude-desktop, ... }:
+  outputs = { self, nixpkgs, nixpkgs-llm, nixpkgs-pulumi, nixpkgs-kernel, nixpkgs-warp, home-manager, voxtype, claude-desktop, ... }:
     let
       system = "x86_64-linux";
 
@@ -71,6 +77,12 @@
         config.allowUnfree = true;
       };
 
+      # WARP-only pin, consumed by modules/cloudflare-warp.nix via specialArgs.
+      pkgsWarp = import nixpkgs-warp {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
       goShells = import ./shells/go.nix { inherit pkgs; };
       pyShells = import ./shells/python.nix { inherit pkgs; };
       nodeShells = import ./shells/node.nix { inherit pkgs; };
@@ -84,7 +96,10 @@
     {
       nixosConfigurations.bloomware = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { kernelPackages = pkgsKernel.linuxPackages_6_18; };
+        specialArgs = {
+          kernelPackages = pkgsKernel.linuxPackages_6_18;
+          warpPackage = pkgsWarp.cloudflare-warp;
+        };
         modules = [
           ./configuration.nix
 
