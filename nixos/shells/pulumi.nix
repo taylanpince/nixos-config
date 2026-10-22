@@ -6,6 +6,7 @@
       # Pulumi comes from pkgsPulumi (independent nixpkgs pin — see flake.nix)
       pkgsPulumi.pulumi-bin
       pkgsPulumi.pulumiPackages.pulumi-nodejs
+      pkgsPulumi.railway
 
       pkgs.nodejs_22
       pkgs.pnpm

@@ -10,7 +10,7 @@
     nixpkgs-llm.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # Independent pin used ONLY by the `pulumi` devshell (pulumi-bin,
-    # pulumi-nodejs). The system nixpkgs pin lags far enough behind that
+    # pulumi-nodejs, railway). The system nixpkgs pin lags far enough behind that
     # Pulumi refuses to stop warning about its own age; this keeps the CLI
     # current without moving the system off its pin.
     # Bump with: nix flake update nixpkgs-pulumi
