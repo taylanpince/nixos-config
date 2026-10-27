@@ -52,6 +52,8 @@ in
       pkgsLlm.codex
       opencode
       agent-deck
+      # Pennyworth runs every agent under bwrap, to hide the gcloud sign-ins from it.
+      pkgs.bubblewrap
     ];
   };
 }
