@@ -32,8 +32,36 @@
     Install.WantedBy = [ "default.target" ];
   };
 
+  # Pennyworth backups (D-58): an encrypted restic snapshot off the machine every hour
+  # (tasks, board, agents' state). Repository and keys in ~/.config/pennyworth/backup/.
+  systemd.user.services.pennyworth-backup = {
+    Unit = {
+      Description = "Pennyworth off-machine backup";
+      After = [ "network-online.target" ];
+    };
+    Service = {
+      Type = "oneshot";
+      ExecStart = "/home/taylan/development/pennyworth/scripts/backup.sh --offsite";
+      # docker comes from the system profile.
+      Environment = [ "PATH=${pkgs.lib.makeBinPath [ pkgs.restic pkgs.nodejs_24 pkgs.coreutils pkgs.gnutar pkgs.gzip pkgs.gnused pkgs.gnugrep pkgs.findutils pkgs.util-linux pkgs.git ]}:/run/current-system/sw/bin" ];
+      Nice = 10;
+      IOSchedulingClass = "idle";
+    };
+  };
+  systemd.user.timers.pennyworth-backup = {
+    Unit.Description = "Pennyworth off-machine backup, hourly";
+    Timer = {
+      OnCalendar = "hourly";
+      RandomizedDelaySec = "5m";
+      # Runs once on wake when the laptop slept through its hour.
+      Persistent = true;
+    };
+    Install.WantedBy = [ "timers.target" ];
+  };
+
   # Pennyworth todo list CLI (tasks live in Paperclip): `todo`, `todo add …`, `todo brief`.
   home.packages = [
+    pkgs.restic # scripts/backup.sh and restore.sh by hand (`restic snapshots`, too)
     (pkgs.writeShellScriptBin "todo" ''
       exec ${pkgs.nodejs_24}/bin/node /home/taylan/development/pennyworth/scripts/todo.mjs "$@"
     '')
